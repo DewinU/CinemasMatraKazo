@@ -1,0 +1,19 @@
+#loginPane {
+    -fx-background-color: linear-gradient(#FFB600, #FF8500 ,#FF6D00, #FF5400);
+}
+
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+}
+
+.main-pane {
+    -fx-background-color: #5C4D3C;
+    -fx-border-color: #FFE6A7;
+}
+
+.movie-pane {
+    -fx-background-color: #38413F;
+    -fx-border-color: #FFE6A7;
+}

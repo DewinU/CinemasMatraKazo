@@ -1,0 +1,24 @@
+
+.choice-box {
+    -fx-background-color: #A5A58D;
+}
+
+.choice-box .arrow, .choice-box .arrow-button{
+    -fx-background-color: transparent;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #CB997E;
+}
+
+.choice-box .menu-item:focused > .menu-item:filled:selected  {
+    -fx-background-color: silver;
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: black;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: black;
+}

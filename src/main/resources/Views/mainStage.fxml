@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane fx:controller="Controller.mainStageController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <HBox fx:id="windowsBar" alignment="CENTER_RIGHT" style="-fx-background-color: #57606f;" BorderPane.alignment="CENTER">
+         <children>
+            <FontAwesomeIconView fill="#45dbfb" glyphName="MINUS" onMouseClicked="#minus" size="1.4em" styleClass="FontAwesomeIconView">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <FontAwesomeIconView fill="#1dd1a1" glyphName="CIRCLE" size="1.4em" styleClass="FontAwesomeIconView" text="">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <FontAwesomeIconView fill="#ee5253" glyphName="CLOSE" onMouseClicked="#close" size="1.4em" styleClass="FontAwesomeIconView">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </top>
+</BorderPane>
