@@ -1,19 +1,14 @@
 package Controller;
 
 import static Main.App.loadFXML;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import Pojo.Database;
 import javafx.stage.StageStyle;
@@ -24,7 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class loginController implements Initializable {
+public class loginStageController implements Initializable {
     double x,y;
     Stage stage;
     Database database;  
@@ -69,11 +64,6 @@ public class loginController implements Initializable {
             stage.setScene(new Scene(loadFXML("mainStage")));
             stage.setResizable(false);
             stage.initStyle(StageStyle.TRANSPARENT);
-            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-            stage.setX(primaryScreenBounds.getMinX());
-            stage.setY(primaryScreenBounds.getMinY());
-            stage.setWidth(primaryScreenBounds.getWidth());
-            stage.setHeight(primaryScreenBounds.getHeight());
             stage.show();
         }
         else{
@@ -81,10 +71,10 @@ public class loginController implements Initializable {
             passwordTxtField.getStyleClass().add("error-text-field");
             userTxtField.clear();
             passwordTxtField.clear();
+            account.setStyle("-fx-fill: #c54e2c");
         }
 
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
