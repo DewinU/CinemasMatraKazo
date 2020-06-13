@@ -1,26 +1,26 @@
 package Controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class mainStageController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import static Main.App.loadFXML;
+
+public class mainStageController implements Initializable {
+    double x;
+    double y;
     Stage stage;
-
     @FXML
-    ComboBox<String> funciones;
-
-    @FXML
-    private TextField salaTxt;
-
-    @FXML
-    private TextField cantidadTxt;
-
-
+    private AnchorPane contentPane;
 
     @FXML
     void close(MouseEvent event) {
@@ -35,26 +35,79 @@ public class mainStageController {
     }
 
     @FXML
-    public void movieSelection(ActionEvent e) {
+    void dragged(MouseEvent event) {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
+    }
 
-        String tanda = funciones.getValue();
+    @FXML
+    void pressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
 
-        switch (tanda) {
-            case "Funcion 10:00 AM - 11:30 PM":
-            case "Funcion 3:00 AM - 4:30 PM":
-                salaTxt.setText("Sala A");
-                break;
-            case "Funcion 11:30 AM - 1:30 PM":
-                salaTxt.setText("Sala F");
-                break;
-            case "Funcion 1:30 AM - 3:00 PM":
-            case "Funcion 4:30 AM - 6:00 PM":
-                salaTxt.setText("Sala B");
-                break;
-            default:
-                salaTxt.setText("Sala D");
-                break;
+    @FXML
+    void inicioButton(MouseEvent event) throws IOException {
+        Node child = loadFXML("dashboardStage");
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(child);
+    }
+
+    @FXML
+    void historyButton(MouseEvent event) throws IOException {
+        Node child = loadFXML("historyStage");
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(child);
+    }
+
+    @FXML
+    void facturaButton(MouseEvent event) throws IOException {
+        Node child = loadFXML("facturaStage");
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(child);
+    }
+
+    @FXML
+    void menuButton(MouseEvent event) throws IOException {
+        Node child = loadFXML("menuStage");
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(child);
+    }
+
+    @FXML
+    void empleadosButton(MouseEvent event) throws IOException {
+        Node child = loadFXML("empleadosStage");
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(child);
+    }
+
+    @FXML
+    void peliculasButton(MouseEvent event) throws IOException {
+        Node child = loadFXML("peliculasStage");
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(child);
+    }
+
+    @FXML
+    void logoutButton(MouseEvent event) throws IOException {
+        close(event);
+        stage = new Stage();
+        stage.setScene(new Scene(loadFXML("loginStage")));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Node child = null;
+        try {
+            child = loadFXML("dashboardStage");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(child);
     }
 }
-

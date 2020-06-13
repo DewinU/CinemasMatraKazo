@@ -1,0 +1,101 @@
+.windowsBar {
+  -fx-background-color: #696868;
+  -fx-border-color: #000000;
+}
+
+.windowsBar .Icons {
+  -fx-fill: #434545;
+}
+
+.windowsBar .Icons:hover{
+    -fx-cursor: hand;
+}
+
+.navBar {
+    -fx-border-color: #000000;
+  -fx-background-color: #252525;
+}
+
+.navBar .text {
+
+    -fx-font-family: Roboto;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-line-height: 23px;
+    
+    -fx-fill: #FFF4F4;
+}
+
+.navBar .welcomeText{
+    -fx-font-family: Roboto;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-fill: #FFFFFF;
+}
+
+.navBar .button{
+    -fx-background-color: #252525;
+}
+
+.navBar .button .Icons{
+    -fx-fill: #eaa43a;
+    -fx-font-size: 26px
+}
+
+.navBar .button:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #252520;
+}
+
+.dashBoard {
+    -fx-border-color:  #000000;
+  -fx-background-color: #eaa43a;
+}
+
+.loginPane{
+    -fx-border-color:  #000000;
+    -fx-background-color: linear-gradient(#FFB600, #FF8500 ,#FF6D00, #FF5400);
+}
+
+.loginPane .loginTextField{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+}
+
+.loginPane .loginTextField:focused {
+    -fx-background-color: #a9a9a9;
+}
+
+.loginPane .loginText{
+    -fx-font-family: Roboto;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-line-height: 23px;
+}
+
+.loginPane .error-text-field {
+    -fx-background-color: #ffbbbb;
+    -fx-background-radius: 20;
+}
+
+.loginPane .loginButton {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+            #9d4024,
+            #d86e3a,
+            radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+}
+
+
+
+
