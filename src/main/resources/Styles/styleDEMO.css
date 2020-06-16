@@ -96,6 +96,19 @@
     -fx-font-size: 1.1em;
 }
 
+.movie-name {
+
+}
+
+.movie-pane {
+    -fx-background-insets: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #403d39, 20, 0, 0, 0);
+}
+
+.movie-pane:hover {
+    -fx-cursor: hand;
+}
 
 
 
