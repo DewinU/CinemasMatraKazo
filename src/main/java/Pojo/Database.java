@@ -4,12 +4,7 @@
  * and open the template in the editor.
  */
 package Pojo;
-
-import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  *
@@ -25,18 +20,30 @@ public class Database {
             + username + "&password=" +  password;
     Connection con;
     ResultSet rs;
+    PreparedStatement query;
 
-    public Database() throws URISyntaxException, SQLException {
+    String checkLogin = "SELECT check_login(?, ?)";
+    String createEmpleado ="SELECT add_empleado(?,?,?,?,?,?,?,?,?,?,?,?)"; //C
+    String readAll = "SELECT * from users";                                //R
+    String updateEmpleado = "SELECT edit_empleado(?,?,?,?,?,?,?,?,?,?,?)"; //U
+    String deleteEmpleado = "SELECT delete_empleado(?)";                   //R
+
+
+
+    public Database() throws SQLException {
         this.con = getConnection();
     }
 
-    private Connection getConnection() throws URISyntaxException, SQLException {
+    private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(dbUrl, username, password);
     }
 
     public boolean is_register(String username, String password) throws SQLException{
-        rs = con.prepareStatement("SELECT username FROM users WHERE username='{" + username +
-                "}' AND password='{" + password + "}'").executeQuery();
+
+        query = con.prepareStatement(checkLogin);
+        query.setString(1,username);
+        query.setString(2,password);
+        rs = query.executeQuery();
 
         return rs.next();
     }

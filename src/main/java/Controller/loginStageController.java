@@ -71,7 +71,7 @@ public class loginStageController implements Initializable {
             passwordTxtField.getStyleClass().add("error-text-field");
             userTxtField.clear();
             passwordTxtField.clear();
-            account.setStyle("-fx-fill: #c54e2c");
+            account.setStyle("-fx-fill: #ffbbbb");
         }
 
     }
@@ -80,8 +80,6 @@ public class loginStageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             database = new Database();
-        } catch (URISyntaxException | SQLException e) {
-        }
-
+        } catch (SQLException e) {}
     }
 }
