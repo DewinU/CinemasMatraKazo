@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Pojo;
+import Model.TableModel;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 /**
@@ -28,10 +31,9 @@ public class Database {
     String updateEmpleado = "SELECT edit_empleado(?,?,?,?,?,?,?,?,?,?,?)"; //U
     String deleteEmpleado = "SELECT delete_empleado(?)";                   //R
 
-
-
     public Database() throws SQLException {
-        this.con = getConnection();
+        con = getConnection();
+        con.setAutoCommit(false);
     }
 
     private Connection getConnection() throws SQLException {
@@ -43,9 +45,58 @@ public class Database {
         query = con.prepareStatement(checkLogin);
         query.setString(1,username);
         query.setString(2,password);
-        rs = query.executeQuery();
 
-        return rs.next();
+        return query.execute();
+    }
+
+    public void showAll(ObservableList<TableModel> obList) throws SQLException {
+        query = con.prepareStatement(readAll);
+        rs = query.executeQuery();
+        while(rs.next()) {
+            obList.add(new TableModel(rs.getInt("id"),rs.getString("cod"),
+                    rs.getString("username"),rs.getString("firstname"),
+                    rs.getString("lastname"),rs.getString("cedula"),
+                    rs.getString("telefono"),rs.getString("email"),
+                    rs.getString("cargo"),rs.getString("turno"),
+                    rs.getDate("hiredate")));
+        }
+    }
+
+    public boolean addEmpleado(String cod, String username,
+                               String firstName, String lastName, String cedula, String telefono,
+                               String email,String address, String cargo, String turno, String fotoUrl) throws SQLException {
+        query = con.prepareStatement(createEmpleado);
+        query.setString(1,cod);
+        query.setString(2,username);
+        query.setString(3,firstName);
+        query.setString(4,lastName);
+        query.setString(5,cedula);
+        query.setString(6,telefono);
+        query.setString(7,email);
+        query.setString(8,address);
+        query.setString(9,cargo);
+        query.setString(10,turno);
+        query.setString(11,fotoUrl);
+        return query.execute();
+    }
+
+    public boolean updateEmpleado(String cod, String username,String password,
+                                  String firstName, String lastName, String cedula, String telefono,
+                                  String email,String address, String cargo, String turno, String fotoUrl) throws SQLException {
+        query = con.prepareStatement(updateEmpleado);
+        query.setString(1,cod);
+        query.setString(2,username);
+        query.setString(3,firstName);
+        query.setString(4,lastName);
+        query.setString(5,cedula);
+        query.setString(6,telefono);
+        query.setString(7,email);
+        query.setString(8,address);
+        query.setString(9,cargo);
+        query.setString(10,turno);
+        query.setString(11,fotoUrl);
+
+        return query.execute();
     }
     
 }
