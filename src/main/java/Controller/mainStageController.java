@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -177,6 +179,7 @@ public class mainStageController implements Initializable {
         Node child = loadFXML("dashboardStage");
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
+
     }
 
     @FXML
