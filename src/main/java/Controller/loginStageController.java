@@ -12,9 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import Pojo.Database;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
