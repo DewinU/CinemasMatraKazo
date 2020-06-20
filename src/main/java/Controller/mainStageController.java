@@ -78,7 +78,7 @@ public class mainStageController implements Initializable {
         activoHilo = true;
         
 //Tarea 1, animacion de nueva factura
-        threadPool = Executors.newFixedThreadPool(1);
+        threadPool = Executors.newCachedThreadPool();
         task1 = () -> {
 
             //Ponemos invisibles los componentes del main
@@ -132,7 +132,7 @@ public class mainStageController implements Initializable {
     public static void NuevaFacturaMainStageEvent(boolean a){
         if(a){
             if(activoHilo){
-               threadPool.execute(task1); 
+               threadPool.submit(task1); 
                activoHilo = false;
             }
         }
@@ -140,7 +140,7 @@ public class mainStageController implements Initializable {
     @FXML
     private void cancelarFacturaButtomOnAction(ActionEvent event) {
         if(!activoHilo){
-            threadPool.execute(task2);
+            threadPool.submit(task2);
             facturaStageController.cancelarMainEvent(true);
             activoHilo = true;
         }

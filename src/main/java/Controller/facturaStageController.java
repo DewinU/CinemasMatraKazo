@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class facturaStageController implements Initializable {
 
@@ -212,12 +213,16 @@ public class facturaStageController implements Initializable {
     static Runnable task2;
     @FXML
     private TreeTableView<String> TreeTableViewPeliculas;
+    @FXML
+    private Pane pnlBotonesAsientos;
+    @FXML
+    private ImageView imgSelectorAsientosPrincipal;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contentPane.setStyle("-fx-border-color: #000000");
         
-        threadPool = Executors.newFixedThreadPool(1);
+        threadPool = Executors.newCachedThreadPool();
         //Animacion de la tabla y el boton
         task1 = () ->{
             //hacemos invisible el boton
@@ -235,8 +240,33 @@ public class facturaStageController implements Initializable {
                     Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            pnlBotonesAsientos.setVisible(true);
+            //Aparecemos los botones y el img
+            for (double a = 0, b = 1; a <= 1 && b>= 0; a+= 0.1, b-= 0.1 ){
+                pnlBotonesAsientos.setOpacity(a);
+                imgSelectorAsientosPrincipal.setOpacity(b);
+                try {
+                    Thread.sleep(30);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            imgSelectorAsientosPrincipal.setVisible(false);
+            
         };
         task2 = () ->{
+            imgSelectorAsientosPrincipal.setVisible(true);
+            //desaparecemos los botones y el img
+            for (double b = 1, a = 0; b <= 1 || a >= 1; b+= 0.1, a-= 0.1){
+                pnlBotonesAsientos.setOpacity(a);
+                imgSelectorAsientosPrincipal.setOpacity(b);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            pnlBotonesAsientos.setVisible(false);
             //hacemos encojer la tabla
             double i = TreeTableViewPeliculas.getHeight();
             double j = TreeTableViewPeliculas.getLayoutY();
@@ -251,19 +281,19 @@ public class facturaStageController implements Initializable {
             }
             //hacemos visible el boton
             btnNuevaFactura.setVisible(true);
+            
         };
     }
-
     
     @FXML
     private void btnNuevaFacturaOnAction(ActionEvent event) throws IOException {
              mainStageController.NuevaFacturaMainStageEvent(true);  
-             threadPool.execute(task1);
+             threadPool.submit(task1);
     }
     
     public static void cancelarMainEvent(boolean a){
         if(a){
-            threadPool.execute(task2);
+            threadPool.submit(task2);
         }
     }
     
