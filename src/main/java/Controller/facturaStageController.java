@@ -293,7 +293,7 @@ public class facturaStageController implements Initializable {
     
     public static void cancelarMainEvent(boolean a){
         if(a){
-            threadPool.submit(task2);
+            threadPool.execute(task2);
         }
     }
     
