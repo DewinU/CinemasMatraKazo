@@ -7,9 +7,13 @@ package Model;
 
 import Pojo.Asiento;
 import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +38,7 @@ public class AsientoListModel {
         Gson gson = new Gson();
         
         try {
-            FileWriter writer = new FileWriter("./src/main/resources/Data/Sala0.json");
+            FileWriter writer = new FileWriter("./src/main/resources/Data/SalaDefault.json");
             writer.write(gson.toJson(data));
             writer.close();
         } catch (IOException ex) {
@@ -87,5 +91,21 @@ public class AsientoListModel {
             data.add(asiento);
         }
         writeToJson();
+    }
+    public void loadFromJson(){
+        Gson gson = new Gson();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("./src/main/resources/Data/SalaDefault.json"));
+            if(!(br.readLine() == null)){
+                data.addAll(Arrays.asList(gson.fromJson(new FileReader("./src/main/resources/Data/SalaDefault.json"), Asiento[].class)));
+            }else{
+                createDataJson();
+                loadFromJson();
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Error con el loadFromJson");
+        } catch (IOException ex) {
+            Logger.getLogger(AsientoListModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

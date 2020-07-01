@@ -4,17 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import static Main.App.loadFXML;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -78,7 +74,7 @@ public class mainStageController implements Initializable {
         activoHilo = true;
         
 //Tarea 1, animacion de nueva factura
-        threadPool = Executors.newFixedThreadPool(1);
+        threadPool = Executors.newCachedThreadPool();
         task1 = () -> {
 
             //Ponemos invisibles los componentes del main
@@ -140,7 +136,7 @@ public class mainStageController implements Initializable {
     @FXML
     private void cancelarFacturaButtomOnAction(ActionEvent event) {
         if(!activoHilo){
-            threadPool.execute(task2);
+            threadPool.submit(task2);
             facturaStageController.cancelarMainEvent(true);
             activoHilo = true;
         }
@@ -225,23 +221,6 @@ public class mainStageController implements Initializable {
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
-    }
-        class AnimacionGustabito extends Thread{
-        
-        public AnimacionGustabito(){
-            
-        }
-
-        @Override
-        public void run() {
-            if(activoHilo){
-                
-            }else{
-                
-            }
-        }
-        
-        
     }
 
 }
