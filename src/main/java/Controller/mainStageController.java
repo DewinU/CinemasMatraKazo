@@ -14,9 +14,6 @@ import java.util.ResourceBundle;
 import static Main.App.loadFXML;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -48,8 +45,6 @@ public class mainStageController implements Initializable {
     private Button empleadosButton;
     @FXML
     private Text welcomeText;
-    @FXML
-    private AnchorPane AnchorPaneNUevaFactura;
 
     public static boolean activoHilo;
     
@@ -57,8 +52,6 @@ public class mainStageController implements Initializable {
     static Runnable task1;
     static Runnable task2;
     
-    @FXML
-    private Button cancelarFacturaButtom;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,13 +64,10 @@ public class mainStageController implements Initializable {
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
         
-        activoHilo = true;
-        
-//Tarea 1, animacion de nueva factura
+
         threadPool = Executors.newCachedThreadPool();
         task1 = () -> {
-
-            //Ponemos invisibles los componentes del main
+            
             inicioButton.setVisible(false);
             menuButton.setVisible(false);
             historyButton.setVisible(false);
@@ -86,35 +76,14 @@ public class mainStageController implements Initializable {
             empleadosButton.setVisible(false);
             welcomeText.setVisible(false);
 
-            //Movemos hacia arriba el boton
-            double i = facturaButton.getLayoutY(); 
-            for (; i > 100; i--) {
-                facturaButton.setLayoutY(i);
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ex) {
-                    System.out.println("Hilo interrumpido");
-                }
-            }
-            //hacemos visible el anchorpane con los componentes
-            AnchorPaneNUevaFactura.setVisible(true);
+            facturaButton.setLayoutY(100);
         };
         
-//Tarea 2, animacion de cancelar factura
+
         task2 = () -> {
-            //hacemos invisible el anchorpane
-            AnchorPaneNUevaFactura.setVisible(false);
-            //MOvemos hacia abajo el boton
-            double i = facturaButton.getLayoutY();
-            for(; i <= 340; i++ ){
-                facturaButton.setLayoutY(i);
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(mainStageController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            //Ponemos invisibles los componentes del main
+
+            facturaButton.setLayoutY(340);
+
             inicioButton.setVisible(true);
             menuButton.setVisible(true);
             historyButton.setVisible(true);
@@ -133,14 +102,7 @@ public class mainStageController implements Initializable {
             }
         }
     }
-    @FXML
-    private void cancelarFacturaButtomOnAction(ActionEvent event) {
-        if(!activoHilo){
-            threadPool.submit(task2);
-            facturaStageController.cancelarMainEvent(true);
-            activoHilo = true;
-        }
-    }
+
 
     @FXML
     void close(MouseEvent event) {

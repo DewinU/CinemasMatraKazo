@@ -2,10 +2,10 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,14 +15,9 @@
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.facturaStageController">
    <children>
-      <TreeTableView fx:id="TreeTableViewPeliculas" layoutX="14.0" layoutY="55.0" prefHeight="615.0" prefWidth="201.0">
-        <columns>
-          <TreeTableColumn prefWidth="200.0" text="Películas" />
-        </columns>
-      </TreeTableView>
-      <Pane fx:id="pnlBotonesAsientos" layoutX="226.0" layoutY="14.0" opacity="0.0" prefHeight="656.0" prefWidth="740.0" style="-fx-background-color: darkred;" visible="false">
+      <Pane fx:id="pnlBotonesAsientos" layoutX="266.0" layoutY="11.0" opacity="0.0" prefHeight="657.0" prefWidth="706.0" style="-fx-background-color: darkred;" visible="false">
          <children>
-            <Label layoutX="7.0" layoutY="5.0" text="SALA A" textFill="WHITE">
+            <Label layoutX="58.0" text="SALA A" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -35,7 +30,7 @@
                   <Image url="@../Images/Selector%20de%20imagen.png" />
                </image>
             </ImageView>
-            <Button fx:id="A1" layoutX="130.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A1Clicked" onMouseExited="#A1Exited" onMouseMoved="#A1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="A1" layoutX="120.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A1Clicked" onMouseExited="#A1Exited" onMouseMoved="#A1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgA1" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -47,7 +42,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="A2" layoutX="215.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A2Clicked" onMouseExited="#A2Exited" onMouseMoved="#A2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="A2" layoutX="205.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A2Clicked" onMouseExited="#A2Exited" onMouseMoved="#A2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgA2" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -59,7 +54,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="A3" layoutX="297.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A3Clicked" onMouseExited="#A3Exited" onMouseMoved="#A3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="A3" layoutX="290.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A3Clicked" onMouseExited="#A3Exited" onMouseMoved="#A3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgA3" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,7 +66,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="A4" layoutX="382.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A4Clicked" onMouseExited="#A4Exited" onMouseMoved="#A4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="A4" layoutX="370.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A4Clicked" onMouseExited="#A4Exited" onMouseMoved="#A4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgA4" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -83,7 +78,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="A5" layoutX="467.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A5Clicked" onMouseExited="#A5Exited" onMouseMoved="#A5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="A5" layoutX="455.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A5Clicked" onMouseExited="#A5Exited" onMouseMoved="#A5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgA5" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -95,7 +90,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="B1" layoutX="130.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B1Clicked" onMouseExited="#B1Exited" onMouseMoved="#B1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="B1" layoutX="120.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B1Clicked" onMouseExited="#B1Exited" onMouseMoved="#B1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgB1" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -107,7 +102,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="A6" layoutX="552.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A6Clicked" onMouseExited="#A6Exited" onMouseMoved="#A6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="A6" layoutX="534.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#A6Clicked" onMouseExited="#A6Exited" onMouseMoved="#A6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgA6" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -119,7 +114,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="B2" layoutX="215.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B2Clicked" onMouseExited="#B2Exited" onMouseMoved="#B2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="B2" layoutX="205.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B2Clicked" onMouseExited="#B2Exited" onMouseMoved="#B2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgB2" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -131,7 +126,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="B3" layoutX="297.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B3clicked" onMouseExited="#B3Exited" onMouseMoved="#B3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="B3" layoutX="290.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B3clicked" onMouseExited="#B3Exited" onMouseMoved="#B3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgB3" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -143,7 +138,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="B4" layoutX="382.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B4clicked" onMouseExited="#B4Exited" onMouseMoved="#B4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="B4" layoutX="370.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B4clicked" onMouseExited="#B4Exited" onMouseMoved="#B4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgB4" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -155,7 +150,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="B5" layoutX="467.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B5Clicked" onMouseExited="#B5Exited" onMouseMoved="#B5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="B5" layoutX="455.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B5Clicked" onMouseExited="#B5Exited" onMouseMoved="#B5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgB5" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -167,7 +162,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="B6" layoutX="552.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B6Clicked" onMouseExited="#B6Exited" onMouseMoved="#B6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="B6" layoutX="534.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#B6Clicked" onMouseExited="#B6Exited" onMouseMoved="#B6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgB6" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -179,7 +174,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="C1" layoutX="130.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C1Clicked" onMouseExited="#C1Exited" onMouseMoved="#C1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="C1" layoutX="120.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C1Clicked" onMouseExited="#C1Exited" onMouseMoved="#C1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgC1" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -191,7 +186,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="C2" layoutX="215.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C2clicked" onMouseExited="#C2Exited" onMouseMoved="#C2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="C2" layoutX="205.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C2clicked" onMouseExited="#C2Exited" onMouseMoved="#C2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgC2" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -203,7 +198,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="C3" layoutX="297.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C3Clicked" onMouseExited="#C3Exited" onMouseMoved="#C3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="C3" layoutX="290.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C3Clicked" onMouseExited="#C3Exited" onMouseMoved="#C3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgC3" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -215,7 +210,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="C4" layoutX="382.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C4Clicked" onMouseExited="#C4Exited" onMouseMoved="#C4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="C4" layoutX="370.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C4Clicked" onMouseExited="#C4Exited" onMouseMoved="#C4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgC4" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -227,7 +222,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="C5" layoutX="467.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C5Clicked" onMouseExited="#C5Exited" onMouseMoved="#C5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="C5" layoutX="455.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C5Clicked" onMouseExited="#C5Exited" onMouseMoved="#C5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgC5" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -239,7 +234,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="C6" layoutX="552.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C6Clicked" onMouseExited="#C6Exited" onMouseMoved="#C6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="C6" layoutX="534.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#C6Clicked" onMouseExited="#C6Exited" onMouseMoved="#C6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgC6" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -251,7 +246,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="D1" layoutX="130.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D1Clicked" onMouseExited="#D1Exited" onMouseMoved="#D1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="D1" layoutX="120.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D1Clicked" onMouseExited="#D1Exited" onMouseMoved="#D1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgD1" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -263,7 +258,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="D2" layoutX="215.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D2Clicked" onMouseExited="#D2Exited" onMouseMoved="#D2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="D2" layoutX="205.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D2Clicked" onMouseExited="#D2Exited" onMouseMoved="#D2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgD2" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -275,7 +270,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="D3" layoutX="297.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D3Clicked" onMouseExited="#D3Exited" onMouseMoved="#D3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="D3" layoutX="290.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D3Clicked" onMouseExited="#D3Exited" onMouseMoved="#D3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgD3" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -287,7 +282,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="D4" layoutX="382.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D4clicked" onMouseExited="#D4Exited" onMouseMoved="#D4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="D4" layoutX="370.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D4clicked" onMouseExited="#D4Exited" onMouseMoved="#D4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgD4" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -299,7 +294,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="D5" layoutX="467.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D5Clicked" onMouseExited="#D5Exited" onMouseMoved="#D5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="D5" layoutX="455.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D5Clicked" onMouseExited="#D5Exited" onMouseMoved="#D5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgD5" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -311,7 +306,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="D6" layoutX="552.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D6Clicked" onMouseExited="#D6Exited" onMouseMoved="#D6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="D6" layoutX="534.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#D6Clicked" onMouseExited="#D6Exited" onMouseMoved="#D6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgD6" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -323,7 +318,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="E1" layoutX="130.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E1Clicked" onMouseExited="#E1Exited" onMouseMoved="#E1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="E1" layoutX="120.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E1Clicked" onMouseExited="#E1Exited" onMouseMoved="#E1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgE1" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -335,7 +330,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="E2" layoutX="215.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E2Clicked" onMouseExited="#E2Exited" onMouseMoved="#E2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="E2" layoutX="205.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E2Clicked" onMouseExited="#E2Exited" onMouseMoved="#E2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgE2" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -347,7 +342,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="E3" layoutX="297.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E3clicked" onMouseExited="#E3Exited" onMouseMoved="#E3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="E3" layoutX="290.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E3clicked" onMouseExited="#E3Exited" onMouseMoved="#E3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgE3" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -359,7 +354,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="E4" layoutX="382.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E4Clicked" onMouseExited="#E4Exited" onMouseMoved="#E4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="E4" layoutX="370.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E4Clicked" onMouseExited="#E4Exited" onMouseMoved="#E4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgE4" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -371,7 +366,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F1" layoutX="130.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F1Clicked" onMouseExited="#F1Exited" onMouseMoved="#F1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F1" layoutX="120.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F1Clicked" onMouseExited="#F1Exited" onMouseMoved="#F1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF1" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -383,7 +378,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G1" layoutX="130.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G1Clicked" onMouseExited="#G1Exited" onMouseMoved="#G1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G1" layoutX="120.0" layoutY="93.0" mnemonicParsing="false" onMouseClicked="#G1Clicked" onMouseExited="#G1Exited" onMouseMoved="#G1Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG1" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -395,7 +390,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G0" layoutX="52.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G0Clicked" onMouseExited="#G0Exited" onMouseMoved="#G0Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G0" layoutX="41.0" layoutY="93.0" mnemonicParsing="false" onMouseClicked="#G0Clicked" onMouseExited="#G0Exited" onMouseMoved="#G0Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG0" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -407,7 +402,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F2" layoutX="215.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F2Clicked" onMouseExited="#F2Exited" onMouseMoved="#F2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F2" layoutX="205.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F2Clicked" onMouseExited="#F2Exited" onMouseMoved="#F2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF2" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -419,7 +414,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F3" layoutX="297.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F3Clicked" onMouseExited="#F3Exited" onMouseMoved="#F3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F3" layoutX="290.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F3Clicked" onMouseExited="#F3Exited" onMouseMoved="#F3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF3" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -431,7 +426,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F4" layoutX="382.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F4Clicked" onMouseExited="#F4Exited" onMouseMoved="#F4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F4" layoutX="370.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F4Clicked" onMouseExited="#F4Exited" onMouseMoved="#F4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF4" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -443,7 +438,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G2" layoutX="215.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G2Clicked" onMouseExited="#G2Exited" onMouseMoved="#G2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G2" layoutX="205.0" layoutY="93.0" mnemonicParsing="false" onMouseClicked="#G2Clicked" onMouseExited="#G2Exited" onMouseMoved="#G2Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG2" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -455,7 +450,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F0" layoutX="52.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F0Clicked" onMouseExited="#F0Exited" onMouseMoved="#F0Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F0" layoutX="41.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F0Clicked" onMouseExited="#F0Exited" onMouseMoved="#F0Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF0" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -467,7 +462,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G3" layoutX="297.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G3Clicked" onMouseExited="#G3Exited" onMouseMoved="#G3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G3" layoutX="290.0" layoutY="93.0" mnemonicParsing="false" onMouseClicked="#G3Clicked" onMouseExited="#G3Exited" onMouseMoved="#G3Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG3" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -479,7 +474,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G4" layoutX="382.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G4Clicked" onMouseExited="#G4Exited" onMouseMoved="#G4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G4" layoutX="370.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G4Clicked" onMouseExited="#G4Exited" onMouseMoved="#G4Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG4" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -491,7 +486,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="E5" layoutX="467.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E5Clicked" onMouseExited="#E5Exited" onMouseMoved="#E5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="E5" layoutX="455.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E5Clicked" onMouseExited="#E5Exited" onMouseMoved="#E5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgE5" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -503,7 +498,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F5" layoutX="467.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F5Clicked" onMouseExited="#F5Exited" onMouseMoved="#F5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F5" layoutX="455.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F5Clicked" onMouseExited="#F5Exited" onMouseMoved="#F5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF5" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -515,7 +510,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G5" layoutX="467.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G5Clicked" onMouseExited="#G5Exited" onMouseMoved="#G5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G5" layoutX="455.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G5Clicked" onMouseExited="#G5Exited" onMouseMoved="#G5Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG5" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -527,7 +522,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G6" layoutX="552.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G6Clicked" onMouseExited="#G6Exited" onMouseMoved="#G6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G6" layoutX="534.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G6Clicked" onMouseExited="#G6Exited" onMouseMoved="#G6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG6" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -539,7 +534,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F6" layoutX="552.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F6Clicked" onMouseExited="#F6Exited" onMouseMoved="#F6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F6" layoutX="534.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F6Clicked" onMouseExited="#F6Exited" onMouseMoved="#F6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF6" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -551,7 +546,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="E6" layoutX="552.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E6Clicked" onMouseExited="#E6Exited" onMouseMoved="#E6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="E6" layoutX="534.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#E6Clicked" onMouseExited="#E6Exited" onMouseMoved="#E6Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgE6" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -563,7 +558,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="G7" layoutX="627.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G7Clicked" onMouseExited="#G7Exited" onMouseMoved="#G7Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="G7" layoutX="611.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#G7Clicked" onMouseExited="#G7Exited" onMouseMoved="#G7Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgG7" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -575,7 +570,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="F7" layoutX="627.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F7Clicked" onMouseExited="#F7Exited" onMouseMoved="#F7Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
+            <Button fx:id="F7" layoutX="611.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#F7Clicked" onMouseExited="#F7Exited" onMouseMoved="#F7Moved" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: darkred;">
                <graphic>
                   <ImageView fx:id="imgF7" fitHeight="71.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -587,103 +582,183 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Separator layoutX="125.0" layoutY="248.0" orientation="VERTICAL" prefHeight="371.0" prefWidth="9.0" />
-            <Separator layoutX="128.0" layoutY="246.0" prefHeight="5.0" prefWidth="515.0" />
-            <Separator layoutX="128.0" layoutY="616.0" prefHeight="5.0" prefWidth="515.0" />
-            <Separator layoutX="638.0" layoutY="248.0" orientation="VERTICAL" prefHeight="371.0" prefWidth="9.0" />
-            <Separator layoutX="52.0" layoutY="86.0" prefHeight="5.0" prefWidth="658.0" />
-            <Separator layoutX="49.0" layoutY="87.0" orientation="VERTICAL" prefHeight="558.0" prefWidth="9.0" />
-            <Separator layoutX="708.0" layoutY="87.0" orientation="VERTICAL" prefHeight="558.0" prefWidth="9.0" />
-            <Separator layoutX="52.0" layoutY="235.0" prefHeight="5.0" prefWidth="658.0" />
-            <Label layoutX="21.0" layoutY="563.0" text="A" textFill="WHITE">
+            <Separator layoutX="109.0" layoutY="250.0" orientation="VERTICAL" prefHeight="371.0" prefWidth="9.0" />
+            <Separator layoutX="113.0" layoutY="248.0" prefHeight="5.0" prefWidth="506.0" />
+            <Separator layoutX="113.0" layoutY="619.0" prefHeight="3.0" prefWidth="506.0" />
+            <Separator layoutX="613.0" layoutY="250.0" orientation="VERTICAL" prefHeight="371.0" prefWidth="9.0" />
+            <Separator layoutX="41.0" layoutY="89.0" prefHeight="5.0" prefWidth="658.0" />
+            <Separator layoutX="37.0" layoutY="89.0" orientation="VERTICAL" prefHeight="558.0" prefWidth="9.0" />
+            <Separator layoutX="694.0" layoutY="89.0" orientation="VERTICAL" prefHeight="558.0" prefWidth="9.0" />
+            <Separator layoutX="41.0" layoutY="232.0" prefHeight="5.0" prefWidth="658.0" />
+            <Label layoutX="15.0" layoutY="574.0" text="A" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="21.0" layoutY="491.0" text="B" textFill="WHITE">
+            <Label layoutX="15.0" layoutY="502.0" text="B" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="21.0" layoutY="423.0" text="C" textFill="WHITE">
+            <Label layoutX="15.0" layoutY="434.0" text="C" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="20.0" layoutY="346.0" text="D" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="357.0" text="D" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="274.0" text="E" textFill="WHITE">
+            <Label layoutX="16.0" layoutY="285.0" text="E" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="186.0" text="F" textFill="WHITE">
+            <Label layoutX="16.0" layoutY="197.0" text="F" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="21.0" layoutY="114.0" text="G" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="118.0" text="G" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="89.0" layoutY="51.0" text="0" textFill="WHITE">
+            <Label layoutX="79.0" layoutY="51.0" text="0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="168.0" layoutY="51.0" text="1" textFill="WHITE">
+            <Label layoutX="158.0" layoutY="51.0" text="1" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="253.0" layoutY="51.0" text="2" textFill="WHITE">
+            <Label layoutX="243.0" layoutY="51.0" text="2" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="335.0" layoutY="51.0" text="3" textFill="WHITE">
+            <Label layoutX="328.0" layoutY="51.0" text="3" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="420.0" layoutY="51.0" text="4" textFill="WHITE">
+            <Label layoutX="408.0" layoutY="51.0" text="4" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="505.0" layoutY="51.0" text="5" textFill="WHITE">
+            <Label layoutX="493.0" layoutY="51.0" text="5" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="590.0" layoutY="51.0" text="6" textFill="WHITE">
+            <Label layoutX="577.0" layoutY="51.0" text="6" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="665.0" layoutY="51.0" text="7" textFill="WHITE">
+            <Label layoutX="649.0" layoutY="51.0" text="7" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Button fx:id="btnNuevaFactura" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnNuevaFacturaOnAction" prefHeight="27.0" prefWidth="201.0" text="Nueva Factura">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <ImageView fx:id="imgSelectorAsientosPrincipal" fitHeight="61.0" fitWidth="328.0" layoutX="460.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgSelectorAsientosPrincipal" fitHeight="205.0" fitWidth="563.0" layoutX="338.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/Selector%20de%20imagen.png" />
+            <Image url="@../Images/SeleccionenUnaPelicula.png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="AnchorPaneNuevaFactura" layoutX="11.0" layoutY="11.0" prefHeight="657.0" prefWidth="248.0" style="-fx-background-color: #252525;" visible="false">
+         <children>
+            <Button fx:id="cancelarFacturaButtom" layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#cancelarFacturaButtomOnAction" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="Cancelar Factura">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="14.0" layoutY="5.0" text="Factura N°" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="95.0" layoutY="5.0" text="F#0000" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="44.0" text="Pelicula" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbxPelicula" layoutX="13.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="230.0" promptText="              Seleccione Una Pelicula" style="-fx-background-color: #df9c37;" />
+            <ComboBox fx:id="cmbxHoraFunsion" layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="230.0" promptText="                Hora De La Funsión" style="-fx-background-color: #df9c37;" />
+            <ComboBox layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="230.0" promptText="                             Sala" style="-fx-background-color: #df9c37;" />
+            <Separator layoutX="16.0" layoutY="605.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
+            <Separator layoutX="13.0" layoutY="31.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
+            <Label layoutX="56.0" layoutY="180.0" text="Asientos" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <ListView layoutX="25.0" layoutY="227.0" prefHeight="121.0" prefWidth="111.0" />
+            <Label layoutX="40.0" layoutY="196.0" text="Seleccionados" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnContinuar" layoutX="13.0" layoutY="565.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="Continuar">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Separator layoutX="12.0" layoutY="361.0" prefHeight="3.0" prefWidth="230.0" />
+            <Separator layoutX="116.0" layoutY="382.0" orientation="VERTICAL" prefHeight="166.0" prefWidth="11.0" />
+            <Label layoutX="41.0" layoutY="384.0" text="Asiento" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="400.0" text="Desocupado" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="171.0" layoutY="384.0" text="Asiento" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="168.0" layoutY="400.0" text="Ocupado" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="14.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/SillaCine.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="151.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/SillaCineSelec.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="156.0" layoutY="188.0" text="Promociones" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
