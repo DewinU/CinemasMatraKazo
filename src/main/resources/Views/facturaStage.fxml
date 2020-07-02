@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,7 +18,7 @@
    <children>
       <Pane fx:id="pnlBotonesAsientos" layoutX="266.0" layoutY="11.0" opacity="0.0" prefHeight="657.0" prefWidth="706.0" style="-fx-background-color: darkred;" visible="false">
          <children>
-            <Label layoutX="58.0" text="SALA A" textFill="WHITE">
+            <Label fx:id="txtSalaSelector" layoutX="58.0" text="SALA A" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -697,9 +698,14 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbxPelicula" layoutX="13.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="230.0" promptText="              Seleccione Una Pelicula" style="-fx-background-color: #df9c37;" />
-            <ComboBox fx:id="cmbxHoraFunsion" layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="230.0" promptText="                Hora De La Funsión" style="-fx-background-color: #df9c37;" />
-            <ComboBox layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="230.0" promptText="                             Sala" style="-fx-background-color: #df9c37;" />
+            <ComboBox fx:id="cmbxPelicula" layoutX="13.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="230.0" promptText="              Seleccione Una Pelicula" style="-fx-background-color: #df9c37;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
+            <ComboBox fx:id="cmbxHoraFunsion" layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="230.0" promptText="                Hora De La Funsión" style="-fx-background-color: #df9c37;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
             <Separator layoutX="16.0" layoutY="605.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
             <Separator layoutX="13.0" layoutY="31.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
             <Label layoutX="56.0" layoutY="180.0" text="Asientos" textFill="WHITE">
@@ -758,6 +764,11 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
+            <TextField fx:id="txtSala" editable="false" layoutX="14.0" layoutY="134.0" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="                             Sala">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
    </children>

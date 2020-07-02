@@ -10,7 +10,8 @@
     "descripcion": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
     "calificacion": "93%",
-    "funcion": ["10AM-12AM/Sala 3", "12AM-2PM/Sala 2", "3PM-5PM/Sala 6"]
+    "funcion": ["04:00 PM - 06:00", "08:00 PM - 10:00 PM"],
+    "sala": ["Sala 2", "Sala 4"]
   },
   {
     "titulo": "Avatar",
@@ -23,7 +24,9 @@
     "descripcion": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
     "calificacion": "82%",
-    "funcion": ["10AM-12AM/Sala 1", "12AM-2PM/Sala 3", "3PM-5PM/Sala 4"]
+    "funcion": ["10:00 AM - 12:00 PM", "04:00 PM - 06:00 PM"],
+    "sala": ["Sala 4", "Sala 1"]    
+    
   },
   {
         
@@ -37,7 +40,8 @@
     "descripcion": "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.",
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
     "calificacion": "68%",
-    "funcion": ["10AM-12AM/Sala 2", "12AM-2PM/Sala 5", "3PM-5PM/Sala 3"]
+    "funcion": ["02:00 PM - 04:00 PM", "07:00 PM - 09:00 PM"],
+    "sala": ["Sala 6", "Sala 1"]
   },
   {
 
@@ -51,7 +55,8 @@
     "descripcion": "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.",
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_SX300.jpg",    
     "calificacion": "79%",
-    "funcion": ["10AM-12AM/Sala 2", "12AM-2PM/Sala 5", "3PM-5PM/Sala 3"]
+    "funcion": ["04:00 PM - 06:00 PM"],
+    "sala": ["Sala 3"]
   },
   {
     "titulo": "Baby Driver",
@@ -64,7 +69,8 @@
     "descripcion": "After being coerced into working for a crime boss, a young getaway driver finds himself taking part in a heist doomed to fail.",
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_SX300.jpg",
     "calificacion": "93%",
-    "funcion": ["10AM-12AM/Sala 5", "12AM-2PM/Sala 2", "3PM-5PM/Sala 3"]
+    "funcion": ["01:00 PM - 03:00 PM", "06:00 PM - 08:00 PM"],
+    "sala": ["Sala 5", "Sala 2"]
   },
   {
     "titulo": "It Chapter Two",
@@ -77,7 +83,8 @@
     "descripcion": "Twenty-seven years after their first encounter with the terrifying Pennywise, the Losers Club have grown up and moved away, until a devastating phone call brings them back.",
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_SX300.jpg",
     "calificacion": "63%",
-    "funcion": ["10AM-12AM/Sala 5", "12AM-2PM/Sala 1", "3PM-5PM/Sala 2"]
+    "funcion": ["10:00 AM - 12:00 PM", "12:00 AM - 02:00 PM", "07:00 PM - 09:00 PM"],
+    "sala": ["Sala 5", "Sala 1", "Sala 2"]
   },
 
   {
@@ -91,7 +98,8 @@
     "descripcion": "A vertical prison with one cell per level. Two people per cell. One only food platform and two minutes per day to feed from up to down. An endless nightmare trapped in The Hole.",
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BOTMyYTIyM2MtNjQ2ZC00MWFkLThhYjQtMjhjMGZiMjgwYjM2XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
     "calificacion": "82%",
-    "funcion": ["10AM-12AM/Sala 3", "12AM-2PM/Sala 4", "3PM-5PM/Sala 1"]
+    "funcion": ["03:00 PM - 05:00 PM"],
+    "sala": ["Sala 3"]
   }
 
 ]

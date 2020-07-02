@@ -25,9 +25,11 @@ import java.util.logging.Logger;
 public class AsientoListModel {
     
     List<Asiento> data;
-
-    public AsientoListModel() {
+    String ruta;
+    
+    public AsientoListModel(String ruta) {
         this.data = new ArrayList<>();
+        this.ruta = ruta;
     }
 
     public List<Asiento> getList() {
@@ -38,7 +40,7 @@ public class AsientoListModel {
         Gson gson = new Gson();
         
         try {
-            FileWriter writer = new FileWriter("./src/main/resources/Data/SalaDefault.json");
+            FileWriter writer = new FileWriter(ruta);
             writer.write(gson.toJson(data));
             writer.close();
         } catch (IOException ex) {
@@ -48,7 +50,7 @@ public class AsientoListModel {
         public void createDataJson(){
         // hay 46 asientos
         int  A = 1, B = 1, C = 1, D = 1, E = 1, F = 0, G = 0;
-        for(int i = 0; i < 45; i++ ){
+        for(int i = 0; i < 46; i++ ){
             Asiento asiento = new Asiento();
             
             if(i <= 5){
@@ -95,9 +97,9 @@ public class AsientoListModel {
     public void loadFromJson(){
         Gson gson = new Gson();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("./src/main/resources/Data/SalaDefault.json"));
+            BufferedReader br = new BufferedReader(new FileReader(ruta));
             if(!(br.readLine() == null)){
-                data.addAll(Arrays.asList(gson.fromJson(new FileReader("./src/main/resources/Data/SalaDefault.json"), Asiento[].class)));
+                data.addAll(Arrays.asList(gson.fromJson(new FileReader(ruta), Asiento[].class)));
             }else{
                 createDataJson();
                 loadFromJson();
