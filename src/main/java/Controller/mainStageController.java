@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import static Main.App.loadFXML;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -49,8 +48,8 @@ public class mainStageController implements Initializable {
     public static boolean activoHilo;
     
     static ExecutorService threadPool;
-    static Runnable task1;
-    static Runnable task2;
+//    static Runnable task1;
+//    static Runnable task2;
     
     
     @Override
@@ -59,55 +58,63 @@ public class mainStageController implements Initializable {
         try {
             child = loadFXML("dashboardStage");
         } catch (IOException e) {
-            e.printStackTrace();
         }
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
         
 
-        threadPool = Executors.newCachedThreadPool();
-        task1 = () -> {
-            
-            inicioButton.setVisible(false);
-            menuButton.setVisible(false);
-            historyButton.setVisible(false);
-            logoutButton.setVisible(false);
-            peliculasButton.setVisible(false);
-            empleadosButton.setVisible(false);
-            welcomeText.setVisible(false);
-
-            facturaButton.setLayoutY(100);
-        };
-        
-
-        task2 = () -> {
-
-            facturaButton.setLayoutY(340);
-
-            inicioButton.setVisible(true);
-            menuButton.setVisible(true);
-            historyButton.setVisible(true);
-            logoutButton.setVisible(true);
-            peliculasButton.setVisible(true);
-            empleadosButton.setVisible(true);
-            welcomeText.setVisible(true);
-        };
+//        threadPool = Executors.newCachedThreadPool();
+//        task1 = () -> {
+//            
+//            inicioButton.setVisible(false);
+//            menuButton.setVisible(false);
+//            historyButton.setVisible(false);
+//            logoutButton.setVisible(false);
+//            peliculasButton.setVisible(false);
+//            empleadosButton.setVisible(false);
+//            welcomeText.setVisible(false);
+//
+//            facturaButton.setLayoutY(100);
+//        };
+//        
+//
+//        task2 = () -> {
+//
+//            facturaButton.setLayoutY(340);
+//
+//            inicioButton.setVisible(true);
+//            menuButton.setVisible(true);
+//            historyButton.setVisible(true);
+//            logoutButton.setVisible(true);
+//            peliculasButton.setVisible(true);
+//            empleadosButton.setVisible(true);
+//            welcomeText.setVisible(true);
+//        };
     }
     
-    public static void NuevaFacturaMainStageEvent(boolean a){
-        if(a){
-            if(activoHilo){
-               threadPool.execute(task1); 
-               activoHilo = false;
-            }
-        }
-    }
+//    public static void NuevaFacturaMainStageEvent(boolean a){
+//        if(a){
+//            if(activoHilo){
+//               threadPool.execute(task1); 
+//               activoHilo = false;
+//            }
+//        }
+//    }
 
 
     @FXML
     void close(MouseEvent event) {
-        threadPool.shutdown();
-        facturaStageController.threadPool.shutdown();
+        if(threadPool != null){
+           threadPool.shutdown();
+        }
+        
+        if (facturaStageController.threadPool != null){
+            facturaStageController.threadPool.shutdown();
+        }
+        
+        if( dashboardStageController.threadpool != null){
+            dashboardStageController.threadpool.shutdown();
+        }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -137,7 +144,6 @@ public class mainStageController implements Initializable {
         Node child = loadFXML("dashboardStage");
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
-
     }
 
     @FXML

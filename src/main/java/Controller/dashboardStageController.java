@@ -64,7 +64,7 @@ public class dashboardStageController implements Initializable {
 
 
     private List<VBox> peliculas = new ArrayList<VBox>();
-    public ExecutorService threadpool;
+    public static ExecutorService threadpool;
     public Runnable task1;
     boolean state = false;
 
