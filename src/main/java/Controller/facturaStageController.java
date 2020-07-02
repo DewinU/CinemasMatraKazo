@@ -1,6 +1,7 @@
 package Controller;
 
-import java.io.IOException;
+import Model.FacturaListModel;
+import Pojo.Pelicula;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -10,9 +11,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -205,53 +208,53 @@ public class facturaStageController implements Initializable {
     private Button F7;
     @FXML
     private ImageView imgF7;
-    @FXML
-    private Button btnNuevaFactura;
 
     static ExecutorService threadPool;
     static Runnable task1;
     static Runnable task2;
     @FXML
-    private TreeTableView<String> TreeTableViewPeliculas;
-    @FXML
     private Pane pnlBotonesAsientos;
     @FXML
     private ImageView imgSelectorAsientosPrincipal;
+    @FXML
+    private Button cancelarFacturaButtom;
+    @FXML
+    private Button btnContinuar;
+    @FXML
+    private AnchorPane AnchorPaneNuevaFactura;
+
+    @FXML
+    private ComboBox<String> cmbxPelicula;
     
+    
+    private FacturaListModel facturaList;
+    @FXML
+    private ComboBox<String> cmbxHoraFunsion;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contentPane.setStyle("-fx-border-color: #000000");
+        facturaList = new FacturaListModel();
+        
         
         threadPool = Executors.newCachedThreadPool();
-        //Animacion de la tabla y el boton
+
         task1 = () ->{
-            //hacemos invisible el boton
-            btnNuevaFactura.setVisible(false);
             
-            //hacemos crecer la tabla
-            double i = TreeTableViewPeliculas.getHeight();
-            double j = TreeTableViewPeliculas.getLayoutY();
-            for(; j > 14 || i <= 656 ; j--, i++ ){
-                TreeTableViewPeliculas.setLayoutY(j);
-                TreeTableViewPeliculas.setPrefHeight(i);
-                try {
-                    Thread.sleep(3);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            AnchorPaneNuevaFactura.setVisible(true);
             pnlBotonesAsientos.setVisible(true);
+            
             //Aparecemos los botones y el img
             for (double a = 0, b = 1; a <= 1 && b>= 0; a+= 0.1, b-= 0.1 ){
                 pnlBotonesAsientos.setOpacity(a);
                 imgSelectorAsientosPrincipal.setOpacity(b);
                 try {
-                    Thread.sleep(30);
+                    Thread.sleep(15);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             imgSelectorAsientosPrincipal.setVisible(false);
+            
             
         };
         task2 = () ->{
@@ -261,43 +264,40 @@ public class facturaStageController implements Initializable {
                 pnlBotonesAsientos.setOpacity(a);
                 imgSelectorAsientosPrincipal.setOpacity(b);
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(15);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             pnlBotonesAsientos.setVisible(false);
-            //hacemos encojer la tabla
-            double i = TreeTableViewPeliculas.getHeight();
-            double j = TreeTableViewPeliculas.getLayoutY();
-            for(; j < 55 || i >= 615 ; j++, i-- ){
-                TreeTableViewPeliculas.setLayoutY(j);
-                TreeTableViewPeliculas.setPrefHeight(i);
-                try {
-                    Thread.sleep(3);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            //hacemos visible el boton
-            btnNuevaFactura.setVisible(true);
+            AnchorPaneNuevaFactura.setVisible(false);
             
         };
+        
+        facturaList.LoadFromJsonPeliculas();
+        System.out.println("Pue, no dio error");
+        
+        threadPool.submit(task1);
+        
+        facturaList.getListPelicula().forEach((p) -> {
+            cmbxPelicula.getItems().add(p.getTitulo());
+        });
+        cmbxPelicula.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            for (int i = 0; i < facturaList.getListPelicula().size(); i++){
+                if(facturaList.getListPelicula().get(i).getTitulo().equals(newValue)){
+                    cmbxHoraFunsion.getItems().addAll(facturaList.getListPelicula().get(i).getFuncion());
+                }
+            }
+        });
     }
     
+    
+    //-----------------------------------------------------------------------------------
     @FXML
-    private void btnNuevaFacturaOnAction(ActionEvent event) throws IOException {
-             mainStageController.NuevaFacturaMainStageEvent(true);  
-             threadPool.submit(task1);
+    private void cancelarFacturaButtomOnAction(ActionEvent event) {
+        threadPool.submit(task2);
     }
-    
-    public static void cancelarMainEvent(boolean a){
-        if(a){
-            threadPool.execute(task2);
-        }
-    }
-    
-    
+  
     //ASIENTOS BOTONES
     //A1    0
     @FXML
@@ -989,9 +989,16 @@ public class facturaStageController implements Initializable {
         G7.setStyle("-fx-background-color: red");
     }
 
-    
 
 
+
+    //-----------------------------------------------------------------------------------------------------
+
+    @FXML
+    private void cmbxPeliculaOnAction(ActionEvent event) {
+ 
+       
+    }
 
 
 }
