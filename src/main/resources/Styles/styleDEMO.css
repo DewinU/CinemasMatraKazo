@@ -119,4 +119,24 @@
     -fx-effect: dropshadow(three-pass-box, #403d39, 40, 0.5, 0, 0);
 }
 
+.calificacion {
+    -fx-background-color: #bbc2c9;
+    -fx-background-radius: 50%;
+    -fx-font-family: Roboto;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-line-height: 23px;
+}
+
+#genero {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #9d4024;
+    -fx-font-family: "Roboto Light";
+    -fx-font-weight: bold;
+    -fx-font-size: 50px;
+    -fx-font-height: 40px;
+}
+
 
