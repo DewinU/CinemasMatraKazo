@@ -2,7 +2,6 @@ package Controller;
 
 import Model.FacturaListModel;
 import Pojo.Asiento;
-import Pojo.Pelicula;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -12,7 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -297,8 +295,7 @@ public class facturaStageController implements Initializable {
                     for (int j = 0; j < facturaList.getListPelicula().get(i).getFuncion().size(); j++) {
                         if (facturaList.getListPelicula().get(i).getFuncion().get(j).equals(newValue)) {
                             txtSala.setText(facturaList.getListPelicula().get(i).getSala().get(j));
-
-                            facturaList.OpenSalaJson(facturaList.getListPelicula().get(i).getSala().get(j));
+                            facturaList.OpenSalaJson(titulo + " Funcion " + (j+1) + " " + facturaList.getListPelicula().get(i).getSala().get(j) + ".json");
                             loadAsientoModel();
                             txtSalaSelector.setText(facturaList.getListPelicula().get(i).getSala().get(j));
                             imgSelectorAsientosPrincipal.setVisible(false);
