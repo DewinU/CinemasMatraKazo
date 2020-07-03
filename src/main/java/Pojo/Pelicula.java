@@ -49,6 +49,8 @@ public class Pelicula {
         this.funcion = funcion;
     }
 
+
+
     public String getTitulo() {
         return titulo;
     }

@@ -8,6 +8,8 @@ package Model;
 import Pojo.Asiento;
 import Pojo.Pelicula;
 import com.google.gson.Gson;
+import javafx.collections.ObservableList;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -48,6 +50,22 @@ public class FacturaListModel {
             dataPeliculas.addAll(Arrays.asList(gson.fromJson(new FileReader("./src/main/resources/Data/PeliculasDisponibles.json"), Pelicula[].class)));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FacturaListModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void getPeliculasObList(ObservableList<MovieTableModel> obList){
+        int index = 1;
+        for (Pelicula c: dataPeliculas) {
+            obList.add(new MovieTableModel(index,c.getTitulo(),c.getDirector(),c.getDuracion(),c.getFuncion().toString(),c.getCalificacion(),"No"));
+            ++index;
+        }
+    }
+
+    public void getCarteleraObList(ObservableList<MovieTableModel> obList){
+        int index = 1;
+        for (Pelicula c: dataPeliculas) {
+            obList.add(new MovieTableModel(index,c.getTitulo(),c.getDirector(),c.getDuracion(),c.getFuncion().toString(),c.getCalificacion()));
+            ++index;
         }
     }
     
