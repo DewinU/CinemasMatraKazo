@@ -1228,7 +1228,7 @@ public class facturaStageController implements Initializable {
     //G1    39
     @FXML
     private void G1Exited(MouseEvent event) {
-        G1.setStyle("-fx-background-color: dakred");
+        G1.setStyle("-fx-background-color: darkred");
     }
 
     @FXML
