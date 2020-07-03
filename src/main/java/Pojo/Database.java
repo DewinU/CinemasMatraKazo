@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Pojo;
-import Model.TableModel;
+import Model.UserTableModel;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
@@ -49,11 +49,11 @@ public class Database {
         return query.execute();
     }
 
-    public void showAll(ObservableList<TableModel> obList) throws SQLException {
+    public void showAll(ObservableList<UserTableModel> obList) throws SQLException {
         query = con.prepareStatement(readAll);
         rs = query.executeQuery();
         while(rs.next()) {
-            obList.add(new TableModel(rs.getInt("id"),rs.getString("cod"),
+            obList.add(new UserTableModel(rs.getInt("id"),rs.getString("cod"),
                     rs.getString("username"),rs.getString("firstname"),
                     rs.getString("lastname"),rs.getString("cedula"),
                     rs.getString("telefono"),rs.getString("email"),
