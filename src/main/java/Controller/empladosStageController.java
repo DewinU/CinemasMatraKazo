@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.TableModel;
+import Model.UserTableModel;
 import Pojo.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,46 +19,46 @@ public class empladosStageController implements Initializable {
 
     Database database;
 
-    ObservableList<TableModel> obList = FXCollections.observableArrayList();
+    ObservableList<UserTableModel> obList = FXCollections.observableArrayList();
 
     @FXML
     private AnchorPane contentPane;
 
     @FXML
-    private TableView<TableModel> table_Emplados;
+    private TableView<UserTableModel> table_Emplados;
 
     @FXML
-    private TableColumn<TableModel, Integer> column_ID;
+    private TableColumn<UserTableModel, Integer> column_ID;
 
     @FXML
-    private TableColumn<TableModel, String> column_COD;
+    private TableColumn<UserTableModel, String> column_COD;
 
     @FXML
-    private TableColumn<TableModel, String> column_USERNAME;
+    private TableColumn<UserTableModel, String> column_USERNAME;
 
     @FXML
-    private TableColumn<TableModel, String> column_FIRSTNAME;
+    private TableColumn<UserTableModel, String> column_FIRSTNAME;
 
     @FXML
-    private TableColumn<TableModel, String> column_LASTNAME;
+    private TableColumn<UserTableModel, String> column_LASTNAME;
 
     @FXML
-    private TableColumn<TableModel, String> column_CEDULA;
+    private TableColumn<UserTableModel, String> column_CEDULA;
 
     @FXML
-    private TableColumn<TableModel, String> column_TELEFONO;
+    private TableColumn<UserTableModel, String> column_TELEFONO;
 
     @FXML
-    private TableColumn<TableModel, String> column_EMAIL;
+    private TableColumn<UserTableModel, String> column_EMAIL;
 
     @FXML
-    private TableColumn<TableModel, Date> column_HIREDATE;
+    private TableColumn<UserTableModel, Date> column_HIREDATE;
 
     @FXML
-    private TableColumn<TableModel, String> column_CARGO;
+    private TableColumn<UserTableModel, String> column_CARGO;
 
     @FXML
-    private TableColumn<TableModel, String> column_TURNO;
+    private TableColumn<UserTableModel, String> column_TURNO;
 
 
 

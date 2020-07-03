@@ -2,14 +2,14 @@ package Model;
 
 import java.sql.Date;
 
-public class TableModel {
+public class UserTableModel {
     int id;
     String cod, username, firstname, lastname, cedula, telefono,email,cargo,turno;
     Date hiredate;
 
-    public TableModel(int id, String cod, String username,
-                      String firstname, String lastname, String cedula, String telefono,
-                      String email, String cargo, String turno, Date hiredate) {
+    public UserTableModel(int id, String cod, String username,
+                          String firstname, String lastname, String cedula, String telefono,
+                          String email, String cargo, String turno, Date hiredate) {
         this.id = id;
         this.cod = cod;
         this.username = username;
