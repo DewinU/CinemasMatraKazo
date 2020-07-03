@@ -7,7 +7,6 @@ package Pojo;
 
 import Enums.Categoria;
 import Enums.Genero;
-import Enums.Sala;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +26,15 @@ public class Pelicula {
     private String descripcion;
     private String fotoUrl;
     private String calificacion;
-    private Sala sala;
+    private List<String> sala;
     private List<String> funcion;
-
+    
     public Pelicula() {
         funcion = new ArrayList<>();
     }
 
     
-    public Pelicula(String titulo, String anio, Categoria categoria, String fechaEstreno, String duracion, Genero genero, String director, String descripcion, String fotoUrl, String calificacion, Sala sala, List<String> funcion) {
+    public Pelicula(String titulo, String anio, Categoria categoria, String fechaEstreno, String duracion, Genero genero, String director, String descripcion, String fotoUrl, String calificacion, List<String> sala, List<String> funcion) {
         this.titulo = titulo;
         this.anio = anio;
         this.categoria = categoria;
@@ -130,14 +129,6 @@ public class Pelicula {
         this.calificacion = calificacion;
     }
 
-    public Sala getSala() {
-        return sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
-
     public List<String> getFuncion() {
         return funcion;
     }
@@ -145,7 +136,13 @@ public class Pelicula {
     public void setFuncion(List<String> funcion) {
         this.funcion = funcion;
     }
-    
-    
+
+    public List<String> getSala() {
+        return sala;
+    }
+
+    public void setSala(List<String> sala) {
+        this.sala = sala;
+    }
     
 }
