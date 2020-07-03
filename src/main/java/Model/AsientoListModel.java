@@ -8,6 +8,7 @@ package Model;
 import Pojo.Asiento;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -40,7 +41,7 @@ public class AsientoListModel {
         Gson gson = new Gson();
         
         try {
-            FileWriter writer = new FileWriter(ruta);
+            FileWriter writer = new FileWriter("./src/main/resources/Data/Salas/" + ruta);
             writer.write(gson.toJson(data));
             writer.close();
         } catch (IOException ex) {
@@ -96,18 +97,35 @@ public class AsientoListModel {
     }
     public void loadFromJson(){
         Gson gson = new Gson();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(ruta));
-            if(!(br.readLine() == null)){
-                data.addAll(Arrays.asList(gson.fromJson(new FileReader(ruta), Asiento[].class)));
-            }else{
-                createDataJson();
-                loadFromJson();
+        
+        File archivo = new File("./src/main/resources/Data/Salas/" + ruta);
+        
+        if (archivo.exists()) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader("./src/main/resources/Data/Salas/" + ruta));
+                if (!(br.readLine() == null)) {
+                    data.addAll(Arrays.asList(gson.fromJson(new FileReader("./src/main/resources/Data/Salas/" + ruta), Asiento[].class)));
+                } else {
+                    createDataJson();
+                    loadFromJson();
+                }
+            } catch (FileNotFoundException ex) {
+                System.out.println("Error con el loadFromJson");
+            } catch (IOException ex) {
+                Logger.getLogger(AsientoListModel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Error con el loadFromJson");
-        } catch (IOException ex) {
-            Logger.getLogger(AsientoListModel.class.getName()).log(Level.SEVERE, null, ex);
+        }else{
+            try {
+                if (archivo.createNewFile()) {
+                    createDataJson();
+                    loadFromJson();
+                }
+            } catch (IOException ex) {
+                System.out.println("error al crear el archivo");
+                Logger.getLogger(AsientoListModel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+        
     }
 }

@@ -33,38 +33,9 @@ public class FacturaListModel {
         return dataPeliculas;
     }
     
-    public void OpenSalaJson(String sala){
-        
-        switch (sala){
-            case "Sala 1":
-                asientoListModel = new AsientoListModel("./src/main/resources/Data/Salas/Sala1.json");
-                asientoListModel.loadFromJson();
-                break;
-            case "Sala 2":
-                asientoListModel = new AsientoListModel("./src/main/resources/Data/Salas/Sala2.json");
-                asientoListModel.loadFromJson();
-                break;
-            case "Sala 3":
-                asientoListModel = new AsientoListModel("./src/main/resources/Data/Salas/Sala3.json");
-                asientoListModel.loadFromJson();
-                break;
-            case "Sala 4":
-                asientoListModel = new AsientoListModel("./src/main/resources/Data/Salas/Sala4.json");
-                asientoListModel.loadFromJson();
-                break;
-            case "Sala 5":
-                asientoListModel = new AsientoListModel("./src/main/resources/Data/Salas/Sala5.json");
-                asientoListModel.loadFromJson();
-                break;
-            case "Sala 6":
-                asientoListModel = new AsientoListModel("./src/main/resources/Data/Salas/Sala6.json");
-                asientoListModel.loadFromJson();
-                break;
-            default:
-                System.out.println("default");
-                break;
-        }
-        
+    public void OpenSalaJson(String sala){       
+        asientoListModel = new AsientoListModel(sala);
+        asientoListModel.loadFromJson();
     }
     
     public List<Asiento> getListAsiento(){
