@@ -12,9 +12,7 @@
     "calificacion": "93%",
     "funcion": ["16:00", "20:00"],
     "sala": ["Sala 2", "Sala 2"],
-    "carteleraStatus": true,
-    "desde": "2020-11-16",
-    "hasta": "2020-11-16"
+    "carteleraStatus": true
   },
   {
     "titulo": "Avatar",
@@ -29,9 +27,7 @@
     "calificacion": "82%",
     "funcion": ["10:00", "12:00"],
     "sala": ["Sala 1", "Sala 1"],
-    "carteleraStatus": true,
-    "desde": "2020-11-16",
-    "hasta": "2020-11-16"
+    "carteleraStatus": true
     
   },
   {
@@ -48,9 +44,7 @@
     "calificacion": "68%",
     "funcion": ["14:00"],
     "sala": ["Sala 1"],
-    "carteleraStatus": true,
-    "desde": "2020-11-16",
-    "hasta": "2020-11-16"
+    "carteleraStatus": true
   },
   {
 
@@ -66,9 +60,7 @@
     "calificacion": "79%",
     "funcion": ["18:00"],
     "sala": ["Sala 2"],
-    "carteleraStatus": true,
-    "desde": "2020-11-16",
-    "hasta": "2020-11-16"
+    "carteleraStatus": true
   },
   {
     "titulo": "Baby Driver",
@@ -83,9 +75,7 @@
     "calificacion": "93%",
     "funcion": ["22:00"],
     "sala": ["Sala 3"],
-    "carteleraStatus": true,
-    "desde": "2020-11-16",
-    "hasta": "2020-11-16"
+    "carteleraStatus": true
   },
   {
     "titulo": "It Chapter Two",
@@ -100,7 +90,5 @@
     "calificacion": "63%",
     "funcion": ["24:00"],
     "sala": ["Sala 3"],
-    "carteleraStatus": true,
-    "desde": "2020-11-16",
-    "hasta": "2020-11-16"
+    "carteleraStatus": true
   }]
