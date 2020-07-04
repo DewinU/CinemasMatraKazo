@@ -5,6 +5,7 @@
  */
 package Pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,23 +15,26 @@ import java.util.List;
 public class Factura {
     
     private int numeroFactura;
-    private List<String> nombrePeliculas;
+    private String nombrePelicula;
     private String horaFuncion;
     private String sala;
     private List<String> asientos;
     private String carnetEmpleado;
+    private float total;
 //    private List<String> comida;
 
     public Factura() {
+        asientos = new ArrayList<>();
     }
 
-    public Factura(int numeroFactura, List<String> nombrePeliculas, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado) {
+    public Factura(int numeroFactura, String nombrePeliculas, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado, float total) {
         this.numeroFactura = numeroFactura;
-        this.nombrePeliculas = nombrePeliculas;
+        this.nombrePelicula = nombrePeliculas;
         this.horaFuncion = horaFuncion;
         this.sala = sala;
         this.asientos = asientos;
         this.carnetEmpleado = carnetEmpleado;
+        this.total = total;
     }
 
     public int getNumeroFactura() {
@@ -41,12 +45,12 @@ public class Factura {
         this.numeroFactura = numeroFactura;
     }
 
-    public List<String> getNombrePeliculas() {
-        return nombrePeliculas;
+    public String getNombrePelicula() {
+        return nombrePelicula;
     }
 
-    public void setNombrePeliculas(List<String> nombrePeliculas) {
-        this.nombrePeliculas = nombrePeliculas;
+    public void setNombrePelicula(String nombrePeliculas) {
+        this.nombrePelicula = nombrePeliculas;
     }
 
     public String getHoraFuncion() {
@@ -80,7 +84,13 @@ public class Factura {
     public void setCarnetEmpleado(String carnetEmpleado) {
         this.carnetEmpleado = carnetEmpleado;
     }
-     
-    
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
      
 }
