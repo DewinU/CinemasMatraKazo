@@ -2,6 +2,7 @@ package Controller;
 
 import Model.FacturaListModel;
 import Pojo.Asiento;
+import Pojo.Factura;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -238,11 +239,20 @@ public class facturaStageController implements Initializable {
     String titulo = "";
     @FXML
     private Label txtSalaSelector;
+    
+    private final Image imgOcup = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
+    private final Image imgDeso = new Image(getClass().getResourceAsStream("/Images/SillaCine.png"));
+    
+    //Creando la Nueva Factura
+    Factura nuevaFactura;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contentPane.setStyle("-fx-border-color: #000000");
         facturaList = new FacturaListModel();
         
+        //CREANDO LA NUEVA FACTURA (DEWIN NO LO BORRES POR FACVOR)
+        nuevaFactura = new Factura();
         
         threadPool = Executors.newCachedThreadPool();
 
@@ -271,6 +281,7 @@ public class facturaStageController implements Initializable {
         };
         
         facturaList.LoadFromJsonPeliculas();
+        
         System.out.println("Pue, no dio error");
         
         threadPool.submit(task1);
@@ -286,6 +297,7 @@ public class facturaStageController implements Initializable {
                     titulo = newValue;
                     cmbxHoraFunsion.getItems().clear();
                     cmbxHoraFunsion.getItems().addAll(facturaList.getListPelicula().get(i).getFuncion());
+                    nuevaFactura.setNombrePelicula(newValue);
                 }
             }
         });
@@ -296,15 +308,19 @@ public class facturaStageController implements Initializable {
                         if (facturaList.getListPelicula().get(i).getFuncion().get(j).equals(newValue)) {
                             txtSala.setText(facturaList.getListPelicula().get(i).getSala().get(j));
                             facturaList.OpenSalaJson(titulo + " Funcion " + (j+1) + " " + facturaList.getListPelicula().get(i).getSala().get(j) + ".json");
+                            loadAsiento();
                             loadAsientoModel();
                             txtSalaSelector.setText(facturaList.getListPelicula().get(i).getSala().get(j));
                             imgSelectorAsientosPrincipal.setVisible(false);
+                            nuevaFactura.setSala(facturaList.getListPelicula().get(i).getSala().get(j));
+                            nuevaFactura.setHoraFuncion(facturaList.getListPelicula().get(i).getFuncion().get(j));
                             break;
                         }
                     }
                 }
             }
         });
+      
     }
     //-----------------------------------------------------------------------------------
     
@@ -370,7 +386,7 @@ public class facturaStageController implements Initializable {
                         C2.setDisable(true);
                         break;
                     case 14:
-                        imgC4.setImage(imagen);
+                        imgC3.setImage(imagen);
                         C3.setDisable(true);
                         break;
                     case 15:
@@ -515,13 +531,164 @@ public class facturaStageController implements Initializable {
             }
             imgSelectorAsientosPrincipal.setVisible(false);
         }
-    
+        
+        public void loadAsiento(){
+            for(Asiento a : facturaList.getListAsiento()){
+                int i = a.getId();
+                    switch(i){
+                         case 0:
+                        imgA1.setImage(imgDeso);
+                        break;
+                    case 1:
+                        imgA2.setImage(imgDeso);
+                        break;
+                    case 2:
+                        imgA3.setImage(imgDeso);
+                        break;
+                    case 3:
+                        imgA4.setImage(imgDeso);
+                        break;
+                    case 4:
+                        imgA5.setImage(imgDeso);
+                        break;
+                    case 5:
+                        imgA6.setImage(imgDeso);
+                        break;
+                    case 6:
+                        imgB1.setImage(imgDeso);
+                        break;
+                    case 7:
+                        imgB2.setImage(imgDeso);
+                        break;
+                    case 8:
+                        imgB3.setImage(imgDeso);
+                        break;
+                    case 9:
+                        imgB4.setImage(imgDeso);
+                        break;
+                    case 10:
+                        imgB5.setImage(imgDeso);
+                        break;
+                    case 11:
+                        imgB6.setImage(imgDeso);
+                        break;
+                    case 12:
+                        imgC1.setImage(imgDeso);
+                        break;
+                    case 13:
+                        imgC2.setImage(imgDeso);
+                        break;
+                    case 14:
+                        imgC3.setImage(imgDeso);
+                        break;
+                    case 15:
+                        imgC4.setImage(imgDeso);
+                        break;
+                    case 16:
+                        imgC5.setImage(imgDeso);
+                        break;
+                    case 17:
+                        imgC6.setImage(imgDeso);
+                        break;
+                    case 18:
+                        imgD1.setImage(imgDeso);
+                        break;
+                    case 19:
+                        imgD2.setImage(imgDeso);
+                        break;
+                    case 20:
+                        imgD3.setImage(imgDeso);
+                        break;
+                    case 21:
+                        imgD4.setImage(imgDeso);
+                        break;
+                    case 22:
+                        imgD5.setImage(imgDeso);
+                        break;
+                    case 23:
+                        imgD6.setImage(imgDeso);
+                        break;
+                    case 24:
+                        imgE1.setImage(imgDeso);
+                        break;
+                    case 25:
+                        imgE2.setImage(imgDeso);
+                        break;
+                    case 26:
+                        imgE3.setImage(imgDeso);
+                        break;
+                    case 27:
+                        imgE4.setImage(imgDeso);
+                        break;
+                    case 28:
+                        imgE5.setImage(imgDeso);
+                        break;
+                    case 29:
+                        imgE6.setImage(imgDeso);
+                        break;
+                    case 30:
+                        imgF0.setImage(imgDeso);
+                        break;
+                    case 31:
+                        imgF1.setImage(imgDeso);
+                        break;
+                    case 32:
+                        imgF2.setImage(imgDeso);
+                        break;
+                    case 33:
+                        imgF3.setImage(imgDeso);
+                        break;
+                    case 34:
+                        imgF4.setImage(imgDeso);
+                        break;
+                    case 35:
+                        imgF5.setImage(imgDeso);
+                        break;
+                    case 36:
+                        imgF6.setImage(imgDeso);
+                        break;
+                    case 37:
+                        imgF7.setImage(imgDeso);
+                        break;
+                    case 38:
+                        imgG0.setImage(imgDeso);
+                        break;
+                    case 39:
+                        imgG1.setImage(imgDeso);
+                        break;
+                    case 40:
+                        imgG2.setImage(imgDeso);
+                        break;
+                    case 41:
+                        imgG3.setImage(imgDeso);
+                        break;
+                    case 42:
+                        imgG4.setImage(imgDeso);
+                        break;
+                    case 43:
+                        imgG5.setImage(imgDeso);
+                        break;
+                    case 44:
+                        imgG6.setImage(imgDeso);
+                        break;
+                    case 45:
+                        imgG7.setImage(imgDeso);
+                        break;
+                    default:
+                        System.out.println("Error en el switch");
+                        break;
+                    }
+            }
+        }
+        
     //-----------------------------------------------------------------------------------
     @FXML
     private void cancelarFacturaButtomOnAction(ActionEvent event) {
         threadPool.submit(task2);
     }
   
+    
+    
     //ASIENTOS BOTONES
     //A1    0
     @FXML
@@ -531,9 +698,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void A1Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgA1.setImage(imagen);
-        facturaList.getListAsiento().get(0).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(0).getNombre();
+        if(imgA1.getImage().equals(imgDeso)){
+            imgA1.setImage(imgOcup);
+            facturaList.getListAsiento().get(0).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgA1.setImage(imgDeso);
+            facturaList.getListAsiento().get(0).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -549,9 +723,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void A2Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgA2.setImage(imagen);
-        facturaList.getListAsiento().get(1).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(1).getNombre();
+        if(imgA2.getImage().equals(imgDeso)){
+            imgA2.setImage(imgOcup);
+            facturaList.getListAsiento().get(1).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgA2.setImage(imgDeso);
+            facturaList.getListAsiento().get(1).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -567,9 +748,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void A3Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgA3.setImage(imagen);
-        facturaList.getListAsiento().get(2).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(2).getNombre();
+        if(imgA3.getImage().equals(imgDeso)){
+            imgA3.setImage(imgOcup);
+            facturaList.getListAsiento().get(2).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgA3.setImage(imgDeso);
+            facturaList.getListAsiento().get(2).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -585,9 +773,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void A4Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgA4.setImage(imagen);
-        facturaList.getListAsiento().get(3).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(3).getNombre();
+        if(imgA4.getImage().equals(imgDeso)){
+            imgA4.setImage(imgOcup);
+            facturaList.getListAsiento().get(3).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgA4.setImage(imgDeso);
+            facturaList.getListAsiento().get(3).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -603,9 +798,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void A5Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgA5.setImage(imagen);
-        facturaList.getListAsiento().get(4).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(4).getNombre();
+        if(imgA5.getImage().equals(imgDeso)){
+            imgA5.setImage(imgOcup);
+            facturaList.getListAsiento().get(4).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgA5.setImage(imgDeso);
+            facturaList.getListAsiento().get(4).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -621,9 +823,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void A6Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgA6.setImage(imagen);
-        facturaList.getListAsiento().get(5).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(5).getNombre();
+        if(imgA6.getImage().equals(imgDeso)){
+            imgA6.setImage(imgOcup);
+            facturaList.getListAsiento().get(5).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgA6.setImage(imgDeso);
+            facturaList.getListAsiento().get(5).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -639,9 +848,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void B1Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgB1.setImage(imagen);
-        facturaList.getListAsiento().get(6).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(6).getNombre();
+        if(imgB1.getImage().equals(imgDeso)){
+            imgB1.setImage(imgOcup);
+            facturaList.getListAsiento().get(6).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgB1.setImage(imgDeso);
+            facturaList.getListAsiento().get(6).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -657,9 +873,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void B2Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgB2.setImage(imagen);
-        facturaList.getListAsiento().get(7).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(7).getNombre();
+        if(imgB2.getImage().equals(imgDeso)){
+            imgB2.setImage(imgOcup);
+            facturaList.getListAsiento().get(7).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgB2.setImage(imgDeso);
+            facturaList.getListAsiento().get(7).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -675,9 +898,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void B3clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgB3.setImage(imagen);
-        facturaList.getListAsiento().get(8).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(8).getNombre();
+        if(imgB3.getImage().equals(imgDeso)){
+            imgB3.setImage(imgOcup);
+            facturaList.getListAsiento().get(8).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgB3.setImage(imgDeso);
+            facturaList.getListAsiento().get(8).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -693,9 +923,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void B4clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgB4.setImage(imagen);
-        facturaList.getListAsiento().get(9).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(9).getNombre();
+        if(imgB4.getImage().equals(imgDeso)){
+            imgB4.setImage(imgOcup);
+            facturaList.getListAsiento().get(9).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgB4.setImage(imgDeso);
+            facturaList.getListAsiento().get(9).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -711,9 +948,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void B5Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgB5.setImage(imagen);
-        facturaList.getListAsiento().get(10).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(10).getNombre();
+        if(imgB5.getImage().equals(imgDeso)){
+            imgB5.setImage(imgOcup);
+            facturaList.getListAsiento().get(10).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgB5.setImage(imgDeso);
+            facturaList.getListAsiento().get(10).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -729,9 +973,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void B6Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgB6.setImage(imagen);
-        facturaList.getListAsiento().get(11).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(11).getNombre();
+        if(imgB6.getImage().equals(imgDeso)){
+            imgB6.setImage(imgOcup);
+            facturaList.getListAsiento().get(11).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgB6.setImage(imgDeso);
+            facturaList.getListAsiento().get(11).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -747,9 +998,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void C1Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgC1.setImage(imagen);
-        facturaList.getListAsiento().get(12).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(12).getNombre();
+        if(imgC1.getImage().equals(imgDeso)){
+            imgC1.setImage(imgOcup);
+            facturaList.getListAsiento().get(12).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgC1.setImage(imgDeso);
+            facturaList.getListAsiento().get(12).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -765,9 +1023,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void C2clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgC2.setImage(imagen);
-        facturaList.getListAsiento().get(13).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(13).getNombre();
+        if(imgC2.getImage().equals(imgDeso)){
+            imgC2.setImage(imgOcup);
+            facturaList.getListAsiento().get(13).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgC2.setImage(imgDeso);
+            facturaList.getListAsiento().get(13).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -783,9 +1048,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void C3Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgC3.setImage(imagen);
-        facturaList.getListAsiento().get(14).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(14).getNombre();
+        if(imgC3.getImage().equals(imgDeso)){
+            imgC3.setImage(imgOcup);
+            facturaList.getListAsiento().get(14).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgC3.setImage(imgDeso);
+            facturaList.getListAsiento().get(14).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -801,9 +1073,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void C4Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgC4.setImage(imagen);
-        facturaList.getListAsiento().get(15).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(15).getNombre();
+        if(imgC4.getImage().equals(imgDeso)){
+            imgC4.setImage(imgOcup);
+            facturaList.getListAsiento().get(15).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgC4.setImage(imgDeso);
+            facturaList.getListAsiento().get(15).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -819,9 +1098,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void C5Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgC5.setImage(imagen);
-        facturaList.getListAsiento().get(16).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(16).getNombre();
+        if(imgC5.getImage().equals(imgDeso)){
+            imgC5.setImage(imgOcup);
+            facturaList.getListAsiento().get(16).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgC5.setImage(imgDeso);
+            facturaList.getListAsiento().get(16).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -837,9 +1123,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void C6Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgC6.setImage(imagen);
-        facturaList.getListAsiento().get(17).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(17).getNombre();
+        if(imgC6.getImage().equals(imgDeso)){
+            imgC6.setImage(imgOcup);
+            facturaList.getListAsiento().get(17).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgC6.setImage(imgDeso);
+            facturaList.getListAsiento().get(17).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -855,9 +1148,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void D1Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgD1.setImage(imagen);
-        facturaList.getListAsiento().get(18).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(18).getNombre();
+        if(imgD1.getImage().equals(imgDeso)){
+            imgD1.setImage(imgOcup);
+            facturaList.getListAsiento().get(18).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgD1.setImage(imgDeso);
+            facturaList.getListAsiento().get(18).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -873,9 +1173,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void D2Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgD2.setImage(imagen);
-        facturaList.getListAsiento().get(19).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(19).getNombre();
+        if(imgD2.getImage().equals(imgDeso)){
+            imgD2.setImage(imgOcup);
+            facturaList.getListAsiento().get(19).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgD2.setImage(imgDeso);
+            facturaList.getListAsiento().get(19).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -891,9 +1198,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void D3Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgD3.setImage(imagen);
-        facturaList.getListAsiento().get(20).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(20).getNombre();
+        if(imgD3.getImage().equals(imgDeso)){
+            imgD3.setImage(imgOcup);
+            facturaList.getListAsiento().get(20).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgD3.setImage(imgDeso);
+            facturaList.getListAsiento().get(20).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -909,9 +1223,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void D4clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgD4.setImage(imagen);
-        facturaList.getListAsiento().get(21).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(21).getNombre();
+        if(imgD4.getImage().equals(imgDeso)){
+            imgD4.setImage(imgOcup);
+            facturaList.getListAsiento().get(21).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgD4.setImage(imgDeso);
+            facturaList.getListAsiento().get(21).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -927,9 +1248,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void D5Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgD5.setImage(imagen);
-        facturaList.getListAsiento().get(22).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(22).getNombre();
+        if(imgD5.getImage().equals(imgDeso)){
+            imgD5.setImage(imgOcup);
+            facturaList.getListAsiento().get(22).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgD5.setImage(imgDeso);
+            facturaList.getListAsiento().get(22).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -945,9 +1273,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void D6Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgD6.setImage(imagen);
-        facturaList.getListAsiento().get(23).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(23).getNombre();
+        if(imgD6.getImage().equals(imgDeso)){
+            imgD6.setImage(imgOcup);
+            facturaList.getListAsiento().get(23).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgD6.setImage(imgDeso);
+            facturaList.getListAsiento().get(23).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -963,9 +1298,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void E1Clicked(MouseEvent event) {
-        Image imagen = new Image(facturaStageController.class.getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgE1.setImage(imagen);
-        facturaList.getListAsiento().get(24).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(24).getNombre();
+        if(imgE1.getImage().equals(imgDeso)){
+            imgE1.setImage(imgOcup);
+            facturaList.getListAsiento().get(24).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgE1.setImage(imgDeso);
+            facturaList.getListAsiento().get(24).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -981,9 +1323,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void E2Clicked(MouseEvent event) {
-        Image imagen = new Image("/Images/SillaCineSelec.png");
-        imgE2.setImage(imagen);
-        facturaList.getListAsiento().get(25).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(25).getNombre();
+        if(imgE2.getImage().equals(imgDeso)){
+            imgE2.setImage(imgOcup);
+            facturaList.getListAsiento().get(25).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgE2.setImage(imgDeso);
+            facturaList.getListAsiento().get(25).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -999,9 +1348,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void E3clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgE3.setImage(imagen);
-        facturaList.getListAsiento().get(26).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(26).getNombre();
+        if(imgE3.getImage().equals(imgDeso)){
+            imgE3.setImage(imgOcup);
+            facturaList.getListAsiento().get(26).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgE3.setImage(imgDeso);
+            facturaList.getListAsiento().get(26).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1017,9 +1373,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void E4Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgE4.setImage(imagen);
-        facturaList.getListAsiento().get(27).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(27).getNombre();
+        if(imgE4.getImage().equals(imgDeso)){
+            imgE4.setImage(imgOcup);
+            facturaList.getListAsiento().get(27).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgE4.setImage(imgDeso);
+            facturaList.getListAsiento().get(27).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1035,9 +1398,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void E5Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgE5.setImage(imagen);
-        facturaList.getListAsiento().get(28).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(28).getNombre();
+        if(imgE5.getImage().equals(imgDeso)){
+            imgE5.setImage(imgOcup);
+            facturaList.getListAsiento().get(28).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgE5.setImage(imgDeso);
+            facturaList.getListAsiento().get(28).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1053,9 +1423,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void E6Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgE6.setImage(imagen);
-        facturaList.getListAsiento().get(29).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(29).getNombre();
+        if(imgE6.getImage().equals(imgDeso)){
+            imgE6.setImage(imgOcup);
+            facturaList.getListAsiento().get(29).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgE6.setImage(imgDeso);
+            facturaList.getListAsiento().get(29).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1071,9 +1448,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F0Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF0.setImage(imagen);
-        facturaList.getListAsiento().get(30).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(30).getNombre();
+        if(imgF0.getImage().equals(imgDeso)){
+            imgF0.setImage(imgOcup);
+            facturaList.getListAsiento().get(30).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF0.setImage(imgDeso);
+            facturaList.getListAsiento().get(30).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1089,9 +1473,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F1Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF1.setImage(imagen);
-        facturaList.getListAsiento().get(31).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(31).getNombre();
+        if(imgF1.getImage().equals(imgDeso)){
+            imgF1.setImage(imgOcup);
+            facturaList.getListAsiento().get(31).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF1.setImage(imgDeso);
+            facturaList.getListAsiento().get(31).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1107,9 +1498,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F2Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF2.setImage(imagen);
-        facturaList.getListAsiento().get(32).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(32).getNombre();
+        if(imgF2.getImage().equals(imgDeso)){
+            imgF2.setImage(imgOcup);
+            facturaList.getListAsiento().get(32).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF2.setImage(imgDeso);
+            facturaList.getListAsiento().get(32).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1125,9 +1523,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F3Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF3.setImage(imagen);
-        facturaList.getListAsiento().get(33).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(33).getNombre();
+        if(imgF3.getImage().equals(imgDeso)){
+            imgF3.setImage(imgOcup);
+            facturaList.getListAsiento().get(33).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF3.setImage(imgDeso);
+            facturaList.getListAsiento().get(33).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1143,9 +1548,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F4Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF4.setImage(imagen);
-        facturaList.getListAsiento().get(34).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(34).getNombre();
+        if(imgF4.getImage().equals(imgDeso)){
+            imgF4.setImage(imgOcup);
+            facturaList.getListAsiento().get(34).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF4.setImage(imgDeso);
+            facturaList.getListAsiento().get(34).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1161,9 +1573,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F5Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF5.setImage(imagen);
-        facturaList.getListAsiento().get(35).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(35).getNombre();
+        if(imgF5.getImage().equals(imgDeso)){
+            imgF5.setImage(imgOcup);
+            facturaList.getListAsiento().get(35).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF5.setImage(imgDeso);
+            facturaList.getListAsiento().get(35).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1179,9 +1598,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F6Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF6.setImage(imagen);
-        facturaList.getListAsiento().get(36).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(36).getNombre();
+        if(imgF6.getImage().equals(imgDeso)){
+            imgF6.setImage(imgOcup);
+            facturaList.getListAsiento().get(36).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF6.setImage(imgDeso);
+            facturaList.getListAsiento().get(36).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1197,9 +1623,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void F7Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgF7.setImage(imagen);
-        facturaList.getListAsiento().get(37).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(37).getNombre();
+        if(imgF7.getImage().equals(imgDeso)){
+            imgF7.setImage(imgOcup);
+            facturaList.getListAsiento().get(37).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgF7.setImage(imgDeso);
+            facturaList.getListAsiento().get(37).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1215,9 +1648,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G0Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG0.setImage(imagen);
-        facturaList.getListAsiento().get(38).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(38).getNombre();
+        if(imgG0.getImage().equals(imgDeso)){
+            imgG0.setImage(imgOcup);
+            facturaList.getListAsiento().get(38).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG0.setImage(imgDeso);
+            facturaList.getListAsiento().get(38).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1233,9 +1673,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G1Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG1.setImage(imagen);
-        facturaList.getListAsiento().get(39).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(39).getNombre();
+        if(imgG1.getImage().equals(imgDeso)){
+            imgG1.setImage(imgOcup);
+            facturaList.getListAsiento().get(39).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG1.setImage(imgDeso);
+            facturaList.getListAsiento().get(39).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1251,9 +1698,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G2Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG2.setImage(imagen);
-        facturaList.getListAsiento().get(40).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(40).getNombre();
+        if(imgG2.getImage().equals(imgDeso)){
+            imgG2.setImage(imgOcup);
+            facturaList.getListAsiento().get(40).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG2.setImage(imgDeso);
+            facturaList.getListAsiento().get(40).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1269,9 +1723,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G3Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG3.setImage(imagen);
-        facturaList.getListAsiento().get(41).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(41).getNombre();
+        if(imgG3.getImage().equals(imgDeso)){
+            imgG3.setImage(imgOcup);
+            facturaList.getListAsiento().get(41).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG3.setImage(imgDeso);
+            facturaList.getListAsiento().get(41).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1287,9 +1748,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G4Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG4.setImage(imagen);
-        facturaList.getListAsiento().get(42).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(42).getNombre();
+        if(imgG4.getImage().equals(imgDeso)){
+            imgG4.setImage(imgOcup);
+            facturaList.getListAsiento().get(42).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG4.setImage(imgDeso);
+            facturaList.getListAsiento().get(42).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1305,9 +1773,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G5Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG5.setImage(imagen);
-        facturaList.getListAsiento().get(43).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(43).getNombre();
+        if(imgG5.getImage().equals(imgDeso)){
+            imgG5.setImage(imgOcup);
+            facturaList.getListAsiento().get(43).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG5.setImage(imgDeso);
+            facturaList.getListAsiento().get(43).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1323,9 +1798,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G6Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG6.setImage(imagen);
-        facturaList.getListAsiento().get(44).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(44).getNombre();
+        if(imgG6.getImage().equals(imgDeso)){
+            imgG6.setImage(imgOcup);
+            facturaList.getListAsiento().get(44).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG6.setImage(imgDeso);
+            facturaList.getListAsiento().get(44).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
@@ -1341,9 +1823,16 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void G7Clicked(MouseEvent event) {
-        Image imagen = new Image(getClass().getResourceAsStream("/Images/SillaCineSelec.png"));
-        imgG7.setImage(imagen);
-        facturaList.getListAsiento().get(45).setOcupado(true);
+        String nombreAsiento = facturaList.getListAsiento().get(45).getNombre();
+        if(imgG7.getImage().equals(imgDeso)){
+            imgG7.setImage(imgOcup);
+            facturaList.getListAsiento().get(45).setOcupado(true);
+            nuevaFactura.getAsientos().add(nombreAsiento);
+        }else{
+            imgG7.setImage(imgDeso);
+            facturaList.getListAsiento().get(45).setOcupado(false);
+            nuevaFactura.getAsientos().remove(nombreAsiento);
+        }
     }
 
     @FXML
