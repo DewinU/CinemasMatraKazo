@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,128 +11,99 @@
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" style="-fx-background-color: #2e3b50; -fx-border-color: #78808d;" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.dashboardStageController">
    <children>
-      <HBox layoutX="67.0" layoutY="51.0" prefHeight="251.0" prefWidth="848.0">
+      <HBox layoutX="66.0" layoutY="48.0" prefHeight="298.0" prefWidth="1003.0" spacing="150.0">
          <children>
             <VBox fx:id="peliculas1" alignment="CENTER" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane" stylesheets="@../Styles/styleDEMO.css">
                <children>
-                  <ImageView fx:id="poster1" fitHeight="249.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/riseoftheplanetoftheapes_movie_movies_movies_movie_7655.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="71.0" prefWidth="294.0" text="El planeta de los simios" textFill="WHITE">
+                  <Label fx:id="calificacion1" layoutX="9.0" layoutY="-5.0" styleClass="calificacion">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <ImageView fx:id="poster1" fitHeight="249.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombrePelicula1" alignment="CENTER" contentDisplay="CENTER" prefHeight="71.0" prefWidth="294.0" textFill="WHITE">
                      <font>
                         <Font name="FontAwesome Regular" size="17.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="peliculas2" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane" stylesheets="@../Styles/styleDEMO.css">
+            <VBox fx:id="peliculas2" alignment="TOP_CENTER" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane" stylesheets="@../Styles/styleDEMO.css">
                <children>
-                  <ImageView fx:id="poster2" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/riseoftheplanetoftheapes_movie_movies_movies_movie_7655.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="212.0" stylesheets="@../Styles/styleDEMO.css" text="El planeta de los simios" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font></Label>
-               </children>
-            </VBox>
-            <VBox fx:id="peliculas3" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
-               <children>
-                  <ImageView fx:id="poster3" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/riseoftheplanetoftheapes_movie_movies_movies_movie_7655.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="212.0" styleClass="movie-name" stylesheets="@../Styles/styleDEMO.css" text="El planeta de los simios" textFill="WHITE">
+                  <Label fx:id="calificacion2" styleClass="calificacion" />
+                  <ImageView fx:id="poster2" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombrePelicula2" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="212.0" stylesheets="@../Styles/styleDEMO.css" textFill="WHITE">
                      <font>
                         <Font name="FontAwesome Regular" size="17.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="peliculas4" layoutX="434.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
+            <VBox fx:id="peliculas3" alignment="CENTER" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
                <children>
-                  <ImageView fx:id="poster4" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/riseoftheplanetoftheapes_movie_movies_movies_movie_7655.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="212.0" styleClass="movie-name" stylesheets="@../Styles/styleDEMO.css" text="El planeta de los simios" textFill="WHITE">
+                  <Label fx:id="calificacion3" styleClass="calificacion" />
+                  <ImageView fx:id="poster3" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombrePelicula3" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="212.0" styleClass="movie-name" stylesheets="@../Styles/styleDEMO.css" textFill="WHITE">
                      <font>
                         <Font name="FontAwesome Regular" size="17.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="66.0" layoutY="378.0" prefHeight="229.0" prefWidth="767.0">
+      <HBox layoutX="53.0" layoutY="359.0" prefHeight="298.0" prefWidth="1003.0" spacing="150.0">
          <children>
-            <VBox fx:id="peliculas5" alignment="CENTER" onMouseClicked="#selectingMovie" prefHeight="100.0" prefWidth="91.0" styleClass="movie-pane">
+            <VBox fx:id="peliculas4" alignment="CENTER" onMouseClicked="#selectingMovie" styleClass="movie-pane">
                <children>
-                  <ImageView fx:id="poster5" fitHeight="212.0" fitWidth="218.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/The_Avengers_32401.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="175.0" text="Los vergadores" textFill="WHITE">
+                  <Label fx:id="calificacion4" styleClass="calificacion" />
+                  <ImageView fx:id="poster4" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombrePelicula4" alignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="FontAwesome Regular" size="17.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox fx:id="peliculas6" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="100.0" prefWidth="91.0" styleClass="movie-pane">
+            <VBox fx:id="peliculas5" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
                <children>
-                  <ImageView fx:id="poster6" fitHeight="212.0" fitWidth="395.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/The_Avengers_32401.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="175.0" text="Los vergadores" textFill="WHITE">
+                  <Label fx:id="calificacion5" styleClass="calificacion" />
+                  <ImageView fx:id="poster5" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombrePelicula5" alignment="CENTER" prefHeight="17.0" prefWidth="175.0" textFill="WHITE">
                      <font>
                         <Font name="FontAwesome Regular" size="17.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox fx:id="peliculas7" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="100.0" prefWidth="91.0" styleClass="movie-pane">
+            <VBox fx:id="peliculas6" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
                <children>
-                  <ImageView fx:id="poster7" fitHeight="212.0" fitWidth="395.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/The_Avengers_32401.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="175.0" text="Los vergadores" textFill="WHITE">
+                  <Label fx:id="calificacion6" styleClass="calificacion" />
+                  <ImageView fx:id="poster6" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombrePelicula6" alignment="CENTER" prefHeight="17.0" prefWidth="175.0" textFill="WHITE">
                      <font>
                         <Font name="FontAwesome Regular" size="17.0" />
-                     </font></Label>
-               </children>
-            </VBox>
-            <VBox fx:id="peliculas8" alignment="CENTER" layoutX="222.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="100.0" prefWidth="91.0" styleClass="movie-pane">
-               <children>
-                  <ImageView fx:id="poster8" fitHeight="212.0" fitWidth="395.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/The_Avengers_32401.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="175.0" text="Los vergadores" textFill="WHITE">
-                     <font>
-                        <Font size="17.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </children>
       </HBox>
-      <AnchorPane fx:id="selectedMovie" layoutX="149.0" layoutY="32.0" prefHeight="508.0" prefWidth="627.0" styleClass="unselected-movie">
+      <AnchorPane fx:id="selectedMovie" layoutX="91.0" layoutY="117.0" prefHeight="418.0" prefWidth="798.0" styleClass="unselected-movie">
          <children>
-            <ImageView fx:id="movieImage" fitHeight="317.0" fitWidth="627.0" pickOnBounds="true">
+            <ImageView fx:id="movieImage" fitHeight="418.0" fitWidth="236.0" pickOnBounds="true">
                <viewport>
                   <Rectangle2D width="586.0" />
                </viewport>
             </ImageView>
+            <Label fx:id="datosPelicula" layoutX="236.0" prefHeight="422.0" prefWidth="563.0" styleClass="informacion" />
+            <Label fx:id="genero" layoutX="757.0" layoutY="6.0" />
          </children>
       </AnchorPane>
+      <Label layoutX="53.0" layoutY="6.0" prefHeight="42.0" prefWidth="401.0" text="NUEVAS PELICULAS !!" textFill="WHITE">
+         <font>
+            <Font name="FontAwesome Regular" size="33.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
