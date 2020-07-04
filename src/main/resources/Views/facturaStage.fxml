@@ -673,7 +673,7 @@
             <Image url="@../Images/SeleccionenUnaPelicula.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="AnchorPaneNuevaFactura" layoutX="11.0" layoutY="11.0" prefHeight="657.0" prefWidth="248.0" style="-fx-background-color: #252525;" visible="false">
+      <AnchorPane fx:id="AnchorPaneNuevaFactura" layoutX="11.0" layoutY="11.0" prefHeight="657.0" prefWidth="248.0" style="-fx-background-color: #252525;">
          <children>
             <Button fx:id="cancelarFacturaButtom" layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#cancelarFacturaButtomOnAction" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="Cancelar Factura">
                <font>
@@ -698,23 +698,23 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbxPelicula" layoutX="13.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="230.0" promptText="              Seleccione Una Pelicula" style="-fx-background-color: #df9c37;">
+            <ComboBox fx:id="cmbxPelicula" layoutX="10.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="230.0" promptText="              Seleccione Una Pelicula" style="-fx-background-color: #df9c37;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
-            <ComboBox fx:id="cmbxHoraFunsion" layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="230.0" promptText="                Hora De La Funsión" style="-fx-background-color: #df9c37;">
+            <ComboBox fx:id="cmbxHoraFunsion" layoutX="20.0" layoutY="100.0" prefHeight="25.0" prefWidth="210.0" promptText="                Hora De La Funsión" style="-fx-background-color: #df9c37;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
             <Separator layoutX="16.0" layoutY="605.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
             <Separator layoutX="13.0" layoutY="31.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
-            <Label layoutX="56.0" layoutY="180.0" text="Asientos" textFill="WHITE">
+            <Label layoutX="103.0" layoutY="176.0" text="Asientos" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <ListView layoutX="25.0" layoutY="227.0" prefHeight="121.0" prefWidth="111.0" />
-            <Label layoutX="40.0" layoutY="196.0" text="Seleccionados" textFill="WHITE">
+            <ListView fx:id="listViewAsientos" layoutX="51.0" layoutY="217.0" prefHeight="131.0" prefWidth="148.0" style="-fx-background-color: #df9c37;" />
+            <Label layoutX="87.0" layoutY="192.0" text="Seleccionados" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -728,7 +728,7 @@
                </cursor>
             </Button>
             <Separator layoutX="12.0" layoutY="361.0" prefHeight="3.0" prefWidth="230.0" />
-            <Separator layoutX="116.0" layoutY="382.0" orientation="VERTICAL" prefHeight="166.0" prefWidth="11.0" />
+            <Separator layoutX="124.0" layoutY="375.0" orientation="VERTICAL" prefHeight="166.0" prefWidth="11.0" />
             <Label layoutX="41.0" layoutY="384.0" text="Asiento" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
@@ -759,12 +759,7 @@
                   <Image url="@../Images/SillaCineSelec.png" />
                </image>
             </ImageView>
-            <Label layoutX="156.0" layoutY="188.0" text="Promociones" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtSala" editable="false" layoutX="14.0" layoutY="134.0" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="                             Sala">
+            <TextField fx:id="txtSala" editable="false" layoutX="30.0" layoutY="134.0" prefHeight="25.0" prefWidth="190.0" style="-fx-background-color: #df9c37;" text="                       Sala">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

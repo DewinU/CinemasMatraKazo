@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -245,6 +246,8 @@ public class facturaStageController implements Initializable {
     
     //Creando la Nueva Factura
     Factura nuevaFactura;
+    @FXML
+    private ListView<String> listViewAsientos;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -320,6 +323,8 @@ public class facturaStageController implements Initializable {
                 }
             }
         });
+        
+        
       
     }
     //-----------------------------------------------------------------------------------
@@ -703,11 +708,13 @@ public class facturaStageController implements Initializable {
             imgA1.setImage(imgOcup);
             facturaList.getListAsiento().get(0).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgA1.setImage(imgDeso);
             facturaList.getListAsiento().get(0).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
-        }
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
+        }   
     }
 
     @FXML
@@ -728,10 +735,12 @@ public class facturaStageController implements Initializable {
             imgA2.setImage(imgOcup);
             facturaList.getListAsiento().get(1).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgA2.setImage(imgDeso);
             facturaList.getListAsiento().get(1).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -753,10 +762,12 @@ public class facturaStageController implements Initializable {
             imgA3.setImage(imgOcup);
             facturaList.getListAsiento().get(2).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgA3.setImage(imgDeso);
             facturaList.getListAsiento().get(2).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -778,10 +789,12 @@ public class facturaStageController implements Initializable {
             imgA4.setImage(imgOcup);
             facturaList.getListAsiento().get(3).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgA4.setImage(imgDeso);
             facturaList.getListAsiento().get(3).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -803,10 +816,12 @@ public class facturaStageController implements Initializable {
             imgA5.setImage(imgOcup);
             facturaList.getListAsiento().get(4).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgA5.setImage(imgDeso);
             facturaList.getListAsiento().get(4).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -828,10 +843,12 @@ public class facturaStageController implements Initializable {
             imgA6.setImage(imgOcup);
             facturaList.getListAsiento().get(5).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgA6.setImage(imgDeso);
             facturaList.getListAsiento().get(5).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -853,10 +870,12 @@ public class facturaStageController implements Initializable {
             imgB1.setImage(imgOcup);
             facturaList.getListAsiento().get(6).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgB1.setImage(imgDeso);
             facturaList.getListAsiento().get(6).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -878,10 +897,12 @@ public class facturaStageController implements Initializable {
             imgB2.setImage(imgOcup);
             facturaList.getListAsiento().get(7).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgB2.setImage(imgDeso);
             facturaList.getListAsiento().get(7).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -903,10 +924,12 @@ public class facturaStageController implements Initializable {
             imgB3.setImage(imgOcup);
             facturaList.getListAsiento().get(8).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgB3.setImage(imgDeso);
             facturaList.getListAsiento().get(8).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -928,10 +951,12 @@ public class facturaStageController implements Initializable {
             imgB4.setImage(imgOcup);
             facturaList.getListAsiento().get(9).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgB4.setImage(imgDeso);
             facturaList.getListAsiento().get(9).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -953,10 +978,12 @@ public class facturaStageController implements Initializable {
             imgB5.setImage(imgOcup);
             facturaList.getListAsiento().get(10).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgB5.setImage(imgDeso);
             facturaList.getListAsiento().get(10).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -978,10 +1005,12 @@ public class facturaStageController implements Initializable {
             imgB6.setImage(imgOcup);
             facturaList.getListAsiento().get(11).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgB6.setImage(imgDeso);
             facturaList.getListAsiento().get(11).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1003,10 +1032,12 @@ public class facturaStageController implements Initializable {
             imgC1.setImage(imgOcup);
             facturaList.getListAsiento().get(12).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgC1.setImage(imgDeso);
             facturaList.getListAsiento().get(12).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1028,10 +1059,12 @@ public class facturaStageController implements Initializable {
             imgC2.setImage(imgOcup);
             facturaList.getListAsiento().get(13).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgC2.setImage(imgDeso);
             facturaList.getListAsiento().get(13).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1053,10 +1086,12 @@ public class facturaStageController implements Initializable {
             imgC3.setImage(imgOcup);
             facturaList.getListAsiento().get(14).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgC3.setImage(imgDeso);
             facturaList.getListAsiento().get(14).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1078,10 +1113,12 @@ public class facturaStageController implements Initializable {
             imgC4.setImage(imgOcup);
             facturaList.getListAsiento().get(15).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgC4.setImage(imgDeso);
             facturaList.getListAsiento().get(15).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1103,10 +1140,12 @@ public class facturaStageController implements Initializable {
             imgC5.setImage(imgOcup);
             facturaList.getListAsiento().get(16).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgC5.setImage(imgDeso);
             facturaList.getListAsiento().get(16).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1128,10 +1167,12 @@ public class facturaStageController implements Initializable {
             imgC6.setImage(imgOcup);
             facturaList.getListAsiento().get(17).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgC6.setImage(imgDeso);
             facturaList.getListAsiento().get(17).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1153,10 +1194,12 @@ public class facturaStageController implements Initializable {
             imgD1.setImage(imgOcup);
             facturaList.getListAsiento().get(18).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgD1.setImage(imgDeso);
             facturaList.getListAsiento().get(18).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1178,10 +1221,12 @@ public class facturaStageController implements Initializable {
             imgD2.setImage(imgOcup);
             facturaList.getListAsiento().get(19).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgD2.setImage(imgDeso);
             facturaList.getListAsiento().get(19).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1203,10 +1248,12 @@ public class facturaStageController implements Initializable {
             imgD3.setImage(imgOcup);
             facturaList.getListAsiento().get(20).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgD3.setImage(imgDeso);
             facturaList.getListAsiento().get(20).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1228,10 +1275,12 @@ public class facturaStageController implements Initializable {
             imgD4.setImage(imgOcup);
             facturaList.getListAsiento().get(21).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgD4.setImage(imgDeso);
             facturaList.getListAsiento().get(21).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1253,10 +1302,12 @@ public class facturaStageController implements Initializable {
             imgD5.setImage(imgOcup);
             facturaList.getListAsiento().get(22).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgD5.setImage(imgDeso);
             facturaList.getListAsiento().get(22).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1278,10 +1329,12 @@ public class facturaStageController implements Initializable {
             imgD6.setImage(imgOcup);
             facturaList.getListAsiento().get(23).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgD6.setImage(imgDeso);
             facturaList.getListAsiento().get(23).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1303,10 +1356,12 @@ public class facturaStageController implements Initializable {
             imgE1.setImage(imgOcup);
             facturaList.getListAsiento().get(24).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgE1.setImage(imgDeso);
             facturaList.getListAsiento().get(24).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1328,10 +1383,12 @@ public class facturaStageController implements Initializable {
             imgE2.setImage(imgOcup);
             facturaList.getListAsiento().get(25).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgE2.setImage(imgDeso);
             facturaList.getListAsiento().get(25).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1353,10 +1410,12 @@ public class facturaStageController implements Initializable {
             imgE3.setImage(imgOcup);
             facturaList.getListAsiento().get(26).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgE3.setImage(imgDeso);
             facturaList.getListAsiento().get(26).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1378,10 +1437,12 @@ public class facturaStageController implements Initializable {
             imgE4.setImage(imgOcup);
             facturaList.getListAsiento().get(27).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgE4.setImage(imgDeso);
             facturaList.getListAsiento().get(27).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1403,10 +1464,12 @@ public class facturaStageController implements Initializable {
             imgE5.setImage(imgOcup);
             facturaList.getListAsiento().get(28).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgE5.setImage(imgDeso);
             facturaList.getListAsiento().get(28).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1428,10 +1491,12 @@ public class facturaStageController implements Initializable {
             imgE6.setImage(imgOcup);
             facturaList.getListAsiento().get(29).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgE6.setImage(imgDeso);
             facturaList.getListAsiento().get(29).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1453,10 +1518,12 @@ public class facturaStageController implements Initializable {
             imgF0.setImage(imgOcup);
             facturaList.getListAsiento().get(30).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF0.setImage(imgDeso);
             facturaList.getListAsiento().get(30).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1478,10 +1545,12 @@ public class facturaStageController implements Initializable {
             imgF1.setImage(imgOcup);
             facturaList.getListAsiento().get(31).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF1.setImage(imgDeso);
             facturaList.getListAsiento().get(31).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1503,10 +1572,12 @@ public class facturaStageController implements Initializable {
             imgF2.setImage(imgOcup);
             facturaList.getListAsiento().get(32).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF2.setImage(imgDeso);
             facturaList.getListAsiento().get(32).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1528,10 +1599,12 @@ public class facturaStageController implements Initializable {
             imgF3.setImage(imgOcup);
             facturaList.getListAsiento().get(33).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF3.setImage(imgDeso);
             facturaList.getListAsiento().get(33).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1553,10 +1626,12 @@ public class facturaStageController implements Initializable {
             imgF4.setImage(imgOcup);
             facturaList.getListAsiento().get(34).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF4.setImage(imgDeso);
             facturaList.getListAsiento().get(34).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1578,10 +1653,12 @@ public class facturaStageController implements Initializable {
             imgF5.setImage(imgOcup);
             facturaList.getListAsiento().get(35).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF5.setImage(imgDeso);
             facturaList.getListAsiento().get(35).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1603,10 +1680,12 @@ public class facturaStageController implements Initializable {
             imgF6.setImage(imgOcup);
             facturaList.getListAsiento().get(36).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF6.setImage(imgDeso);
             facturaList.getListAsiento().get(36).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1628,10 +1707,12 @@ public class facturaStageController implements Initializable {
             imgF7.setImage(imgOcup);
             facturaList.getListAsiento().get(37).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgF7.setImage(imgDeso);
             facturaList.getListAsiento().get(37).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1653,10 +1734,12 @@ public class facturaStageController implements Initializable {
             imgG0.setImage(imgOcup);
             facturaList.getListAsiento().get(38).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG0.setImage(imgDeso);
             facturaList.getListAsiento().get(38).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1678,10 +1761,12 @@ public class facturaStageController implements Initializable {
             imgG1.setImage(imgOcup);
             facturaList.getListAsiento().get(39).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG1.setImage(imgDeso);
             facturaList.getListAsiento().get(39).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1703,10 +1788,12 @@ public class facturaStageController implements Initializable {
             imgG2.setImage(imgOcup);
             facturaList.getListAsiento().get(40).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG2.setImage(imgDeso);
             facturaList.getListAsiento().get(40).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1728,10 +1815,12 @@ public class facturaStageController implements Initializable {
             imgG3.setImage(imgOcup);
             facturaList.getListAsiento().get(41).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG3.setImage(imgDeso);
             facturaList.getListAsiento().get(41).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1753,10 +1842,12 @@ public class facturaStageController implements Initializable {
             imgG4.setImage(imgOcup);
             facturaList.getListAsiento().get(42).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG4.setImage(imgDeso);
             facturaList.getListAsiento().get(42).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1778,10 +1869,12 @@ public class facturaStageController implements Initializable {
             imgG5.setImage(imgOcup);
             facturaList.getListAsiento().get(43).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG5.setImage(imgDeso);
             facturaList.getListAsiento().get(43).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1803,10 +1896,12 @@ public class facturaStageController implements Initializable {
             imgG6.setImage(imgOcup);
             facturaList.getListAsiento().get(44).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG6.setImage(imgDeso);
             facturaList.getListAsiento().get(44).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
@@ -1828,10 +1923,12 @@ public class facturaStageController implements Initializable {
             imgG7.setImage(imgOcup);
             facturaList.getListAsiento().get(45).setOcupado(true);
             nuevaFactura.getAsientos().add(nombreAsiento);
+            listViewAsientos.getItems().add("     <---"+nombreAsiento+"--->");
         }else{
             imgG7.setImage(imgDeso);
             facturaList.getListAsiento().get(45).setOcupado(false);
             nuevaFactura.getAsientos().remove(nombreAsiento);
+            listViewAsientos.getItems().remove("     <---"+nombreAsiento+"--->");
         }
     }
 
