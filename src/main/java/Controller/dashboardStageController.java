@@ -1,8 +1,11 @@
 package Controller;
 
+import Model.FacturaListModel;
 import animatefx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.input.MouseEvent;
@@ -35,10 +38,6 @@ public class dashboardStageController implements Initializable {
     @FXML
     private VBox peliculas6;
     @FXML
-    private VBox peliculas7;
-    @FXML
-    private VBox peliculas8;
-    @FXML
     private VBox movieSelected;
 
     @FXML
@@ -55,15 +54,42 @@ public class dashboardStageController implements Initializable {
     private ImageView poster5;
     @FXML
     private ImageView poster6;
+
     @FXML
-    private ImageView poster7;
+    private Label nombrePelicula1;
     @FXML
-    private ImageView poster8;
+    private Label nombrePelicula2;
     @FXML
-    private ImageView filterImage;
+    private Label nombrePelicula3;
+    @FXML
+    private Label nombrePelicula4;
+    @FXML
+    private Label nombrePelicula5;
+    @FXML
+    private Label nombrePelicula6;
+
+    @FXML
+    private Label calificacion1;
+    @FXML
+    private Label calificacion2;
+    @FXML
+    private Label calificacion3;
+    @FXML
+    private Label calificacion4;
+    @FXML
+    private Label calificacion5;
+    @FXML
+    private Label calificacion6;
+
+    @FXML
+    private Label genero;
 
 
-    private List<VBox> peliculas = new ArrayList<VBox>();
+    private List<VBox> peliculasFiltro = new ArrayList<VBox>();
+    private List<ImageView> posters = new ArrayList<>();
+    private List<Label> titulos = new ArrayList<>();
+    private List<Label> calificaciones = new ArrayList<>();
+    private FacturaListModel peliculas = new FacturaListModel();
     public static ExecutorService threadpool;
     public Runnable task1;
     boolean state = false;
@@ -75,16 +101,40 @@ public class dashboardStageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         selectedMovie.setDisable(true);
         peliculasP.add(peliculas1);
         peliculasP.add(peliculas3);
         peliculasP.add(peliculas5);
-        peliculasP.add(peliculas7);
         peliculasI.add(peliculas2);
         peliculasI.add(peliculas4);
         peliculasI.add(peliculas6);
-        peliculasI.add(peliculas8);
+        peliculasFiltro.addAll(peliculasP);
+        peliculasFiltro.addAll(peliculasI);
 
+        posters.add(poster1);
+        posters.add(poster2);
+        posters.add(poster3);
+        posters.add(poster4);
+        posters.add(poster5);
+        posters.add(poster6);
+
+        titulos.add(nombrePelicula1);
+        titulos.add(nombrePelicula2);
+        titulos.add(nombrePelicula3);
+        titulos.add(nombrePelicula4);
+        titulos.add(nombrePelicula5);
+        titulos.add(nombrePelicula6);
+
+        calificaciones.add(calificacion1);
+        calificaciones.add(calificacion2);
+        calificaciones.add(calificacion3);
+        calificaciones.add(calificacion4);
+        calificaciones.add(calificacion5);
+        calificaciones.add(calificacion6);
+
+        peliculas.LoadFromJsonPeliculas();
+        loadPostersFromJson();
 
 
         threadpool = Executors.newCachedThreadPool();
@@ -100,12 +150,6 @@ public class dashboardStageController implements Initializable {
                 System.out.println("Se paro xd");
             }
         };
-
-        for (int i = 0; i < peliculasP.size(); i++)
-            peliculas.add(peliculasP.get(i));
-
-        for (int i = 0; i < peliculasI.size(); i++)
-            peliculas.add(peliculasI.get(i));
 
 
         threadpool.execute(task1);
@@ -129,34 +173,31 @@ public class dashboardStageController implements Initializable {
     public void selectingMovie(MouseEvent e) {
         state = false;
 
-        peliculas.forEach(p -> {
+        peliculasFiltro.forEach(p -> {
             new ZoomOut(p).play();
         });
         disablePanels();
         if (e.getSource().toString().substring(8, 18).equals(peliculas1.getId()))
-            showInfo(poster1);
+//            showInfo(poster1, peliculas.getListPelicula().get(0).getGenero().toString());
+            peliculas.getListPelicula().forEach(p -> System.out.println(p.getGenero()));
         else if (e.getSource().toString().substring(8, 18).equals(peliculas2.getId()))
-            showInfo(poster2);
+            showInfo(poster2, peliculas.getListPelicula().get(1).getGenero().toString());
         else if (e.getSource().toString().substring(8, 18).equals(peliculas3.getId()))
-            showInfo(poster3);
+            showInfo(poster3, peliculas.getListPelicula().get(2).getGenero().toString());
         else if (e.getSource().toString().substring(8, 18).equals(peliculas4.getId()))
-            showInfo(poster4);
+            showInfo(poster4, peliculas.getListPelicula().get(3).getGenero().toString());
         else if (e.getSource().toString().substring(8, 18).equals(peliculas5.getId()))
-            showInfo(poster5);
-        else if (e.getSource().toString().substring(8, 18).equals(peliculas6.getId()))
-            showInfo(poster6);
-        else if (e.getSource().toString().substring(8, 18).equals(peliculas7.getId()))
-            showInfo(poster7);
+            showInfo(poster5, peliculas.getListPelicula().get(4).getGenero().toString());
         else
-            showInfo(poster8);
+            showInfo(poster6, peliculas.getListPelicula().get(5).getGenero().toString());
     }
 
-    public void showInfo(ImageView movieAsked) {
+    public void showInfo(ImageView movieAsked, String generoAux) {
         new ZoomIn(selectedMovie).play();
         movieAsked.resize(627,317);
         movieImage.setImage(movieAsked.getImage());
         new Pulse(selectedMovie).setSpeed(0.2).setCycleCount(AnimationFX.INDEFINITE).play();
-
+        genero.setText(generoAux);
     }
 
     public void disablePanels() {
@@ -166,8 +207,18 @@ public class dashboardStageController implements Initializable {
         peliculas4.setDisable(true);
         peliculas5.setDisable(true);
         peliculas6.setDisable(true);
-        peliculas7.setDisable(true);
-        peliculas8.setDisable(true);
+    }
+
+    public void loadPostersFromJson() {
+        for (int i = 0; i < peliculas.getListPelicula().size(); i++) {
+            String urlImage = peliculas.getListPelicula().get(i).getFotoUrl();
+            String titulo = peliculas.getListPelicula().get(i).getTitulo();
+            String calificacion = peliculas.getListPelicula().get(i).getCalificacion();
+
+            posters.get(i).setImage(new Image(urlImage));
+            titulos.get(i).setText(titulo);
+            calificaciones.get(i).setText(calificacion);
+        }
     }
 }
 
