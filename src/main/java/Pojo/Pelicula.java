@@ -5,8 +5,7 @@
  */
 package Pojo;
 
-import Enums.Categoria;
-import Enums.Genero;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,23 +17,26 @@ public class Pelicula {
     
     private String titulo;
     private String anio;
-    private Categoria categoria;
+    private String categoria;
     private String fechaEstreno;
     private String duracion;
-    private Genero genero;
+    private String genero;
     private String director;
     private String descripcion;
     private String fotoUrl;
     private String calificacion;
     private List<String> sala;
     private List<String> funcion;
-    
+    private boolean carteleraStatus;
+    private LocalDate desde;
+    private LocalDate hasta;
+
     public Pelicula() {
         funcion = new ArrayList<>();
+        sala = new ArrayList<>();
     }
 
-    
-    public Pelicula(String titulo, String anio, Categoria categoria, String fechaEstreno, String duracion, Genero genero, String director, String descripcion, String fotoUrl, String calificacion, List<String> sala, List<String> funcion) {
+    public Pelicula(String titulo, String anio, String categoria, String fechaEstreno, String duracion, String genero, String director, String descripcion, String fotoUrl, String calificacion, List<String> sala, List<String> funcion, boolean carteleraStatus, LocalDate desde, LocalDate hasta) {
         this.titulo = titulo;
         this.anio = anio;
         this.categoria = categoria;
@@ -47,9 +49,10 @@ public class Pelicula {
         this.calificacion = calificacion;
         this.sala = sala;
         this.funcion = funcion;
+        this.carteleraStatus = carteleraStatus;
+        this.desde = desde;
+        this.hasta = hasta;
     }
-
-
 
     public String getTitulo() {
         return titulo;
@@ -67,11 +70,11 @@ public class Pelicula {
         this.anio = anio;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
@@ -91,11 +94,11 @@ public class Pelicula {
         this.duracion = duracion;
     }
 
-    public Genero getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(Genero genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 
@@ -131,6 +134,14 @@ public class Pelicula {
         this.calificacion = calificacion;
     }
 
+    public List<String> getSala() {
+        return sala;
+    }
+
+    public void setSala(List<String> sala) {
+        this.sala = sala;
+    }
+
     public List<String> getFuncion() {
         return funcion;
     }
@@ -139,12 +150,27 @@ public class Pelicula {
         this.funcion = funcion;
     }
 
-    public List<String> getSala() {
-        return sala;
+    public boolean isCarteleraStatus() {
+        return carteleraStatus;
     }
 
-    public void setSala(List<String> sala) {
-        this.sala = sala;
+    public void setCarteleraStatus(boolean carteleraStatus) {
+        this.carteleraStatus = carteleraStatus;
     }
-    
+
+    public LocalDate getDesde() {
+        return desde;
+    }
+
+    public void setDesde(LocalDate desde) {
+        this.desde = desde;
+    }
+
+    public LocalDate getHasta() {
+        return hasta;
+    }
+
+    public void setHasta(LocalDate hasta) {
+        this.hasta = hasta;
+    }
 }
