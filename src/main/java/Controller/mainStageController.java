@@ -183,6 +183,17 @@ public class mainStageController implements Initializable {
 
     @FXML
     void logoutButton(MouseEvent event) throws IOException {
+        if(threadPool != null){
+            threadPool.shutdown();
+        }
+
+        if (facturaStageController.threadPool != null){
+            facturaStageController.threadPool.shutdown();
+        }
+
+        if( dashboardStageController.threadpool != null){
+            dashboardStageController.threadpool.shutdown();
+        }
         close(event);
         stage = new Stage();
         stage.setScene(new Scene(loadFXML("loginStage")));

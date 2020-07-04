@@ -53,20 +53,18 @@ public class FacturaListModel {
         }
     }
 
-    public void getPeliculasObList(ObservableList<MovieTableModel> obList){
-        int index = 1;
+    /*public void getPeliculasObList(ObservableList<Pelicula> obList){
         for (Pelicula c: dataPeliculas) {
             obList.add(new MovieTableModel(index,c.getTitulo(),c.getDirector(),c.getDuracion(),c.getFuncion().toString(),c.getCalificacion(),"No"));
             ++index;
         }
-    }
+    }*/
 
-    public void getCarteleraObList(ObservableList<MovieTableModel> obList){
-        int index = 1;
+    /*public void getCarteleraObList(ObservableList<Pelicula> obList){
         for (Pelicula c: dataPeliculas) {
             obList.add(new MovieTableModel(index,c.getTitulo(),c.getDirector(),c.getDuracion(),c.getFuncion().toString(),c.getCalificacion()));
             ++index;
         }
-    }
+    }*/
     
 }

@@ -17,53 +17,55 @@ import java.util.ResourceBundle;
 
 public class peliculasStageController implements Initializable {
     FacturaListModel peliculas = new FacturaListModel();
-    ObservableList<MovieTableModel> carteleraList = FXCollections.observableArrayList();
-    ObservableList<MovieTableModel> movieList = FXCollections.observableArrayList();
+    ObservableList<Pelicula> movieList;
 
     @FXML
     private AnchorPane contentPane;
 
     @FXML
-    private TableView<MovieTableModel> carteleraView;
+    private TableView<Pelicula> carteleraView;
 
     @FXML
-    private TableColumn<MovieTableModel, Integer> cartelera_ID;
+    private TableColumn<Pelicula, Integer> cartelera_ID;
 
     @FXML
-    private TableColumn<MovieTableModel, String> cartelera_TITULO;
+    private TableColumn<Pelicula, String> cartelera_TITULO;
 
     @FXML
-    private TableColumn<MovieTableModel, String> cartelera_DIRECTOR;
+    private TableColumn<Pelicula, String> cartelera_DIRECTOR;
 
     @FXML
-    private TableColumn<MovieTableModel, String> cartelera_FUNCIONES;
+    private TableColumn<Pelicula, String> cartelera_DURACION;
 
     @FXML
-    private TableColumn<MovieTableModel, String> cartelera_CLASIFICACION;
+    private TableColumn<Pelicula, String> cartelera_FUNCIONES;
 
     @FXML
-    private TableView<MovieTableModel> moviesView;
+    private TableColumn<Pelicula, String> cartelera_CLASIFICACION;
 
     @FXML
-    private TableColumn<MovieTableModel, Integer> pelicula_ID;
+    private TableView<Pelicula> moviesView;
 
     @FXML
-    private TableColumn<MovieTableModel, String > pelicula_TITULO;
+    private TableColumn<Pelicula, Integer> pelicula_ID;
 
     @FXML
-    private TableColumn<MovieTableModel, String > pelicula_DIRECTOR;
+    private TableColumn<Pelicula, String > pelicula_TITULO;
 
     @FXML
-    private TableColumn<MovieTableModel, String > pelicula_DURACION;
+    private TableColumn<Pelicula, String > pelicula_DIRECTOR;
 
     @FXML
-    private TableColumn<MovieTableModel, String > pelicula_FUNCIONES;
+    private TableColumn<Pelicula, String > pelicula_DURACION;
 
     @FXML
-    private TableColumn<MovieTableModel, String > pelicula_CLASIFICACION;
+    private TableColumn<Pelicula, String > pelicula_FUNCIONES;
 
     @FXML
-    private TableColumn<MovieTableModel, String > pelicula_CARTELERA;
+    private TableColumn<Pelicula, String > pelicula_CLASIFICACION;
+
+    @FXML
+    private TableColumn<Pelicula, Boolean > pelicula_CARTELERA;
 
     @FXML
     void buttonDelete(MouseEvent event) {
@@ -88,24 +90,23 @@ public class peliculasStageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         peliculas.LoadFromJsonPeliculas();
-        peliculas.getCarteleraObList(carteleraList);
-        peliculas.getPeliculasObList(movieList);
+        movieList = FXCollections.observableArrayList(peliculas.getListPelicula());
 
-        cartelera_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        cartelera_TITULO.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        cartelera_DIRECTOR.setCellValueFactory(new PropertyValueFactory<>("director"));
-        cartelera_FUNCIONES.setCellValueFactory(new PropertyValueFactory<>("funciones"));
-        cartelera_CLASIFICACION.setCellValueFactory(new PropertyValueFactory<>("clasificacion"));
-        carteleraView.setItems(carteleraList);
+        Bind(cartelera_ID, cartelera_TITULO, cartelera_DIRECTOR, cartelera_DURACION, cartelera_FUNCIONES, cartelera_CLASIFICACION);
+        carteleraView.setItems(movieList);
 
-        pelicula_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        pelicula_TITULO.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        pelicula_DIRECTOR.setCellValueFactory(new PropertyValueFactory<>("director"));
-        pelicula_DURACION.setCellValueFactory(new PropertyValueFactory<>("duracion"));
-        pelicula_FUNCIONES.setCellValueFactory(new PropertyValueFactory<>("funciones"));
-        pelicula_CLASIFICACION.setCellValueFactory(new PropertyValueFactory<>("clasificacion"));
-        pelicula_CARTELERA.setCellValueFactory(new PropertyValueFactory<>("cartelera"));
+        Bind(pelicula_ID, pelicula_TITULO, pelicula_DIRECTOR, pelicula_DURACION, pelicula_FUNCIONES, pelicula_CLASIFICACION);
+        pelicula_CARTELERA.setCellValueFactory(new PropertyValueFactory<>("carteleraStatus"));
         moviesView.setItems(movieList);
 
+    }
+
+    private void Bind(TableColumn<Pelicula, Integer> cartelera_id, TableColumn<Pelicula, String> cartelera_titulo, TableColumn<Pelicula, String> cartelera_director, TableColumn<Pelicula, String> cartelera_duracion, TableColumn<Pelicula, String> cartelera_funciones, TableColumn<Pelicula, String> cartelera_clasificacion) {
+        cartelera_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        cartelera_titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        cartelera_director.setCellValueFactory(new PropertyValueFactory<>("director"));
+        cartelera_duracion.setCellValueFactory(new PropertyValueFactory<>("genero"));
+        cartelera_funciones.setCellValueFactory(new PropertyValueFactory<>("funcion"));
+        cartelera_clasificacion.setCellValueFactory(new PropertyValueFactory<>("categoria"));
     }
 }

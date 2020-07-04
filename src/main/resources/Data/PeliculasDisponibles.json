@@ -11,7 +11,8 @@
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
     "calificacion": "93%",
     "funcion": ["16:00", "20:00"],
-    "sala": ["Sala 2", "Sala 2"]
+    "sala": ["Sala 2", "Sala 2"],
+    "carteleraStatus": true
   },
   {
     "titulo": "Avatar",
@@ -25,7 +26,8 @@
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
     "calificacion": "82%",
     "funcion": ["10:00", "12:00"],
-    "sala": ["Sala 1", "Sala 1"]
+    "sala": ["Sala 1", "Sala 1"],
+    "carteleraStatus": true
     
   },
   {
@@ -41,7 +43,8 @@
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
     "calificacion": "68%",
     "funcion": ["14:00"],
-    "sala": ["Sala 1"]
+    "sala": ["Sala 1"],
+    "carteleraStatus": true
   },
   {
 
@@ -56,7 +59,8 @@
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_SX300.jpg",    
     "calificacion": "79%",
     "funcion": ["18:00"],
-    "sala": ["Sala 2"]
+    "sala": ["Sala 2"],
+    "carteleraStatus": true
   },
   {
     "titulo": "Baby Driver",
@@ -70,7 +74,8 @@
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_SX300.jpg",
     "calificacion": "93%",
     "funcion": ["22:00"],
-    "sala": ["Sala 3"]
+    "sala": ["Sala 3"],
+    "carteleraStatus": true
   },
   {
     "titulo": "It Chapter Two",
@@ -84,5 +89,6 @@
     "fotoUrl": "https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_SX300.jpg",
     "calificacion": "63%",
     "funcion": ["24:00"],
-    "sala": ["Sala 3"]
+    "sala": ["Sala 3"],
+    "carteleraStatus": true
   }]
