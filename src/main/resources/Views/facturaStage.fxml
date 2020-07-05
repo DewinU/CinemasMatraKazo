@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -673,9 +675,9 @@
             <Image url="@../Images/SeleccionenUnaPelicula.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="AnchorPaneNuevaFactura" layoutX="11.0" layoutY="11.0" prefHeight="657.0" prefWidth="248.0" style="-fx-background-color: #252525;">
+      <AnchorPane fx:id="AnchorPaneNuevaFactura" layoutX="7.0" layoutY="11.0" prefHeight="657.0" prefWidth="237.0" style="-fx-background-color: #252525;">
          <children>
-            <Button fx:id="cancelarFacturaButtom" layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#cancelarFacturaButtomOnAction" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="Cancelar Factura">
+            <Button fx:id="cancelarFacturaButtom" layoutX="14.0" layoutY="618.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="210.0" style="-fx-background-color: #df9c37;" text="Cancelar Factura">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -698,28 +700,28 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbxPelicula" layoutX="10.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="230.0" promptText="              Seleccione Una Pelicula" style="-fx-background-color: #df9c37;">
+            <ComboBox fx:id="cmbxPelicula" layoutX="10.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="210.0" promptText="          Seleccione Una Pelicula" style="-fx-background-color: #df9c37;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
-            <ComboBox fx:id="cmbxHoraFunsion" layoutX="20.0" layoutY="100.0" prefHeight="25.0" prefWidth="210.0" promptText="                Hora De La Funsión" style="-fx-background-color: #df9c37;">
+            <ComboBox fx:id="cmbxHoraFunsion" layoutX="20.0" layoutY="100.0" prefHeight="25.0" prefWidth="187.0" promptText="          Hora De La Funsión" style="-fx-background-color: #df9c37;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
-            <Separator layoutX="16.0" layoutY="605.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
-            <Separator layoutX="13.0" layoutY="31.0" prefHeight="3.0" prefWidth="230.0" style="-fx-background-color: black;" />
-            <Label layoutX="103.0" layoutY="176.0" text="Asientos" textFill="WHITE">
+            <Separator layoutX="16.0" layoutY="605.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
+            <Separator layoutX="13.0" layoutY="31.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
+            <Label layoutX="94.0" layoutY="175.0" text="Asientos" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewAsientos" layoutX="51.0" layoutY="217.0" prefHeight="131.0" prefWidth="148.0" style="-fx-background-color: #df9c37;" />
-            <Label layoutX="87.0" layoutY="192.0" text="Seleccionados" textFill="WHITE">
+            <ListView fx:id="listViewAsientos" layoutX="45.0" layoutY="215.0" prefHeight="131.0" prefWidth="148.0" style="-fx-background-color: #df9c37;" />
+            <Label layoutX="78.0" layoutY="191.0" text="Seleccionados" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnContinuar" layoutX="13.0" layoutY="565.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="Continuar">
+            <Button fx:id="btnContinuar" layoutX="13.0" layoutY="569.0" mnemonicParsing="false" onAction="#btnContinuarOnAction" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #df9c37;" text="Continuar">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -727,8 +729,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Separator layoutX="12.0" layoutY="361.0" prefHeight="3.0" prefWidth="230.0" />
-            <Separator layoutX="124.0" layoutY="375.0" orientation="VERTICAL" prefHeight="166.0" prefWidth="11.0" />
+            <Separator layoutX="12.0" layoutY="361.0" prefHeight="3.0" prefWidth="210.0" />
+            <Separator layoutX="113.0" layoutY="375.0" orientation="VERTICAL" prefHeight="166.0" prefWidth="11.0" />
             <Label layoutX="41.0" layoutY="384.0" text="Asiento" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
@@ -739,12 +741,12 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="171.0" layoutY="384.0" text="Asiento" textFill="WHITE">
+            <Label layoutX="151.0" layoutY="384.0" text="Asiento" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="168.0" layoutY="400.0" text="Ocupado" textFill="WHITE">
+            <Label layoutX="148.0" layoutY="400.0" text="Ocupado" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -754,16 +756,246 @@
                   <Image url="@../Images/SillaCine.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="151.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="131.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/SillaCineSelec.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtSala" editable="false" layoutX="30.0" layoutY="134.0" prefHeight="25.0" prefWidth="190.0" style="-fx-background-color: #df9c37;" text="                       Sala">
+            <TextField fx:id="txtSala" editable="false" layoutX="30.0" layoutY="134.0" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #df9c37;" text="                   Sala">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </TextField>
+            <AnchorPane fx:id="anchorPaneDetalle" layoutX="5.0" layoutY="34.0" prefHeight="518.0" prefWidth="222.0" style="-fx-background-color: #252525;" visible="false">
+               <children>
+                  <TextField fx:id="txtSala1" editable="false" layoutX="15.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" text="           Selector de Comida">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+                  <Label layoutX="10.0" layoutY="78.0" text="Descripcion" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="276.0" text="Comida Seleccionada" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="11.0" layoutY="307.0" prefHeight="188.0" prefWidth="200.0" style="-fx-background-color: #df9c37;">
+                     <columns>
+                        <TableColumn prefWidth="123.0" text="Comida" />
+                        <TableColumn prefWidth="76.0" text="Precio" />
+                     </columns>
+                  </TableView>
+                  <ListView layoutX="15.0" layoutY="104.0" prefHeight="108.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" />
+                  <Label layoutX="10.0" layoutY="222.0" text="Total" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtSala11" editable="false" layoutX="49.0" layoutY="219.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #df9c37;" text="C$">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Separator layoutX="10.0" layoutY="68.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
+                  <Separator layoutX="10.0" layoutY="266.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
+               </children>
+            </AnchorPane>
+            <Button layoutX="13.0" layoutY="618.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #df9c37;" text="Cancelar">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPaneComidaBotones" layoutX="248.0" layoutY="11.0" prefHeight="658.0" prefWidth="723.0" visible="false">
+         <children>
+            <ImageView fitHeight="78.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Combo.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="8.0" layoutY="60.0" prefHeight="3.0" prefWidth="691.0" />
+            <Button fx:id="btnCombo1" layoutX="14.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#btnCombo1OnMouseClicked" onMouseExited="#btnCombo1OnMouseExited" onMouseMoved="#btnCombo1OnMouseMoved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Separator layoutX="8.0" layoutY="472.0" prefHeight="3.0" prefWidth="691.0" />
+            <ImageView fitHeight="60.0" fitWidth="307.0" layoutX="11.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Individuales.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnPalomitaGrande" layoutX="8.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#btnPalomitaGrandeClicked" onMouseExited="#btnPalomitaGrandeExited" onMouseMoved="#btnPalomitaGrandeMoved" prefHeight="138.0" prefWidth="114.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="130.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/palomitasGrandes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnPalomitaPequenia" layoutX="124.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#btnPalomitaPequeClicked" onMouseExited="#btnPalomitaPequeExited" onMouseMoved="#btnPalomitaPequeMoved" prefHeight="102.0" prefWidth="109.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="130.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/palomitasPequeñas.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnBebidaGrande" layoutX="240.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#btnBebidaGrandeClicked" onMouseExited="#btnBebidaGrandeExited" onMouseMoved="#btnBebidaGrandeMoved" prefHeight="121.0" prefWidth="116.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="130.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/bebidaGrande.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnBebidaPequenia" layoutX="355.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#btnBebidaPequeClicked" onMouseExited="#btnBebidaPequeExited" onMouseMoved="#btnBebidaPequeMoved" prefHeight="137.0" prefWidth="100.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="130.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/bebidaPequeña.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnNachos" layoutX="471.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#btnNachosClicked" onMouseExited="#btnNachosExited" onMouseMoved="#btnNachosMoved" prefHeight="133.0" prefWidth="100.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="130.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/nachos.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnHotDog" layoutX="587.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#btnHotDogClicked" onMouseExited="#btnHotDogExited" onMouseMoved="#btnHotDogMoved" prefHeight="133.0" prefWidth="100.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="130.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/hotDog.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCombo2" layoutX="200.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#btnCombo2Clicked" onMouseExited="#btnCombo2Exited" onMouseMoved="#btnCombo2Moved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCombo3" layoutX="373.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#btnCombo3Clicked" onMouseExited="#btnCombo3Exited" onMouseMoved="#btnCombo3Moved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCombo4" layoutX="543.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#btnCombo4Clicked" onMouseExited="#btnCombo4Exited" onMouseMoved="#btnCombo4Moved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo4.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCombo5" layoutX="14.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#btnCombo5Clicked" onMouseExited="#btnCombo5Exited" onMouseMoved="#btnCombo5Moved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo5.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCombo6" layoutX="200.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#btnCombo6Clicked" onMouseExited="#btnCombo6Exited" onMouseMoved="#btnCombo6Moved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo6.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCombo7" layoutX="373.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#btnCombo7Clicked" onMouseExited="#btnCombo7Exited" onMouseMoved="#btnCombo7Moved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo7.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCombo8" layoutX="543.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#btnCombo8Clicked" onMouseExited="#btnCombo8Exited" onMouseMoved="#btnCombo8moved" prefHeight="138.0" prefWidth="132.0" style="-fx-background-color: #df9c37;">
+               <graphic>
+                  <ImageView fitHeight="134.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/combo8.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
    </children>

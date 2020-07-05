@@ -19,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -222,8 +223,6 @@ public class facturaStageController implements Initializable {
     @FXML
     private ImageView imgSelectorAsientosPrincipal;
     @FXML
-    private Button cancelarFacturaButtom;
-    @FXML
     private Button btnContinuar;
     @FXML
     private AnchorPane AnchorPaneNuevaFactura;
@@ -248,6 +247,42 @@ public class facturaStageController implements Initializable {
     Factura nuevaFactura;
     @FXML
     private ListView<String> listViewAsientos;
+    @FXML
+    private AnchorPane anchorPaneDetalle;
+    @FXML
+    private TextField txtSala1;
+    @FXML
+    private TextField txtSala11;
+    @FXML
+    private AnchorPane anchorPaneComidaBotones;
+    @FXML
+    private Button btnCombo1;
+    @FXML
+    private Button btnPalomitaGrande;
+    @FXML
+    private Button btnPalomitaPequenia;
+    @FXML
+    private Button btnBebidaGrande;
+    @FXML
+    private Button btnBebidaPequenia;
+    @FXML
+    private Button btnNachos;
+    @FXML
+    private Button btnHotDog;
+    @FXML
+    private Button btnCombo2;
+    @FXML
+    private Button btnCombo3;
+    @FXML
+    private Button btnCombo4;
+    @FXML
+    private Button btnCombo5;
+    @FXML
+    private Button btnCombo6;
+    @FXML
+    private Button btnCombo7;
+    @FXML
+    private Button btnCombo8;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -687,10 +722,6 @@ public class facturaStageController implements Initializable {
         }
         
     //-----------------------------------------------------------------------------------
-    @FXML
-    private void cancelarFacturaButtomOnAction(ActionEvent event) {
-        threadPool.submit(task2);
-    }
   
     
     
@@ -1936,17 +1967,220 @@ public class facturaStageController implements Initializable {
     private void G7Moved(MouseEvent event) {
         G7.setStyle("-fx-background-color: red");
     }
-
-
-
-
+    
     //-----------------------------------------------------------------------------------------------------
 
     @FXML
     private void cmbxPeliculaOnAction(ActionEvent event) {
- 
-       
     }
+
+    @FXML
+    private void btnContinuarOnAction(ActionEvent event) {
+        imgSelectorAsientosPrincipal.setVisible(false);
+        pnlBotonesAsientos.setVisible(false);
+        anchorPaneComidaBotones.setVisible(true);
+        anchorPaneDetalle.setVisible(true);
+    }
+
+    @FXML
+    private void btnCombo1OnMouseClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo1OnMouseMoved(MouseEvent event) {
+        btnCombo1.setEffect(new Bloom());
+    }
+    
+    @FXML
+    private void btnCombo1OnMouseExited(MouseEvent event) {
+        btnCombo1.setEffect(null);
+    }
+
+     @FXML
+    private void btnCombo2Exited(MouseEvent event) {
+        btnCombo2.setEffect(null);
+    }
+
+    @FXML
+    private void btnCombo2Clicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo2Moved(MouseEvent event) {
+        btnCombo2.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnCombo3Exited(MouseEvent event) {
+        btnCombo3.setEffect(null);
+    }
+
+    @FXML
+    private void btnCombo3Clicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo3Moved(MouseEvent event) {
+        btnCombo3.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnCombo4Exited(MouseEvent event) {
+        btnCombo4.setEffect(null);
+    }
+
+    @FXML
+    private void btnCombo4Clicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo4Moved(MouseEvent event) {
+        btnCombo4.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnCombo5Exited(MouseEvent event) {
+        btnCombo5.setEffect(null);
+    }
+
+    @FXML
+    private void btnCombo5Clicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo5Moved(MouseEvent event) {
+        btnCombo5.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnCombo6Exited(MouseEvent event) {
+        btnCombo6.setEffect(null);
+    }
+
+    @FXML
+    private void btnCombo6Clicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo6Moved(MouseEvent event) {
+        btnCombo6.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnCombo7Exited(MouseEvent event) {
+        btnCombo7.setEffect(null);
+    }
+
+    @FXML
+    private void btnCombo7Clicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo7Moved(MouseEvent event) {
+        btnCombo7.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnCombo8Exited(MouseEvent event) {
+        btnCombo8.setEffect(null);
+    }
+
+    @FXML
+    private void btnCombo8Clicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnCombo8moved(MouseEvent event) {
+        btnCombo8.setEffect(new Bloom());
+    }
+    
+    @FXML
+    private void btnPalomitaGrandeExited(MouseEvent event) {
+        btnPalomitaGrande.setEffect(null);
+    }
+
+    @FXML
+    private void btnPalomitaGrandeClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnPalomitaGrandeMoved(MouseEvent event) {
+        btnPalomitaGrande.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnPalomitaPequeExited(MouseEvent event) {
+        btnPalomitaPequenia.setEffect(null);
+    }
+
+    @FXML
+    private void btnPalomitaPequeClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnPalomitaPequeMoved(MouseEvent event) {
+        btnPalomitaPequenia.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnBebidaGrandeExited(MouseEvent event) {
+        btnBebidaGrande.setEffect(null);
+    }
+
+    @FXML
+    private void btnBebidaGrandeClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnBebidaGrandeMoved(MouseEvent event) {
+        btnBebidaGrande.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnBebidaPequeExited(MouseEvent event) {
+        btnBebidaPequenia.setEffect(null);
+    }
+
+    @FXML
+    private void btnBebidaPequeClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnBebidaPequeMoved(MouseEvent event) {
+        btnBebidaPequenia.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnNachosExited(MouseEvent event) {
+        btnNachos.setEffect(null);
+    }
+
+    @FXML
+    private void btnNachosClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnNachosMoved(MouseEvent event) {
+        btnNachos.setEffect(new Bloom());
+    }
+
+    @FXML
+    private void btnHotDogExited(MouseEvent event) {
+        btnHotDog.setEffect(null);
+    }
+
+    @FXML
+    private void btnHotDogClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnHotDogMoved(MouseEvent event) {
+        btnHotDog.setEffect(new Bloom());
+    }
+
+   
+
+    
 
 
 }
