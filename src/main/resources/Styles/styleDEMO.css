@@ -115,8 +115,8 @@
     -fx-cursor: hand;
 }
 
-.unselected-movie {
-    -fx-effect: dropshadow(three-pass-box, #403d39, 40, 0.5, 0, 0);
+#selectedMovie {
+    /*-fx-effect: dropshadow(three-pass-box, #403d39, 40, 0.5, 0, 0);*/
 }
 
 .calificacion {
@@ -130,13 +130,24 @@
     -fx-line-height: 23px;
 }
 
-#genero {
-    -fx-text-fill: #FFFFFF;
-    -fx-background-color: #9d4024;
+.datos-pelicula {
+    -fx-background-color: #2e3b50;
+    -fx-text-fill: #f4f6ff;
     -fx-font-family: "Roboto Light";
     -fx-font-weight: bold;
-    -fx-font-size: 50px;
-    -fx-font-height: 40px;
+    -fx-font-size: 15px;
+    -fx-opacity: 200;
 }
+
+#backwardsButton:hover {
+    -fx-text-fill: #184d47;
+    -fx-cursor: hand;
+}
+
+.comeback-img:hover {
+    -fx-effect: dropshadow(gaussian, #c4c4c4, 10, 0.5, 0, 0);
+    -fx-cursor: hand;
+}
+
 
 
