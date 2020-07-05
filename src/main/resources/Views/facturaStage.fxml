@@ -675,7 +675,7 @@
       </ImageView>
       <AnchorPane fx:id="AnchorPaneNuevaFactura" layoutX="11.0" layoutY="11.0" prefHeight="657.0" prefWidth="248.0" style="-fx-background-color: #252525;">
          <children>
-            <Button fx:id="cancelarFacturaButtom" layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#cancelarFacturaButtomOnAction" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="Cancelar Factura">
+            <Button fx:id="cancelarFacturaButtom" layoutX="14.0" layoutY="618.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #df9c37;" text="Cancelar Factura">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

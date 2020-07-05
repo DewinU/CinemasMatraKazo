@@ -722,9 +722,6 @@ public class facturaStageController implements Initializable {
         }
         
     //-----------------------------------------------------------------------------------
-    private void cancelarFacturaButtomOnAction(ActionEvent event) {
-        threadPool.submit(task2);
-    }
   
     
     
