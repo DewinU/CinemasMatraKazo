@@ -96,15 +96,6 @@
     -fx-font-size: 1.1em;
 }
 
-.movie-name {
-
-}
-
-.movie-frame {
-    -fx-border-color: #78808d;
-    -fx-border-width: 0.5px;
-}
-
 .movie-pane {
     -fx-background-insets: 10;
     -fx-background-radius: 10;
@@ -113,30 +104,6 @@
 
 .movie-pane:hover {
     -fx-cursor: hand;
-}
-
-.unselected-movie {
-    -fx-effect: dropshadow(three-pass-box, #403d39, 40, 0.5, 0, 0);
-}
-
-.calificacion {
-    -fx-background-color: #bbc2c9;
-    -fx-background-radius: 50%;
-    -fx-font-family: Roboto;
-    -fx-font-style: normal;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 20px;
-    -fx-line-height: 23px;
-}
-
-#genero {
-    -fx-text-fill: #FFFFFF;
-    -fx-background-color: #9d4024;
-    -fx-font-family: "Roboto Light";
-    -fx-font-weight: bold;
-    -fx-font-size: 50px;
-    -fx-font-height: 40px;
 }
 
 .table-view, .table-view:focused {
@@ -176,13 +143,34 @@
     -fx-border-color: -fx-box-border;
     -fx-border-insets: 0;
 }
-.table-view .column-header .label, .table-view .filler .label,
-.table-view .column-drag-header .label, .tree-table-view .column-header .label,
-.tree-table-view .filler .label, .tree-table-view .column-drag-header .label
-{
-    -fx-alignment: CENTER_LEFT;
-}
 
 .txt-descripcion{
     -fx-background-color: linear-gradient(#FFB600, #FF8500 ,#FF6D00, #FF5400);
 }
+
+
+.comeback-img:hover {
+    -fx-effect: dropshadow(gaussian, #c4c4c4, 10, 0.5, 0, 0);
+    -fx-cursor: hand;
+}
+.calificacion {
+    -fx-background-color: #bbc2c9;
+    -fx-background-radius: 50%;
+    -fx-font-family: Roboto;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-line-height: 23px;
+}
+
+.datos-pelicula {
+    -fx-background-color: #2e3b50;
+    -fx-text-fill: #f4f6ff;
+    -fx-font-family: "Roboto Light";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-opacity: 200;
+}
+
+
