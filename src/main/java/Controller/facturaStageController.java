@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.FacturaListModel;
+import Model.UserTableModel;
 import Pojo.Asiento;
 import Pojo.Factura;
 import javafx.fxml.FXML;
@@ -13,15 +14,23 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -252,8 +261,6 @@ public class facturaStageController implements Initializable {
     @FXML
     private TextField txtSala1;
     @FXML
-    private TextField txtSala11;
-    @FXML
     private AnchorPane anchorPaneComidaBotones;
     @FXML
     private Button btnCombo1;
@@ -283,11 +290,57 @@ public class facturaStageController implements Initializable {
     private Button btnCombo7;
     @FXML
     private Button btnCombo8;
+    @FXML
+    private Button cancelarFacturaButtom;
+    @FXML
+    private Button btnCancelar;
+    @FXML
+    private ListView<String> listViewDescripcion;
+    @FXML
+    private TextField txtTotalDescripcion;
+    
+    ObservableList<String> obListComida;
+    @FXML
+    private ListView<String> listViewComidaSelec;
+    @FXML
+    private ListView<String> listViewPrecioComidaSelec;
+    @FXML
+    private TextField txtTotalComidaSelec;
+    
+    ContextMenu context = new ContextMenu();
+    MenuItem itemContext;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contentPane.setStyle("-fx-border-color: #000000");
         facturaList = new FacturaListModel();
+        
+        // --- Inicializacion del ContextMenu ---
+        itemContext = new MenuItem(" Eliminar ");
+        context.getItems().addAll(itemContext);
+        listViewComidaSelec.setContextMenu(context);
+        
+        itemContext.setOnAction((event) -> {
+            int index = listViewComidaSelec.getSelectionModel().getSelectedIndex();
+            String s = listViewComidaSelec.getSelectionModel().getSelectedItem();
+            
+            nuevaFactura.getTipoComida().remove(s);
+            nuevaFactura.getPreciosComida().remove(index);
+            
+            listViewPrecioComidaSelec.getItems().remove(index);
+            listViewComidaSelec.getItems().remove(s);
+        });
+        
+        listViewComidaSelec.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getButton() == MouseButton.SECONDARY){
+                    context.show(listViewComidaSelec, event.getScreenX(), event.getScreenY());       
+                }
+            }
+        });
+        
+        
         
         //CREANDO LA NUEVA FACTURA (DEWIN NO LO BORRES POR FACVOR)
         nuevaFactura = new Factura();
@@ -723,7 +776,24 @@ public class facturaStageController implements Initializable {
         
     //-----------------------------------------------------------------------------------
   
+    @FXML
+    private void btnCancelarOnAction(ActionEvent event) {
+        if(btnCancelar.getText().equals("Regresar")){
+            anchorPaneComidaBotones.setVisible(false);
+            anchorPaneDetalle.setVisible(false);
+            pnlBotonesAsientos.setVisible(true);
+            btnCancelar.setText("Cancelar");
+        }
+    }
     
+    @FXML
+    private void btnContinuarOnAction(ActionEvent event) {
+        imgSelectorAsientosPrincipal.setVisible(false);
+        pnlBotonesAsientos.setVisible(false);
+        anchorPaneComidaBotones.setVisible(true);
+        anchorPaneDetalle.setVisible(true);
+        btnCancelar.setText("Regresar");
+    }
     
     //ASIENTOS BOTONES
     //A1    0
@@ -1969,214 +2039,380 @@ public class facturaStageController implements Initializable {
     }
     
     //-----------------------------------------------------------------------------------------------------
+    //-------COMIDA---------
+    
+    /*
+    
+        Palomitas Grandes ----- C$ 50
+        Palomitas Pequenias --- C$ 35
+        Bebidas Grandes ------- C$ 40
+        bebidas Pequeñas ------ C$ 25
+        Nachos ---------------- C$ 70
+        Hot-Dog --------------- C$ 60
+    
+    */
 
     @FXML
     private void cmbxPeliculaOnAction(ActionEvent event) {
     }
 
-    @FXML
-    private void btnContinuarOnAction(ActionEvent event) {
-        imgSelectorAsientosPrincipal.setVisible(false);
-        pnlBotonesAsientos.setVisible(false);
-        anchorPaneComidaBotones.setVisible(true);
-        anchorPaneDetalle.setVisible(true);
-    }
+
 
     @FXML
     private void btnCombo1OnMouseClicked(MouseEvent event) {
+      
+        nuevaFactura.getTipoComida().add("- COMBO 1");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(35+25));
+        
+        listViewComidaSelec.getItems().add("- COMBO 1");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (35 + 25));
+        
+        txtTotalComidaSelec.setText("C$ "+ 60);
     }
 
     @FXML
     private void btnCombo1OnMouseMoved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo1.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 1 PALOMITAS PEQUEÑAS");
+        listViewDescripcion.getItems().add("- 1 BEBIDA PEQUEÑA");
+        txtTotalDescripcion.setText("C$ " + (35 + 25));
     }
     
     @FXML
     private void btnCombo1OnMouseExited(MouseEvent event) {
         btnCombo1.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
      @FXML
     private void btnCombo2Exited(MouseEvent event) {
         btnCombo2.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnCombo2Clicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- COMBO 2");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 25 + 25));
+        
+        listViewComidaSelec.getItems().add("- COMBO 2");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 25 + 25));
     }
 
     @FXML
     private void btnCombo2Moved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo2.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 1 PALOMITAS GRANDES");
+        listViewDescripcion.getItems().add("- 2 BEBIDAS PEQUEÑAS");
+        txtTotalDescripcion.setText("C$ " + (50 + 25 + 25));
     }
 
     @FXML
     private void btnCombo3Exited(MouseEvent event) {
         btnCombo3.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnCombo3Clicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- COMBO 3");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(35 + 25 + 60));
+        
+        listViewComidaSelec.getItems().add("- COMBO 3");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (35 + 25 + 60));
     }
 
     @FXML
     private void btnCombo3Moved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo3.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 1 PALOMITAS PEQUEÑAS");
+        listViewDescripcion.getItems().add("- 1 BEBIDA PEQUEÑA");
+        listViewDescripcion.getItems().add("- 1 HOT-DOG");
+        txtTotalDescripcion.setText("C$ " + (35 + 25 + 60));
     }
 
     @FXML
     private void btnCombo4Exited(MouseEvent event) {
         btnCombo4.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnCombo4Clicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- COMBO 4");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(35 + 25 + 70));
+        
+        listViewComidaSelec.getItems().add("- COMBO 4");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (35 + 25 + 70));
     }
 
     @FXML
     private void btnCombo4Moved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo4.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 1 PALOMITAS PEQUEÑAS");
+        listViewDescripcion.getItems().add("- 1 BEBIDA PEQUEÑA");
+        listViewDescripcion.getItems().add("- 1 NACHOS");
+        txtTotalDescripcion.setText("C$ " + (35 + 25 + 70));
     }
 
     @FXML
     private void btnCombo5Exited(MouseEvent event) {
         btnCombo5.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnCombo5Clicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- COMBO 5");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 40 + 40 + 60 + 60));
+        
+        listViewComidaSelec.getItems().add("- COMBO 5");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 40 + 40 + 60 + 60));
     }
 
     @FXML
     private void btnCombo5Moved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo5.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 1 PALOMITAS GRANDES");
+        listViewDescripcion.getItems().add("- 2 BEBIDAS GRANDES");
+        listViewDescripcion.getItems().add("- 2 HOT-DOGS");
+        txtTotalDescripcion.setText("C$ " + (50 + 40 + 40 + 60 + 60));
     }
 
     @FXML
     private void btnCombo6Exited(MouseEvent event) {
         btnCombo6.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnCombo6Clicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- COMBO 6");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 40 + 40 + 70));
+        
+        listViewComidaSelec.getItems().add("- COMBO 6");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 40 + 40 + 70));
     }
 
     @FXML
     private void btnCombo6Moved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo6.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 1 PALOMITA GRANDE");
+        listViewDescripcion.getItems().add("- 2 BEBIDAS GRANDES");
+        listViewDescripcion.getItems().add("- 1 NACHO");
+        txtTotalDescripcion.setText("C$ " + (50 + 40 + 40 + 70));
     }
 
     @FXML
     private void btnCombo7Exited(MouseEvent event) {
         btnCombo7.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnCombo7Clicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- COMBO 7");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(60 + 60 + 40 + 40 + 70));
+        
+        listViewComidaSelec.getItems().add("- COMBO 7");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (60 + 60 + 40 + 40 + 70));
     }
 
     @FXML
     private void btnCombo7Moved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo7.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 2 HOT-DOG");
+        listViewDescripcion.getItems().add("- 2 BEBIDAS GRANDES");
+        listViewDescripcion.getItems().add("- 1 NACHO");
+        txtTotalDescripcion.setText("C$ " + (60 + 60 + 40 + 40 + 70));
     }
 
     @FXML
     private void btnCombo8Exited(MouseEvent event) {
         btnCombo8.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnCombo8Clicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- COMBO 8");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 60 + 60 + 40 + 40 + 70));
+        
+        listViewComidaSelec.getItems().add("- COMBO 8");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 60 + 60 + 40 + 40 + 70));
     }
 
     @FXML
     private void btnCombo8moved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnCombo8.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- 1 PALOMITA GRANDE");
+        listViewDescripcion.getItems().add("- 2 HOT-DOG");
+        listViewDescripcion.getItems().add("- 2 BEBIDAS GRANDES");
+        listViewDescripcion.getItems().add("- 1 NACHO");
+        txtTotalDescripcion.setText("C$ " + (50 + 60 + 60 + 40 + 40 + 70));
     }
     
     @FXML
     private void btnPalomitaGrandeExited(MouseEvent event) {
         btnPalomitaGrande.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnPalomitaGrandeClicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- PALOMITA GRANDE");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(50));
+        
+        listViewComidaSelec.getItems().add("- PALOMITA GRANDE");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (50));
     }
 
     @FXML
     private void btnPalomitaGrandeMoved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnPalomitaGrande.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- PALOMITA GRANDE");
+        txtTotalDescripcion.setText("C$ " + (50));
     }
 
     @FXML
     private void btnPalomitaPequeExited(MouseEvent event) {
         btnPalomitaPequenia.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ " );
     }
 
     @FXML
     private void btnPalomitaPequeClicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- PALOMITA PEQUEÑA");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(35));
+        
+        listViewComidaSelec.getItems().add("- PALOMITA PEQUEÑA");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (35));
     }
 
     @FXML
     private void btnPalomitaPequeMoved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnPalomitaPequenia.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- PALOMITA PEQUEÑA");
+        txtTotalDescripcion.setText("C$ " + (35));
     }
 
     @FXML
     private void btnBebidaGrandeExited(MouseEvent event) {
         btnBebidaGrande.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnBebidaGrandeClicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- BEBIDA GRANDE");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(40));
+        
+        listViewComidaSelec.getItems().add("- BEBIDA GRANDE");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (40));
     }
 
     @FXML
     private void btnBebidaGrandeMoved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnBebidaGrande.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- BEBIDA GRANDE");
+        txtTotalDescripcion.setText("C$ " + (40));
     }
 
     @FXML
     private void btnBebidaPequeExited(MouseEvent event) {
         btnBebidaPequenia.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnBebidaPequeClicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- BEBIDA PEQUEÑA");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(25));
+        
+        listViewComidaSelec.getItems().add("- BEBIDA PEQUEÑA");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (25));
     }
 
     @FXML
     private void btnBebidaPequeMoved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnBebidaPequenia.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- BEBIDA PEQUEÑA");
+        txtTotalDescripcion.setText("C$ " + (25));
     }
 
     @FXML
     private void btnNachosExited(MouseEvent event) {
         btnNachos.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnNachosClicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- NACHOS");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(70));
+        
+        listViewComidaSelec.getItems().add("- NACHOS");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (70));
     }
 
     @FXML
     private void btnNachosMoved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnNachos.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- NACHOS");
+        txtTotalDescripcion.setText("C$ " + (70));
     }
 
     @FXML
     private void btnHotDogExited(MouseEvent event) {
         btnHotDog.setEffect(null);
+        listViewDescripcion.getItems().clear();
+        txtTotalDescripcion.setText("C$ ");
     }
 
     @FXML
     private void btnHotDogClicked(MouseEvent event) {
+        nuevaFactura.getTipoComida().add("- HOT - DOG");
+        nuevaFactura.getPreciosComida().add(Float.valueOf(60));
+        
+        listViewComidaSelec.getItems().add("- HOT - DOG");
+        listViewPrecioComidaSelec.getItems().add(("C$ ") + (60));
     }
 
     @FXML
     private void btnHotDogMoved(MouseEvent event) {
+        listViewDescripcion.getItems().clear();
         btnHotDog.setEffect(new Bloom());
+        listViewDescripcion.getItems().add("- HOT-DOG");
+        txtTotalDescripcion.setText("C$ " + 60);
     }
+
+    
 
    
 

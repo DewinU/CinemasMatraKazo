@@ -20,21 +20,26 @@ public class Factura {
     private String sala;
     private List<String> asientos;
     private String carnetEmpleado;
+    private List<String> tipoComida;
+    private List<Float> preciosComida;
     private float total;
-//    private List<String> comida;
 
     public Factura() {
         asientos = new ArrayList<>();
+        tipoComida = new ArrayList<>();
+        preciosComida = new ArrayList<>();
     }
 
-    public Factura(int numeroFactura, String nombrePeliculas, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado, float total) {
+    public Factura(int numeroFactura, String nombrePelicula, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado, float total, List<String> nombreComida, List<Float> preciosComida) {
         this.numeroFactura = numeroFactura;
-        this.nombrePelicula = nombrePeliculas;
+        this.nombrePelicula = nombrePelicula;
         this.horaFuncion = horaFuncion;
         this.sala = sala;
         this.asientos = asientos;
         this.carnetEmpleado = carnetEmpleado;
         this.total = total;
+        this.tipoComida = nombreComida;
+        this.preciosComida = preciosComida;
     }
 
     public int getNumeroFactura() {
@@ -49,8 +54,8 @@ public class Factura {
         return nombrePelicula;
     }
 
-    public void setNombrePelicula(String nombrePeliculas) {
-        this.nombrePelicula = nombrePeliculas;
+    public void setNombrePelicula(String nombrePelicula) {
+        this.nombrePelicula = nombrePelicula;
     }
 
     public String getHoraFuncion() {
@@ -92,5 +97,20 @@ public class Factura {
     public void setTotal(float total) {
         this.total = total;
     }
-     
+
+    public List<String> getTipoComida() {
+        return tipoComida;
+    }
+
+    public void setTipoComida(List<String> nombreComida) {
+        this.tipoComida = nombreComida;
+    }
+
+    public List<Float> getPreciosComida() {
+        return preciosComida;
+    }
+
+    public void setPreciosComida(List<Float> preciosComida) {
+        this.preciosComida = preciosComida;
+    }
 }

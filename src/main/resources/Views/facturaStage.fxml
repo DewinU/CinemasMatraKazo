@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -708,7 +706,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
-            <Separator layoutX="16.0" layoutY="605.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
+            <Separator layoutX="12.0" layoutY="607.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
             <Separator layoutX="13.0" layoutY="31.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
             <Label layoutX="94.0" layoutY="175.0" text="Asientos" textFill="WHITE">
                <font>
@@ -768,10 +766,13 @@
             </TextField>
             <AnchorPane fx:id="anchorPaneDetalle" layoutX="5.0" layoutY="34.0" prefHeight="518.0" prefWidth="222.0" style="-fx-background-color: #252525;" visible="false">
                <children>
-                  <TextField fx:id="txtSala1" editable="false" layoutX="15.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" text="           Selector de Comida">
+                  <TextField fx:id="txtSala1" editable="false" layoutX="15.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" text="     Selector de Comida">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
+                     <font>
+                        <Font name="Times New Roman Bold" size="16.0" />
+                     </font>
                   </TextField>
                   <Label layoutX="10.0" layoutY="78.0" text="Descripcion" textFill="WHITE">
                      <font>
@@ -783,19 +784,13 @@
                         <Font name="Times New Roman" size="15.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="11.0" layoutY="307.0" prefHeight="188.0" prefWidth="200.0" style="-fx-background-color: #df9c37;">
-                     <columns>
-                        <TableColumn prefWidth="123.0" text="Comida" />
-                        <TableColumn prefWidth="76.0" text="Precio" />
-                     </columns>
-                  </TableView>
-                  <ListView layoutX="15.0" layoutY="104.0" prefHeight="108.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" />
-                  <Label layoutX="10.0" layoutY="222.0" text="Total" textFill="WHITE">
+                  <ListView fx:id="listViewDescripcion" layoutX="15.0" layoutY="104.0" prefHeight="97.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" />
+                  <Label layoutX="10.0" layoutY="210.0" text="Total" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtSala11" editable="false" layoutX="49.0" layoutY="219.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #df9c37;" text="C$">
+                  <TextField fx:id="txtTotalDescripcion" editable="false" layoutX="47.0" layoutY="207.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #df9c37;" text="C$">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -804,13 +799,37 @@
                      </font>
                   </TextField>
                   <Separator layoutX="10.0" layoutY="68.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
-                  <Separator layoutX="10.0" layoutY="266.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
+                  <Separator layoutX="10.0" layoutY="255.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
+                  <Pane layoutX="11.0" layoutY="304.0" prefHeight="166.0" prefWidth="200.0" style="-fx-background-color: #df9c37;">
+                     <children>
+                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Comida" />
+                        <Button focusTraversable="false" layoutX="118.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Precio" />
+                        <ListView fx:id="listViewComidaSelec" layoutY="25.0" prefHeight="141.0" prefWidth="122.0" style="-fx-background-color: #df9c37;" />
+                        <ListView fx:id="listViewPrecioComidaSelec" layoutX="119.0" layoutY="25.0" prefHeight="141.0" prefWidth="81.0" style="-fx-background-color: #df9c37;" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="14.0" layoutY="482.0" text="Total" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtTotalComidaSelec" editable="false" layoutX="51.0" layoutY="479.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #df9c37;" text="C$">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
-            <Button layoutX="13.0" layoutY="618.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #df9c37;" text="Cancelar">
+            <Button fx:id="btnCancelar" layoutX="13.0" layoutY="618.0" mnemonicParsing="false" onAction="#btnCancelarOnAction" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #df9c37;" text="Cancelar">
                <font>
                   <Font size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
