@@ -11,14 +11,12 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,6 +28,9 @@ public class peliculasStageController implements Initializable {
     MovieListModel moviesListModel;
     ObservableList<Pelicula> movieList;
 
+    Alert alerta;
+    ButtonType yesButton = new ButtonType("Sí", ButtonBar.ButtonData.YES);
+    ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
     @FXML
     private ImageView movieImageView;
 
@@ -93,11 +94,40 @@ public class peliculasStageController implements Initializable {
 
     @FXML
     void buttonDelete(MouseEvent event) {
+        Pelicula pelicula = moviesView.getSelectionModel().getSelectedItem();
+        if(pelicula == null){
+            alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Vaya!");
+            alerta.setContentText("Debes elegir una película a eliminar! ");
+            alerta.show();
+        }
+
+        else{
+            alerta = new Alert(Alert.AlertType.CONFIRMATION,"¿Seguro que desea eliminar esta pelicula?",yesButton,noButton);
+            alerta.showAndWait().ifPresent(type -> {
+                if (type == yesButton) {
+                    System.out.println("YES");
+                }
+                else if (type == noButton) {
+                    System.out.println("NO");
+                }
+            });
+
+        }
+
+
 
     }
 
     @FXML
     void buttonEdit(MouseEvent event) {
+        if(moviesView.getSelectionModel().getSelectedItem() == null){
+            alerta.setAlertType(Alert.AlertType.ERROR);
+            alerta.setTitle("Vaya!");
+            alerta.setContentText("Debes elegir una película a editar! ");
+            alerta.show();
+        }
+
 
     }
 
