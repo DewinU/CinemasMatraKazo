@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" style="-fx-background-color: #2e3b50; -fx-border-color: #78808d;" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.dashboardStageController">
    <children>
@@ -101,7 +102,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="selectedMovie" layoutX="43.0" layoutY="120.0" spacing="35.0">
+      <HBox fx:id="selectedMovie" layoutX="43.0" layoutY="120.0" spacing="25.0">
          <children>
             <AnchorPane>
                <children>
@@ -163,11 +164,11 @@
                   </VBox>
                   <VBox spacing="90.0">
                      <children>
-                        <Label fx:id="descripcion" lineSpacing="7.0" style="-fx-opacity: 200;" textFill="WHITE">
+                        <Text fx:id="descripcion" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="582.13671875">
                            <font>
                               <Font name="Candara" size="18.0" />
                            </font>
-                        </Label>
+                        </Text>
                         <VBox spacing="20.0">
                            <children>
                               <Label fx:id="categoria" style="-fx-opacity: 100;" textFill="#bbc1c7">
@@ -206,6 +207,11 @@
       <ImageView fx:id="previousMovie" fitHeight="91.0" fitWidth="89.0" layoutX="41.0" layoutY="584.0" onMouseClicked="#goToPreviousMovie" pickOnBounds="true">
          <image>
             <Image url="@../Images/Previous.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="nextMovie" fitHeight="91.0" fitWidth="89.0" layoutX="813.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Next.png" />
          </image>
       </ImageView>
    </children>

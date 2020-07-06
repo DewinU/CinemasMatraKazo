@@ -149,7 +149,7 @@
 }
 
 
-.comeback-img:hover {
+.util-buttons:hover {
     -fx-effect: dropshadow(gaussian, #c4c4c4, 10, 0.5, 0, 0);
     -fx-cursor: hand;
 }
