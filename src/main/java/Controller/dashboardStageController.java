@@ -395,7 +395,6 @@ public class dashboardStageController implements Initializable {
             pelicula = peliculas.getListPelicula().get(0);
             showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
         }
-
     }
 }
 
