@@ -276,8 +276,8 @@ public class dashboardStageController implements Initializable {
         titulo.setText(pelicula.getTitulo());
         año.setText("(".concat(pelicula.getAnio()).concat(")"));
         genero.setText(pelicula.getGenero());
-        fechaEstreno.setText(pelicula.getFechaEstreno());
-        duracion.setText(pelicula.getDuracion());
+       /* fechaEstreno.setText(pelicula.getFechaEstreno());
+        duracion.setText(pelicula.getDuracion());*/
 
 
 //        String informacion = "";
