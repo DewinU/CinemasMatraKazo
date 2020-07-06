@@ -142,7 +142,7 @@ public class mainStageController implements Initializable {
     @FXML
     void inicioButton(MouseEvent event) throws IOException {
         Node child = loadFXML("dashboardStage");
-        contentPane.getChildren().clear();
+//        contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
     }
 

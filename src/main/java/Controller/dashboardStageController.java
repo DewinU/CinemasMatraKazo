@@ -1,18 +1,25 @@
 package Controller;
 
 import Model.FacturaListModel;
+import Pojo.Asiento;
+import Pojo.Pelicula;
 import animatefx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.Collation;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,7 +29,7 @@ public class dashboardStageController implements Initializable {
     @FXML
     private AnchorPane contentPane;
     @FXML
-    private AnchorPane selectedMovie;
+    private HBox selectedMovie;
 
     //Instanciando los posters de peliculas
     @FXML
@@ -37,8 +44,6 @@ public class dashboardStageController implements Initializable {
     private VBox peliculas5;
     @FXML
     private VBox peliculas6;
-    @FXML
-    private VBox movieSelected;
 
     @FXML
     private ImageView movieImage;
@@ -83,9 +88,41 @@ public class dashboardStageController implements Initializable {
 
     @FXML
     private Label genero;
+    @FXML
+    public Label titulo;
+    @FXML
+    private Label año;
+    @FXML
+    private Label duracion;
+    @FXML
+    private Label fechaEstreno;
+    @FXML
+    private Text descripcion;
+    @FXML
+    private Label director;
+    @FXML
+    private Label funcion;
+    @FXML
+    private Label sala;
+    @FXML
+    private Label categoria;
+    @FXML
+    private VBox contenedorDatosPelicula;
+    @FXML
+    private Label separator;
+    @FXML
+    private Label separator1;
+    @FXML
+    private ImageView cartelera;
+    @FXML
+    private ImageView previousMovie;
+    @FXML
+    private ImageView nextMovie;
 
+//    @FXML
+//    private Label backwardsButton;
 
-    private List<VBox> peliculasFiltro = new ArrayList<VBox>();
+    private List<VBox> peliculasFiltro = new ArrayList<>();
     private List<ImageView> posters = new ArrayList<>();
     private List<Label> titulos = new ArrayList<>();
     private List<Label> calificaciones = new ArrayList<>();
@@ -94,15 +131,25 @@ public class dashboardStageController implements Initializable {
     public Runnable task1;
     boolean state = false;
 
+
     //Creando 2 listas para peliculas pares e impares
     private List<VBox> peliculasP = new ArrayList<VBox>();
     private List<VBox> peliculasI = new ArrayList<VBox>();
 
+    public static int movieIndex = 500;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        cartelera.setDisable(true);
+        cartelera.setVisible(false);
+        previousMovie.setDisable(true);
+        previousMovie.setVisible(false);
+        nextMovie.setDisable(true);
+        nextMovie.setVisible(false);
+        contenedorDatosPelicula.setVisible(false);
         selectedMovie.setDisable(true);
+        separator.setVisible(false);
+        separator1.setVisible(false);
         peliculasP.add(peliculas1);
         peliculasP.add(peliculas3);
         peliculasP.add(peliculas5);
@@ -134,6 +181,7 @@ public class dashboardStageController implements Initializable {
         calificaciones.add(calificacion6);
 
         peliculas.LoadFromJsonPeliculas();
+        ListIterator<Pelicula> peliculaListIterator = peliculas.getListPelicula().listIterator();
         loadPostersFromJson();
 
 
@@ -177,28 +225,70 @@ public class dashboardStageController implements Initializable {
             new ZoomOut(p).play();
         });
         disablePanels();
-        if (e.getSource().toString().substring(8, 18).equals(peliculas1.getId()))
-//            showInfo(poster1, peliculas.getListPelicula().get(0).getGenero().toString());
-            peliculas.getListPelicula().forEach(p -> System.out.println(p.getGenero()));
-        else if (e.getSource().toString().substring(8, 18).equals(peliculas2.getId()))
-            showInfo(poster2, peliculas.getListPelicula().get(1).getGenero().toString());
-        else if (e.getSource().toString().substring(8, 18).equals(peliculas3.getId()))
-            showInfo(poster3, peliculas.getListPelicula().get(2).getGenero().toString());
-        else if (e.getSource().toString().substring(8, 18).equals(peliculas4.getId()))
-            showInfo(poster4, peliculas.getListPelicula().get(3).getGenero().toString());
-        else if (e.getSource().toString().substring(8, 18).equals(peliculas5.getId()))
-            showInfo(poster5, peliculas.getListPelicula().get(4).getGenero().toString());
-        else
-            showInfo(poster6, peliculas.getListPelicula().get(5).getGenero().toString());
+        if (e.getSource().toString().substring(8, 18).equals(peliculas1.getId())) {
+            showInfo(poster1, peliculas.getListPelicula().get(0));
+            movieIndex = 0;
+        }
+        else if (e.getSource().toString().substring(8, 18).equals(peliculas2.getId())) {
+            showInfo(poster2, peliculas.getListPelicula().get(1));
+            movieIndex = 1;
+        }
+        else if (e.getSource().toString().substring(8, 18).equals(peliculas3.getId())) {
+            showInfo(poster3, peliculas.getListPelicula().get(2));
+            movieIndex = 2;
+        }
+        else if (e.getSource().toString().substring(8, 18).equals(peliculas4.getId())) {
+            showInfo(poster4, peliculas.getListPelicula().get(3));
+            movieIndex = 3;
+        }
+        else if (e.getSource().toString().substring(8, 18).equals(peliculas5.getId())) {
+            showInfo(poster5, peliculas.getListPelicula().get(4));
+            movieIndex = 4;
+        }
+        else {
+            showInfo(poster6, peliculas.getListPelicula().get(5));
+            movieIndex = 5;
+        }
     }
 
-    public void showInfo(ImageView movieAsked, String generoAux) {
+
+
+
+    public void showInfo(ImageView movieAsked, Pelicula pelicula) {
+        cartelera.setDisable(false);
+        cartelera.setVisible(true);
+        cartelera.getStyleClass().add("util-buttons");
+        previousMovie.setDisable(false);
+        previousMovie.setVisible(true);
+        previousMovie.getStyleClass().add("util-buttons");
+        nextMovie.setDisable(false);
+        nextMovie.setVisible(true);
+        nextMovie.getStyleClass().add("util-buttons");
+
+
+
+//        backwardsButton.setDisable(false);
+        contenedorDatosPelicula.setVisible(true);
+        separator.setVisible(true);
+        separator1.setVisible(true);
         new ZoomIn(selectedMovie).play();
-        movieAsked.resize(627,317);
         movieImage.setImage(movieAsked.getImage());
-        new Pulse(selectedMovie).setSpeed(0.2).setCycleCount(AnimationFX.INDEFINITE).play();
-        genero.setText(generoAux);
+        movieImage.resize(300, contenedorDatosPelicula.getPrefHeight());
+//        new Pulse(selectedMovie).setSpeed(0.2).setCycleCount(AnimationFX.INDEFINITE).play();
+        int tamañoDescripcion = pelicula.getDescripcion().length();
+        titulo.setText(pelicula.getTitulo());
+        año.setText("(".concat(pelicula.getAnio()).concat(")"));
+        genero.setText(pelicula.getGenero());
+       /* fechaEstreno.setText(pelicula.getFechaEstreno());
+        duracion.setText(pelicula.getDuracion());*/
+
+        descripcion.setText(pelicula.getDescripcion());
+        director.setText("Director: ".concat(pelicula.getDirector()));
+        sala.setText("Sala: ".concat(pelicula.getSala().toString()));
+        funcion.setText("Funcion: ".concat(pelicula.getFuncion().toString()));
+        categoria.setText("Categoria: ".concat(pelicula.getCategoria()));
     }
+
 
     public void disablePanels() {
         peliculas1.setDisable(true);
@@ -209,8 +299,9 @@ public class dashboardStageController implements Initializable {
         peliculas6.setDisable(true);
     }
 
+
     public void loadPostersFromJson() {
-        for (int i = 0; i < peliculas.getListPelicula().size(); i++) {
+        for (int i = 0; i < 6; i++) {
             String urlImage = peliculas.getListPelicula().get(i).getFotoUrl();
             String titulo = peliculas.getListPelicula().get(i).getTitulo();
             String calificacion = peliculas.getListPelicula().get(i).getCalificacion();
@@ -218,6 +309,91 @@ public class dashboardStageController implements Initializable {
             posters.get(i).setImage(new Image(urlImage));
             titulos.get(i).setText(titulo);
             calificaciones.get(i).setText(calificacion);
+        }
+    }
+
+    @FXML
+    public void comeBackToCartelera() {
+        new ZoomOut(selectedMovie).play();
+        peliculas1.setDisable(false);
+        peliculas2.setDisable(false);
+        peliculas3.setDisable(false);
+        peliculas4.setDisable(false);
+        peliculas5.setDisable(false);
+        peliculas6.setDisable(false);
+        contenedorDatosPelicula.setVisible(false);
+        separator.setVisible(false);
+        separator1.setVisible(false);
+
+        new ZoomIn(peliculas1).play();
+        new ZoomIn(peliculas2).play();
+        new ZoomIn(peliculas3).play();
+        new ZoomIn(peliculas4).play();
+        new ZoomIn(peliculas5).play();
+        new ZoomIn(peliculas6).play();
+        cartelera.setDisable(true);
+        cartelera.setVisible(false);
+        previousMovie.setDisable(true);
+        previousMovie.setVisible(false);
+        nextMovie.setDisable(true);
+        nextMovie.setVisible(false);
+        nextMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Siguiente.png")));
+        previousMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Anterior.png")));
+    }
+
+    @FXML
+    public void goToPreviousMovie() {
+        nextMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Siguiente.png")));
+        previousMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Anterior1.png")));
+        previousMovie.getStyleClass().add("util-buttons-used");
+        Pelicula pelicula;
+
+        if (peliculas.getListPelicula().get(0).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(5);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(1).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(0);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(2).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(1);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(3).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(2);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(4).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(3);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else {
+            pelicula = peliculas.getListPelicula().get(4);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        }
+
+    }
+
+    @FXML
+    public void goToNextMovie() {
+        previousMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Anterior.png")));
+        nextMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Siguiente1.png")));
+        Pelicula pelicula = new Pelicula();
+
+        if (peliculas.getListPelicula().get(0).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(1);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(1).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(2);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(2).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(3);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(3).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(4);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(4).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(5);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else {
+            pelicula = peliculas.getListPelicula().get(0);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
         }
     }
 }
