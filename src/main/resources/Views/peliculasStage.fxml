@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -16,7 +16,7 @@
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.peliculasStageController">
    <children>
       <Label layoutX="26.0" layoutY="131.0" prefHeight="16.0" prefWidth="48.0" style="-fx-font-family: Arial;" styleClass="welcomeText" stylesheets="@../Styles/styleDEMO.css" text="Buscar" />
-       <TableView fx:id="moviesView" layoutX="43.0" layoutY="168.0" prefHeight="409.0" prefWidth="600.0">
+       <TableView fx:id="moviesView" layoutX="43.0" layoutY="168.0" onContextMenuRequested="#showMovie" onMouseClicked="#showMovie" prefHeight="409.0" prefWidth="600.0">
            <columns>
                <TableColumn fx:id="pelicula_ID" minWidth="50.0" prefWidth="50.0" text="N°" />
                <TableColumn fx:id="pelicula_TITULO" minWidth="200.0" prefWidth="200.0" text="Titulo" />
@@ -30,23 +30,24 @@
            </columns>
        </TableView>
       <Separator layoutX="674.0" layoutY="65.0" orientation="VERTICAL" prefHeight="596.0" prefWidth="2.0" />
-      <ImageView fx:id="movieImageView" fitHeight="179.0" fitWidth="151.0" layoutX="754.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="694.0" layoutY="304.0" style="-fx-font-family: Arial;" text="Titulo: " />
-      <Label layoutX="694.0" layoutY="332.0" style="-fx-font-family: Arial;" text="Duración:" />
-      <Label layoutX="699.0" layoutY="360.0" style="-fx-font-family: Arial;" text="Género:" />
-      <Label layoutX="697.0" layoutY="389.0" prefHeight="17.0" prefWidth="56.0" style="-fx-font-family: Arial;" text="Director:" />
-      <Text fx:id="txtTitulo" layoutX="779.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="162.13671875" />
-      <Text fx:id="txtDuracion" layoutX="779.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="162.13671875" />
-      <Text fx:id="txtGenero" layoutX="779.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="162.13671875" />
-      <Label layoutX="698.0" layoutY="418.0" style="-fx-font-family: Arial;" text="Descripción:" />
-      <Text fx:id="txtDesde" layoutX="830.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="135.00000839470886" />
-      <Label layoutX="702.0" layoutY="545.0" style="-fx-font-family: Arial;" text="Funciones:" />
-      <Text fx:id="txtFuncion1" layoutX="779.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="162.13671875" />
-      <Text fx:id="txtFuncion2" layoutX="779.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="162.13671875" />
-      <Text fx:id="txtFuncion3" layoutX="779.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="162.13671326637268" />
-      <Label layoutX="702.0" layoutY="617.0" text="En carltelera desde:" />
-      <Label layoutX="704.0" layoutY="644.0" text="hasta:" />
-      <Text fx:id="txtHasta" layoutX="830.0" layoutY="657.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T" wrappingWidth="134.99999403953552" />
+      <ImageView fx:id="movieImageView" fitHeight="179.0" fitWidth="151.0" layoutX="754.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/MovieStage.jpg" />
+         </image></ImageView>
+      <Label layoutX="694.0" layoutY="304.0" style="-fx-text-fill: #000000;" text="Titulo: " />
+      <Label layoutX="694.0" layoutY="332.0" style="-fx-text-fill: #000000;" text="Duración:" />
+      <Label layoutX="698.0" layoutY="361.0" style="-fx-text-fill: #000000;" text="Género:" />
+      <Label layoutX="697.0" layoutY="389.0" prefHeight="17.0" prefWidth="56.0" style="-fx-text-fill: #000000;" text="Director:" />
+      <Text fx:id="txtTitulo" layoutX="779.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="162.13671875" />
+      <Text fx:id="txtDuracion" layoutX="779.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="162.13671875" />
+      <Text fx:id="txtGenero" layoutX="779.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="162.13671875" />
+      <Label layoutX="698.0" layoutY="424.0" style="-fx-text-fill: #000000;" text="Descripción:" />
+      <Text fx:id="txtDesde" layoutX="830.0" layoutY="649.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="135.00000839470886" />
+      <Label layoutX="702.0" layoutY="570.0" style="-fx-text-fill: #000000;" text="Funciones:" />
+      <Text fx:id="txtDescripcion" layoutX="779.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="162.13671875" />
+      <Label layoutX="703.0" layoutY="636.0" style="-fx-text-fill: #000000;" text="En carltelera desde:" />
+      <Label layoutX="705.0" layoutY="652.0" style="-fx-text-fill: #000000;" text="hasta:" />
+      <Text fx:id="txtHasta" layoutX="830.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="134.99999403953552" />
       <Button graphicTextGap="5.0" layoutX="156.0" layoutY="605.0" mnemonicParsing="false" onMouseClicked="#buttonNew" style="-fx-font-family: Arial;" text="Nuevo">
          <graphic>
             <FontAwesomeIconView glyphName="PLUS_SQUARE_ALT" />
@@ -59,9 +60,9 @@
          <graphic>
             <MaterialDesignIconView glyphName="DELETE" />
          </graphic></Button>
-      <Text fx:id="txtDirector" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="778.0" layoutY="402.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="T" wrappingWidth="103.00000637769699" />
-      <TextArea fx:id="txtDescripcion" editable="false" layoutX="778.0" layoutY="418.0" prefHeight="115.0" prefWidth="162.0" style="-fx-font-family: Arial;" styleClass="txt-descripcion" />
-      <JFXTextField layoutX="74.0" layoutY="128.0" prefHeight="6.0" prefWidth="308.0" style="-fx-font-family: Arial;" />
+      <Text fx:id="txtDirector" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="779.0" layoutY="402.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="162.13671326637268" />
+      <JFXTextField fx:id="txtBuscar" layoutX="74.0" layoutY="128.0" prefHeight="6.0" prefWidth="308.0" style="-fx-font-family: Arial;" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="394.0" layoutY="148.0" size="2em" />
+      <Text fx:id="txtFuncion" layoutX="779.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" text="Seleccione una película" wrappingWidth="162.13671326637268" />
    </children>
 </AnchorPane>
