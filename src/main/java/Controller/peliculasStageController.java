@@ -11,12 +11,18 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,11 +30,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
+import static Main.App.loadFXML;
+
 public class peliculasStageController implements Initializable {
     MovieListModel moviesListModel;
     ObservableList<Pelicula> movieList;
 
     Alert alerta;
+    Alert confirmAlerta;
     ButtonType yesButton = new ButtonType("Sí", ButtonBar.ButtonData.YES);
     ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
     @FXML
@@ -106,11 +115,12 @@ public class peliculasStageController implements Initializable {
             alerta = new Alert(Alert.AlertType.CONFIRMATION,"¿Seguro que desea eliminar esta pelicula?",yesButton,noButton);
             alerta.showAndWait().ifPresent(type -> {
                 if (type == yesButton) {
-                    System.out.println("YES");
+                    movieList.remove(pelicula);
+                    moviesView.setItems(movieList);
+                    moviesListModel.updateJson(movieList);
+
                 }
-                else if (type == noButton) {
-                    System.out.println("NO");
-                }
+
             });
 
         }
@@ -132,15 +142,15 @@ public class peliculasStageController implements Initializable {
     }
 
     @FXML
-    void buttonNew(MouseEvent event) {
-        List<String> salas = new ArrayList<>();
-        salas.add("Sala 1");
-        salas.add("Sala 2");
-        Pelicula newPelicuala = new Pelicula("Dewin","2019","PG-13","2020-05-30","124 Min","Accion","Prueba de Agregar","Esta es una prueba","https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_SX300.jpg","100%",salas,salas,false,
-                LocalDate.now(), LocalDate.now());
-        movieList.add(newPelicuala);
-        moviesView.setItems(movieList);
-        moviesListModel.updateJson(movieList);
+    void buttonNew(MouseEvent event) throws IOException {
+
+        Parent root = loadFXML("loginDialog");
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.setTitle("AAAJAJSJAJSJA");
+        stage.show();
+
     }
 
     @FXML
@@ -150,7 +160,6 @@ public class peliculasStageController implements Initializable {
         txtTitulo.setText(pelicula.getTitulo());
         txtDirector.setText(pelicula.getDirector());
         txtDescripcion.setText(pelicula.getDescripcion());
-        txtDuracion.setText(pelicula.getDuracion());
         txtGenero.setText(pelicula.getGenero());
         String funciones = "";
         for(int i = 0; i < pelicula.getFuncion().size() - 1; i++){

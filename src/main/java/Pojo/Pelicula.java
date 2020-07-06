@@ -18,8 +18,6 @@ public class Pelicula {
     private String titulo;
     private String anio;
     private String categoria;
-    private String fechaEstreno;
-    private String duracion;
     private String genero;
     private String director;
     private String descripcion;
@@ -34,24 +32,6 @@ public class Pelicula {
     public Pelicula() {
         funcion = new ArrayList<>();
         sala = new ArrayList<>();
-    }
-
-    public Pelicula(String titulo, String anio, String categoria, String fechaEstreno, String duracion, String genero, String director, String descripcion, String fotoUrl, String calificacion, List<String> sala, List<String> funcion, boolean carteleraStatus, LocalDate desde, LocalDate hasta) {
-        this.titulo = titulo;
-        this.anio = anio;
-        this.categoria = categoria;
-        this.fechaEstreno = fechaEstreno;
-        this.duracion = duracion;
-        this.genero = genero;
-        this.director = director;
-        this.descripcion = descripcion;
-        this.fotoUrl = fotoUrl;
-        this.calificacion = calificacion;
-        this.sala = sala;
-        this.funcion = funcion;
-        this.carteleraStatus = carteleraStatus;
-        this.desde = desde;
-        this.hasta = hasta;
     }
 
     public String getTitulo() {
@@ -76,22 +56,6 @@ public class Pelicula {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public String getFechaEstreno() {
-        return fechaEstreno;
-    }
-
-    public void setFechaEstreno(String fechaEstreno) {
-        this.fechaEstreno = fechaEstreno;
-    }
-
-    public String getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(String duracion) {
-        this.duracion = duracion;
     }
 
     public String getGenero() {
@@ -171,6 +135,22 @@ public class Pelicula {
     }
 
     public void setHasta(LocalDate hasta) {
+        this.hasta = hasta;
+    }
+
+    public Pelicula(String titulo, String anio, String categoria, String genero, String director, String descripcion, String fotoUrl, String calificacion, List<String> sala, List<String> funcion, boolean carteleraStatus, LocalDate desde, LocalDate hasta) {
+        this.titulo = titulo;
+        this.anio = anio;
+        this.categoria = categoria;
+        this.genero = genero;
+        this.director = director;
+        this.descripcion = descripcion;
+        this.fotoUrl = fotoUrl;
+        this.calificacion = calificacion;
+        this.sala = sala;
+        this.funcion = funcion;
+        this.carteleraStatus = carteleraStatus;
+        this.desde = desde;
         this.hasta = hasta;
     }
 }
