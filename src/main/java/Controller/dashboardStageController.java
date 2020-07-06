@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.FacturaListModel;
+import Pojo.Asiento;
 import Pojo.Pelicula;
 import animatefx.animation.*;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -87,7 +89,7 @@ public class dashboardStageController implements Initializable {
     @FXML
     private Label genero;
     @FXML
-    private Label titulo;
+    public Label titulo;
     @FXML
     private Label año;
     @FXML
@@ -134,7 +136,7 @@ public class dashboardStageController implements Initializable {
     private List<VBox> peliculasP = new ArrayList<VBox>();
     private List<VBox> peliculasI = new ArrayList<VBox>();
 
-    public static int movieIndex = 0;
+    public static int movieIndex = 500;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -179,6 +181,7 @@ public class dashboardStageController implements Initializable {
         calificaciones.add(calificacion6);
 
         peliculas.LoadFromJsonPeliculas();
+        ListIterator<Pelicula> peliculaListIterator = peliculas.getListPelicula().listIterator();
         loadPostersFromJson();
 
 
@@ -279,20 +282,6 @@ public class dashboardStageController implements Initializable {
         fechaEstreno.setText(pelicula.getFechaEstreno());
         duracion.setText(pelicula.getDuracion());
 
-
-//        String informacion = "";
-//        if (tamañoDescripcion >= 176) {
-//            informacion = pelicula.getDescripcion().substring(0,85) + "\n" +
-//                   pelicula.getDescripcion().substring(85,170) + "\n" + pelicula.getDescripcion().substring(170, tamañoDescripcion);
-//        }else if(tamañoDescripcion < 160) {
-//            informacion = pelicula.getDescripcion().substring(0, 80) + "\n" +
-//                    pelicula.getDescripcion().substring(80, tamañoDescripcion);
-//        } else {
-//            informacion =  pelicula.getDescripcion().substring(0,80) + "\n" +
-//                    pelicula.getDescripcion().substring(80, 150) + "\n" +
-//                    pelicula.getDescripcion().substring(150, tamañoDescripcion);
-//        }
-
         descripcion.setText(pelicula.getDescripcion());
         director.setText("Director: ".concat(pelicula.getDirector()));
         sala.setText("Sala: ".concat(pelicula.getSala().toString()));
@@ -322,11 +311,7 @@ public class dashboardStageController implements Initializable {
             calificaciones.get(i).setText(calificacion);
         }
     }
-//
-//    @FXML
-//    public void lookPreviousMovie() {
-//
-//    }
+
     @FXML
     public void comeBackToCartelera() {
         new ZoomOut(selectedMovie).play();
@@ -350,39 +335,67 @@ public class dashboardStageController implements Initializable {
         cartelera.setVisible(false);
         previousMovie.setDisable(true);
         previousMovie.setVisible(false);
+        nextMovie.setDisable(true);
+        nextMovie.setVisible(false);
+        nextMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Siguiente.png")));
+        previousMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Anterior.png")));
     }
 
     @FXML
     public void goToPreviousMovie() {
+        nextMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Siguiente.png")));
+        previousMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Anterior1.png")));
+        previousMovie.getStyleClass().add("util-buttons-used");
         Pelicula pelicula;
-        movieIndex -= 1;
-        switch (movieIndex) {
-            case 0:
-                pelicula = peliculas.getListPelicula().get(5);
-                showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
-                break;
-            case 1:
-                pelicula = peliculas.getListPelicula().get(0);
-                showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
-                break;
-            case 2:
-                pelicula = peliculas.getListPelicula().get(1);
-                showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
-                break;
-            case 3:
-                pelicula = peliculas.getListPelicula().get(2);
-                showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
-                break;
-            case 4:
-                pelicula = peliculas.getListPelicula().get(3);
-                showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
-                break;
-            case 5:
-                pelicula = peliculas.getListPelicula().get(4);
-                showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
-                break;
+
+        if (peliculas.getListPelicula().get(0).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(5);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(1).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(0);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(2).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(1);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(3).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(2);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(4).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(3);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else {
+            pelicula = peliculas.getListPelicula().get(4);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
         }
+
     }
 
+    @FXML
+    public void goToNextMovie() {
+        previousMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Anterior.png")));
+        nextMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Siguiente1.png")));
+        Pelicula pelicula = new Pelicula();
+
+        if (peliculas.getListPelicula().get(0).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(1);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(1).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(2);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(2).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(3);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(3).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(4);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else if (peliculas.getListPelicula().get(4).getTitulo().equals(titulo.getText())) {
+            pelicula = peliculas.getListPelicula().get(5);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        } else {
+            pelicula = peliculas.getListPelicula().get(0);
+            showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
+        }
+
+    }
 }
 

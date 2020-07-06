@@ -206,12 +206,12 @@
       </ImageView>
       <ImageView fx:id="previousMovie" fitHeight="91.0" fitWidth="89.0" layoutX="41.0" layoutY="584.0" onMouseClicked="#goToPreviousMovie" pickOnBounds="true">
          <image>
-            <Image url="@../Images/Previous.png" />
+            <Image url="@../Images/Anterior.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="nextMovie" fitHeight="91.0" fitWidth="89.0" layoutX="813.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="nextMovie" fitHeight="91.0" fitWidth="89.0" layoutX="813.0" layoutY="584.0" onMouseClicked="#goToNextMovie" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/Next.png" />
+            <Image url="@../Images/Siguiente.png" />
          </image>
       </ImageView>
    </children>
