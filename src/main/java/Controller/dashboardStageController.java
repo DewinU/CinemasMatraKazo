@@ -5,6 +5,7 @@ import Pojo.Pelicula;
 import animatefx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.Collation;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -93,7 +95,7 @@ public class dashboardStageController implements Initializable {
     @FXML
     private Label fechaEstreno;
     @FXML
-    private Label descripcion;
+    private Text descripcion;
     @FXML
     private Label director;
     @FXML
@@ -112,6 +114,9 @@ public class dashboardStageController implements Initializable {
     private ImageView cartelera;
     @FXML
     private ImageView previousMovie;
+    @FXML
+    private ImageView nextMovie;
+
 //    @FXML
 //    private Label backwardsButton;
 
@@ -137,6 +142,8 @@ public class dashboardStageController implements Initializable {
         cartelera.setVisible(false);
         previousMovie.setDisable(true);
         previousMovie.setVisible(false);
+        nextMovie.setDisable(true);
+        nextMovie.setVisible(false);
         contenedorDatosPelicula.setVisible(false);
         selectedMovie.setDisable(true);
         separator.setVisible(false);
@@ -247,10 +254,15 @@ public class dashboardStageController implements Initializable {
     public void showInfo(ImageView movieAsked, Pelicula pelicula) {
         cartelera.setDisable(false);
         cartelera.setVisible(true);
-        cartelera.getStyleClass().add("comeback-img");
+        cartelera.getStyleClass().add("util-buttons");
         previousMovie.setDisable(false);
         previousMovie.setVisible(true);
-        cartelera.getStyleClass().add("comeback-img");
+        previousMovie.getStyleClass().add("util-buttons");
+        nextMovie.setDisable(false);
+        nextMovie.setVisible(true);
+        nextMovie.getStyleClass().add("util-buttons");
+
+
 
 //        backwardsButton.setDisable(false);
         contenedorDatosPelicula.setVisible(true);
@@ -268,20 +280,20 @@ public class dashboardStageController implements Initializable {
         duracion.setText(pelicula.getDuracion());
 
 
-        String informacion = "";
-        if (tamañoDescripcion >= 176) {
-            informacion = pelicula.getDescripcion().substring(0,88) + "\n" +
-                   pelicula.getDescripcion().substring(89,176) + "\n" + pelicula.getDescripcion().substring(176, tamañoDescripcion);
-        }else if(tamañoDescripcion < 160) {
-            informacion = pelicula.getDescripcion().substring(0, 80) + "\n" +
-                    pelicula.getDescripcion().substring(80, tamañoDescripcion);
-        } else {
-            informacion =  pelicula.getDescripcion().substring(0,80) + "\n" +
-                    pelicula.getDescripcion().substring(80, 160) + "\n" +
-                    pelicula.getDescripcion().substring(160, tamañoDescripcion);
-        }
+//        String informacion = "";
+//        if (tamañoDescripcion >= 176) {
+//            informacion = pelicula.getDescripcion().substring(0,85) + "\n" +
+//                   pelicula.getDescripcion().substring(85,170) + "\n" + pelicula.getDescripcion().substring(170, tamañoDescripcion);
+//        }else if(tamañoDescripcion < 160) {
+//            informacion = pelicula.getDescripcion().substring(0, 80) + "\n" +
+//                    pelicula.getDescripcion().substring(80, tamañoDescripcion);
+//        } else {
+//            informacion =  pelicula.getDescripcion().substring(0,80) + "\n" +
+//                    pelicula.getDescripcion().substring(80, 150) + "\n" +
+//                    pelicula.getDescripcion().substring(150, tamañoDescripcion);
+//        }
 
-        descripcion.setText(informacion);
+        descripcion.setText(pelicula.getDescripcion());
         director.setText("Director: ".concat(pelicula.getDirector()));
         sala.setText("Sala: ".concat(pelicula.getSala().toString()));
         funcion.setText("Funcion: ".concat(pelicula.getFuncion().toString()));
@@ -300,7 +312,7 @@ public class dashboardStageController implements Initializable {
 
 
     public void loadPostersFromJson() {
-        for (int i = 0; i < peliculas.getListPelicula().size(); i++) {
+        for (int i = 0; i < 6; i++) {
             String urlImage = peliculas.getListPelicula().get(i).getFotoUrl();
             String titulo = peliculas.getListPelicula().get(i).getTitulo();
             String calificacion = peliculas.getListPelicula().get(i).getCalificacion();
@@ -336,15 +348,17 @@ public class dashboardStageController implements Initializable {
         new ZoomIn(peliculas6).play();
         cartelera.setDisable(true);
         cartelera.setVisible(false);
+        previousMovie.setDisable(true);
+        previousMovie.setVisible(false);
     }
 
     @FXML
-    public void goToPreviousMovie(MouseEvent event) {
-        Pelicula pelicula = new Pelicula();
-
+    public void goToPreviousMovie() {
+        Pelicula pelicula;
+        movieIndex -= 1;
         switch (movieIndex) {
             case 0:
-                pelicula = peliculas.getListPelicula().get(0);
+                pelicula = peliculas.getListPelicula().get(5);
                 showInfo(new ImageView(new Image(pelicula.getFotoUrl())), pelicula);
                 break;
             case 1:
