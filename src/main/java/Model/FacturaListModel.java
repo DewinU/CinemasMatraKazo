@@ -8,8 +8,6 @@ package Model;
 import Pojo.Asiento;
 import Pojo.Pelicula;
 import com.google.gson.Gson;
-import javafx.collections.ObservableList;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;

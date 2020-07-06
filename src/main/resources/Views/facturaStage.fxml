@@ -785,12 +785,12 @@
                      </font>
                   </Label>
                   <ListView fx:id="listViewDescripcion" layoutX="15.0" layoutY="104.0" prefHeight="97.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" />
-                  <Label layoutX="10.0" layoutY="210.0" text="Total" textFill="WHITE">
+                  <Label layoutX="10.0" layoutY="210.0" text="Precio" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtTotalDescripcion" editable="false" layoutX="47.0" layoutY="207.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #df9c37;" text="C$">
+                  <TextField fx:id="txtTotalDescripcion" editable="false" layoutX="57.0" layoutY="207.0" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #df9c37;" text="C$">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -802,10 +802,10 @@
                   <Separator layoutX="10.0" layoutY="255.0" prefHeight="3.0" prefWidth="210.0" style="-fx-background-color: black;" />
                   <Pane layoutX="11.0" layoutY="304.0" prefHeight="166.0" prefWidth="200.0" style="-fx-background-color: #df9c37;">
                      <children>
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Comida" />
-                        <Button focusTraversable="false" layoutX="118.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Precio" />
-                        <ListView fx:id="listViewComidaSelec" layoutY="25.0" prefHeight="141.0" prefWidth="122.0" style="-fx-background-color: #df9c37;" />
-                        <ListView fx:id="listViewPrecioComidaSelec" layoutX="119.0" layoutY="25.0" prefHeight="141.0" prefWidth="81.0" style="-fx-background-color: #df9c37;" />
+                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Comida" />
+                        <Button focusTraversable="false" layoutX="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Precio" />
+                        <ListView fx:id="listViewComidaSelec" layoutY="25.0" prefHeight="137.0" prefWidth="149.0" style="-fx-background-color: #df9c37;" />
+                        <ListView fx:id="listViewPrecioComidaSelec" layoutX="149.0" layoutY="25.0" prefHeight="137.0" prefWidth="51.0" style="-fx-background-color: #df9c37;" />
                      </children>
                   </Pane>
                   <Label layoutX="14.0" layoutY="482.0" text="Total" textFill="WHITE">
@@ -831,6 +831,88 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <AnchorPane fx:id="anchorPaneDescripcionFactura" layoutY="4.0" prefHeight="558.0" prefWidth="239.0" style="-fx-background-color: #252525;" visible="false">
+               <children>
+                  <TextField fx:id="txtSala11" editable="false" layoutX="20.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" text="     Datos de la Factura">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="Times New Roman Bold" size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="54.0" layoutY="65.0" text="Factura N°" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="126.0" layoutY="65.0" text="F#0000" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="102.0" text="Nombre de la Pelicula" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtNombreDePeliculaFinal" editable="false" layoutX="16.0" layoutY="120.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #df9c37;">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Separator layoutX="45.0" layoutY="83.0" prefHeight="3.0" prefWidth="141.0" />
+                  <Label layoutX="15.0" layoutY="160.0" text="Hora de la Funcion" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtHoraFunsionFinal" editable="false" layoutX="15.0" layoutY="178.0" prefHeight="26.0" prefWidth="116.0" style="-fx-background-color: #df9c37;">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="txtSalaFinal" editable="false" layoutX="141.0" layoutY="178.0" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #df9c37;">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="16.0" layoutY="223.0" text="Asientos Seleccionados" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="listViewAsientosSeleccionadosFinal" layoutX="16.0" layoutY="241.0" prefHeight="97.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" />
+                  <Label layoutX="16.0" layoutY="356.0" text="Alimentos Seleccionados" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="listViewAlimentosFinal" layoutX="16.0" layoutY="374.0" prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: #df9c37;" />
+                  <Label layoutX="15.0" layoutY="492.0" text="Total" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtTotalFinal" editable="false" layoutX="16.0" layoutY="510.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #df9c37;">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorPaneComidaBotones" layoutX="248.0" layoutY="11.0" prefHeight="658.0" prefWidth="723.0" visible="false">
@@ -1017,5 +1099,11 @@
             </Button>
          </children>
       </AnchorPane>
+      <Pane fx:id="pnlReporte" layoutX="257.0" layoutY="12.0" prefHeight="657.0" prefWidth="715.0" style="-fx-background-color: white;" visible="false" />
+      <ImageView fx:id="imgFacturando" fitHeight="345.0" fitWidth="658.0" layoutX="291.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../Images/facturando.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

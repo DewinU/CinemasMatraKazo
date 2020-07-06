@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.FacturaListModel;
-import Model.UserTableModel;
 import Pojo.Asiento;
 import Pojo.Factura;
 import javafx.fxml.FXML;
@@ -16,17 +15,13 @@ import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -307,43 +302,38 @@ public class facturaStageController implements Initializable {
     @FXML
     private TextField txtTotalComidaSelec;
     
-    ContextMenu context = new ContextMenu();
-    MenuItem itemContext;
+    private ContextMenu context = new ContextMenu();
+    private MenuItem itemContext;
     
+    private int indexStageContinue;
+    @FXML
+    private AnchorPane anchorPaneDescripcionFactura;
+    @FXML
+    private TextField txtSala11;
+    @FXML
+    private TextField txtNombreDePeliculaFinal;
+    @FXML
+    private TextField txtHoraFunsionFinal;
+    @FXML
+    private TextField txtSalaFinal;
+    @FXML
+    private ListView<String> listViewAsientosSeleccionadosFinal;
+    @FXML
+    private ListView<String> listViewAlimentosFinal;
+    @FXML
+    private TextField txtTotalFinal;
+    @FXML
+    private Pane pnlReporte;
+    @FXML
+    private ImageView imgFacturando;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contentPane.setStyle("-fx-border-color: #000000");
         facturaList = new FacturaListModel();
         
-        // --- Inicializacion del ContextMenu ---
-        itemContext = new MenuItem(" Eliminar ");
-        context.getItems().addAll(itemContext);
-        listViewComidaSelec.setContextMenu(context);
-        
-        itemContext.setOnAction((event) -> {
-            int index = listViewComidaSelec.getSelectionModel().getSelectedIndex();
-            String s = listViewComidaSelec.getSelectionModel().getSelectedItem();
-            
-            nuevaFactura.getTipoComida().remove(s);
-            nuevaFactura.getPreciosComida().remove(index);
-            
-            listViewPrecioComidaSelec.getItems().remove(index);
-            listViewComidaSelec.getItems().remove(s);
-        });
-        
-        listViewComidaSelec.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                if(event.getButton() == MouseButton.SECONDARY){
-                    context.show(listViewComidaSelec, event.getScreenX(), event.getScreenY());       
-                }
-            }
-        });
-        
-        
-        
-        //CREANDO LA NUEVA FACTURA (DEWIN NO LO BORRES POR FACVOR)
+        //CREANDO LA NUEVA FACTURA
         nuevaFactura = new Factura();
+        indexStageContinue = 0;
         
         threadPool = Executors.newCachedThreadPool();
 
@@ -412,11 +402,43 @@ public class facturaStageController implements Initializable {
             }
         });
         
+        // --- Inicializacion del ContextMenu ---
+        itemContext = new MenuItem(" Eliminar ");
+        context.getItems().addAll(itemContext);
+        listViewComidaSelec.setContextMenu(context);
         
-      
+        itemContext.setOnAction((event) -> {
+            int index = listViewComidaSelec.getSelectionModel().getSelectedIndex();
+            String s = listViewComidaSelec.getSelectionModel().getSelectedItem();
+            
+            nuevaFactura.getTipoComida().remove(s);
+            nuevaFactura.getPreciosComida().remove(index);
+            
+            listViewPrecioComidaSelec.getItems().remove(index);
+            listViewComidaSelec.getItems().remove(s);
+            
+            sumatoriaDePreciosDeComida();
+        });
+        
+        listViewComidaSelec.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            if(event.getButton() == MouseButton.SECONDARY){
+                context.show(listViewComidaSelec, event.getScreenX(), event.getScreenY());
+            }
+        });
+
+        
     }
     //-----------------------------------------------------------------------------------
+    //ALGUNOS METODOS
     
+        public void sumatoriaDePreciosDeComida(){
+            int suma = 0;
+            for(Float f : nuevaFactura.getPreciosComida()){
+                suma += f;
+            }
+            txtTotalComidaSelec.setText("C$ " + suma);
+        }
+        
         public void loadAsientoModel(){
             for(Asiento a : facturaList.getListAsiento()){
                 if(a.isOcupado()){
@@ -774,26 +796,94 @@ public class facturaStageController implements Initializable {
             }
         }
         
+        
     //-----------------------------------------------------------------------------------
   
     @FXML
     private void btnCancelarOnAction(ActionEvent event) {
-        if(btnCancelar.getText().equals("Regresar")){
-            anchorPaneComidaBotones.setVisible(false);
-            anchorPaneDetalle.setVisible(false);
-            pnlBotonesAsientos.setVisible(true);
-            btnCancelar.setText("Cancelar");
+        
+        switch(indexStageContinue){
+            case 0:
+                // REGRESAR AL INICIO (CANCELAR FACTURA)
+                break;
+            case 1:
+                //REGRESAR AL SELECTOR DE ASIENTOS Y PELICULAS
+                if (btnCancelar.getText().equals("Regresar")) {
+                    anchorPaneComidaBotones.setVisible(false);
+                    anchorPaneDetalle.setVisible(false);
+                    pnlBotonesAsientos.setVisible(true);
+                    btnCancelar.setText("Cancelar Factura");
+                }
+                indexStageContinue--;
+                break;
+            case 2:
+                //REGRESAR AL SELECTOR DE COMIDA
+                anchorPaneDescripcionFactura.setVisible(false);
+                imgFacturando.setVisible(false);
+                imgSelectorAsientosPrincipal.setVisible(false);
+                pnlBotonesAsientos.setVisible(false);
+                anchorPaneComidaBotones.setVisible(true);
+                anchorPaneDetalle.setVisible(true);
+                btnCancelar.setText("Regresar");
+                btnContinuar.setText("Continuar");
+                indexStageContinue--;
+            case 3:
+            default:
+                break;
         }
     }
     
     @FXML
     private void btnContinuarOnAction(ActionEvent event) {
-        imgSelectorAsientosPrincipal.setVisible(false);
-        pnlBotonesAsientos.setVisible(false);
-        anchorPaneComidaBotones.setVisible(true);
-        anchorPaneDetalle.setVisible(true);
-        btnCancelar.setText("Regresar");
+        
+        switch(indexStageContinue){
+            case 0:
+                // SELECCIONAR COMIDA
+                imgSelectorAsientosPrincipal.setVisible(false);
+                pnlBotonesAsientos.setVisible(false);
+                anchorPaneComidaBotones.setVisible(true);
+                anchorPaneDetalle.setVisible(true);
+                btnCancelar.setText("Regresar");
+                btnContinuar.setText("Continuar");
+                indexStageContinue++;
+                break;
+            case 1:
+                // TERMINAR FACTURA - REPORTE
+                imgFacturando.setVisible(true);
+                imgSelectorAsientosPrincipal.setVisible(false);
+                anchorPaneComidaBotones.setVisible(false);
+                anchorPaneDetalle.setVisible(false);
+                anchorPaneDescripcionFactura.setVisible(true);
+                
+                txtHoraFunsionFinal.setText(nuevaFactura.getHoraFuncion());
+                txtSalaFinal.setText(nuevaFactura.getSala());
+                txtNombreDePeliculaFinal.setText(nuevaFactura.getNombrePelicula());
+                //calculo del total final
+                int suma = 0;
+                for (Float f : nuevaFactura.getPreciosComida()) {
+                    suma += f;
+                }
+                txtTotalFinal.setText("C$ " + (suma + (nuevaFactura.getAsientos().size())*100));
+                //-----------------------
+                listViewAsientosSeleccionadosFinal.getItems().clear();
+                listViewAsientosSeleccionadosFinal.getItems().addAll(nuevaFactura.getAsientos());
+                listViewAlimentosFinal.getItems().clear();
+                listViewAlimentosFinal.getItems().addAll(nuevaFactura.getTipoComida());
+                
+                btnContinuar.setText("Facturar");
+                indexStageContinue++;
+                break;
+            case 2:
+                imgFacturando.setVisible(true);
+                
+                indexStageContinue++;
+                break;
+                
+            default :
+        }
     }
+    
+    //-----------------------------------------------------------------------------
     
     //ASIENTOS BOTONES
     //A1    0
@@ -2068,6 +2158,7 @@ public class facturaStageController implements Initializable {
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (35 + 25));
         
         txtTotalComidaSelec.setText("C$ "+ 60);
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2100,6 +2191,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- COMBO 2");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 25 + 25));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2125,6 +2217,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- COMBO 3");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (35 + 25 + 60));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2151,6 +2244,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- COMBO 4");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (35 + 25 + 70));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2177,6 +2271,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- COMBO 5");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 40 + 40 + 60 + 60));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2203,6 +2298,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- COMBO 6");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 40 + 40 + 70));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2229,6 +2325,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- COMBO 7");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (60 + 60 + 40 + 40 + 70));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2255,6 +2352,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- COMBO 8");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (50 + 60 + 60 + 40 + 40 + 70));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2282,6 +2380,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- PALOMITA GRANDE");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (50));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2306,6 +2405,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- PALOMITA PEQUEÑA");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (35));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2330,6 +2430,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- BEBIDA GRANDE");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (40));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2354,6 +2455,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- BEBIDA PEQUEÑA");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (25));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2378,6 +2480,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- NACHOS");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (70));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2402,6 +2505,7 @@ public class facturaStageController implements Initializable {
         
         listViewComidaSelec.getItems().add("- HOT - DOG");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (60));
+        sumatoriaDePreciosDeComida();
     }
 
     @FXML
@@ -2411,12 +2515,4 @@ public class facturaStageController implements Initializable {
         listViewDescripcion.getItems().add("- HOT-DOG");
         txtTotalDescripcion.setText("C$ " + 60);
     }
-
-    
-
-   
-
-    
-
-
 }
