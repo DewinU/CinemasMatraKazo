@@ -2,7 +2,6 @@ package Controller;
 
 import Model.*;
 import Pojo.Pelicula;
-import com.google.gson.Gson;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,19 +19,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class peliculasStageController implements Initializable {
-    FacturaListModel peliculas = new FacturaListModel();
+    MovieListModel moviesListModel;
     ObservableList<Pelicula> movieList;
 
     @FXML
@@ -91,6 +86,12 @@ public class peliculasStageController implements Initializable {
     private TableColumn<Pelicula, String > pelicula_CARTELERA;
 
     @FXML
+    private TableColumn<Pelicula, LocalDate> pelicula_DESDE;
+
+    @FXML
+    private TableColumn<Pelicula, LocalDate> pelicula_HASTA;
+
+    @FXML
     void buttonDelete(MouseEvent event) {
 
     }
@@ -105,21 +106,11 @@ public class peliculasStageController implements Initializable {
         List<String> salas = new ArrayList<>();
         salas.add("Sala 1");
         salas.add("Sala 2");
-        Pelicula newPelicuala = new Pelicula("Dewin","2019","PG-13","2020-05-30","124 Min","Accion","Prueba de Agregar","Esta es una prueba","/src/main/reources/image/Combo.png","100%",salas,salas,false,
+        Pelicula newPelicuala = new Pelicula("Dewin","2019","PG-13","2020-05-30","124 Min","Accion","Prueba de Agregar","Esta es una prueba","https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_SX300.jpg","100%",salas,salas,false,
                 LocalDate.now(), LocalDate.now());
         movieList.add(newPelicuala);
         moviesView.setItems(movieList);
-
-        Gson gson = new Gson();
-
-        try {
-            FileWriter writer = new FileWriter("./src/main/resources/Data/PeliculasDisponibles.json");
-            writer.write(gson.toJson(movieList));
-            writer.close();
-        } catch (IOException ex) {
-            Logger.getLogger(AsientoListModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        moviesListModel.updateJson(movieList);
     }
 
     @FXML
@@ -137,14 +128,13 @@ public class peliculasStageController implements Initializable {
         }
         funciones +=  pelicula.getFuncion().get(pelicula.getFuncion().size() - 1);
         txtFuncion.setText(funciones);
-        /*txtDesde.setText(pelicula.getDesde().toString());
-        txtHasta.setText(pelicula.getHasta().toString());*/
+        txtDesde.setText(pelicula.getDesde().toString());
+        txtHasta.setText(pelicula.getHasta().toString());
 
 
     }
 
     public void filterTextField() {
-
         FilteredList<Pelicula> filteredPeliculas = new FilteredList<>(movieList);
         txtBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredPeliculas.setPredicate((Predicate<? super Pelicula>) pelicula -> {
@@ -172,21 +162,12 @@ public class peliculasStageController implements Initializable {
         SortedList<Pelicula> sortedList = new SortedList<>(filteredPeliculas);
         sortedList.comparatorProperty().bind(moviesView.comparatorProperty());
         moviesView.setItems(sortedList);
-
-
     }
-
-
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        peliculas.LoadFromJsonPeliculas();
-        movieList = FXCollections.observableArrayList(peliculas.getListPelicula());
-
-
+        moviesListModel = new MovieListModel();
+        movieList = FXCollections.observableArrayList(moviesListModel.getPeliculasAll());
         pelicula_ID.setCellValueFactory(data -> {
             int index = movieList.indexOf(data.getValue());
             return new SimpleIntegerProperty(++index).asObject();
@@ -205,6 +186,8 @@ public class peliculasStageController implements Initializable {
                 return new SimpleStringProperty("No");
             }
         });
+        pelicula_DESDE.setCellValueFactory(new PropertyValueFactory<>("desde"));
+        pelicula_HASTA.setCellValueFactory(new PropertyValueFactory<>("hasta"));
         moviesView.setItems(movieList);
         filterTextField();
 

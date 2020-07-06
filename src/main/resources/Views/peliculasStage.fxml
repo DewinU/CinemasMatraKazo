@@ -29,8 +29,8 @@
                <TableColumn fx:id="pelicula_HASTA" minWidth="200.0" prefWidth="100.0" text="Hasta" />
            </columns>
        </TableView>
-      <Separator layoutX="674.0" layoutY="65.0" orientation="VERTICAL" prefHeight="596.0" prefWidth="2.0" />
-      <ImageView fx:id="movieImageView" fitHeight="179.0" fitWidth="151.0" layoutX="754.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+      <Separator layoutX="674.0" layoutY="45.0" orientation="VERTICAL" prefHeight="627.0" prefWidth="1.0" />
+      <ImageView fx:id="movieImageView" fitHeight="198.0" fitWidth="162.0" layoutX="745.0" layoutY="78.0" pickOnBounds="true">
          <image>
             <Image url="@../Images/MovieStage.jpg" />
          </image></ImageView>
