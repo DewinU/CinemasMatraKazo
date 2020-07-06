@@ -2,21 +2,73 @@ package Controller;
 
 import Model.*;
 import Pojo.Pelicula;
+import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
+
+import static Main.App.loadFXML;
 
 public class peliculasStageController implements Initializable {
-    FacturaListModel peliculas = new FacturaListModel();
+    MovieListModel moviesListModel;
     ObservableList<Pelicula> movieList;
+
+    Alert alerta;
+    Alert confirmAlerta;
+    ButtonType yesButton = new ButtonType("Sí", ButtonBar.ButtonData.YES);
+    ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+    @FXML
+    private ImageView movieImageView;
+
+    @FXML
+    private Text txtTitulo;
+
+    @FXML
+    private Text txtDuracion;
+
+    @FXML
+    private Text txtGenero;
+
+    @FXML
+    private Text txtDesde;
+
+    @FXML
+    private Text txtFuncion;
+
+    @FXML
+    private Text txtHasta;
+
+    @FXML
+    private Text txtDirector;
+
+    @FXML
+    private Text txtDescripcion;
+
+    @FXML
+    private JFXTextField txtBuscar;
 
 
     @FXML
@@ -41,34 +93,120 @@ public class peliculasStageController implements Initializable {
     private TableColumn<Pelicula, String > pelicula_CATEGORIA;
 
     @FXML
-    private TableColumn<Pelicula, Boolean > pelicula_CARTELERA;
+    private TableColumn<Pelicula, String > pelicula_CARTELERA;
+
+    @FXML
+    private TableColumn<Pelicula, LocalDate> pelicula_DESDE;
+
+    @FXML
+    private TableColumn<Pelicula, LocalDate> pelicula_HASTA;
 
     @FXML
     void buttonDelete(MouseEvent event) {
+        Pelicula pelicula = moviesView.getSelectionModel().getSelectedItem();
+        if(pelicula == null){
+            alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Vaya!");
+            alerta.setContentText("Debes elegir una película a eliminar! ");
+            alerta.show();
+        }
+
+        else{
+            alerta = new Alert(Alert.AlertType.CONFIRMATION,"¿Seguro que desea eliminar esta pelicula?",yesButton,noButton);
+            alerta.showAndWait().ifPresent(type -> {
+                if (type == yesButton) {
+                    movieList.remove(pelicula);
+                    moviesView.setItems(movieList);
+                    moviesListModel.updateJson(movieList);
+
+                }
+
+            });
+
+        }
+
+
 
     }
 
     @FXML
     void buttonEdit(MouseEvent event) {
+        if(moviesView.getSelectionModel().getSelectedItem() == null){
+            alerta.setAlertType(Alert.AlertType.ERROR);
+            alerta.setTitle("Vaya!");
+            alerta.setContentText("Debes elegir una película a editar! ");
+            alerta.show();
+        }
+
 
     }
 
     @FXML
-    void buttonNew(MouseEvent event) {
+    void buttonNew(MouseEvent event) throws IOException {
+
+        Parent root = loadFXML("loginDialog");
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.setTitle("AAAJAJSJAJSJA");
+        stage.show();
 
     }
 
+    @FXML
+    void showMovie(MouseEvent event) {
+        Pelicula pelicula = moviesView.getSelectionModel().getSelectedItem();
+        movieImageView.setImage(new Image(pelicula.getFotoUrl()));
+        txtTitulo.setText(pelicula.getTitulo());
+        txtDirector.setText(pelicula.getDirector());
+        txtDescripcion.setText(pelicula.getDescripcion());
+        txtGenero.setText(pelicula.getGenero());
+        String funciones = "";
+        for(int i = 0; i < pelicula.getFuncion().size() - 1; i++){
+            funciones += pelicula.getFuncion().get(i) + "\n";
+        }
+        funciones +=  pelicula.getFuncion().get(pelicula.getFuncion().size() - 1);
+        txtFuncion.setText(funciones);
+        txtDesde.setText(pelicula.getDesde().toString());
+        txtHasta.setText(pelicula.getHasta().toString());
 
 
+    }
 
+    public void filterTextField() {
+        FilteredList<Pelicula> filteredPeliculas = new FilteredList<>(movieList);
+        txtBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredPeliculas.setPredicate((Predicate<? super Pelicula>) pelicula -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCase = newValue.toLowerCase();
+
+                if (pelicula.getTitulo().toLowerCase().contains(lowerCase)) {
+                    return true;
+                } else if (pelicula.getDirector().toLowerCase().contains(lowerCase)) {
+                    return true;
+                } else if (pelicula.getGenero().toLowerCase().contains(lowerCase)) {
+                    return true;
+                } else if (pelicula.getFuncion().toString().toLowerCase().contains(lowerCase)) {
+                    return true;
+                } else if (pelicula.getCategoria().toLowerCase().contains(lowerCase)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Pelicula> sortedList = new SortedList<>(filteredPeliculas);
+        sortedList.comparatorProperty().bind(moviesView.comparatorProperty());
+        moviesView.setItems(sortedList);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        peliculas.LoadFromJsonPeliculas();
-        movieList = FXCollections.observableArrayList(peliculas.getListPelicula());
-
-
+        moviesListModel = new MovieListModel();
+        movieList = FXCollections.observableArrayList(moviesListModel.getPeliculasAll());
         pelicula_ID.setCellValueFactory(data -> {
             int index = movieList.indexOf(data.getValue());
             return new SimpleIntegerProperty(++index).asObject();
@@ -78,8 +216,19 @@ public class peliculasStageController implements Initializable {
         pelicula_GENERO.setCellValueFactory(new PropertyValueFactory<>("genero"));
         pelicula_FUNCIONES.setCellValueFactory(new PropertyValueFactory<>("funcion"));
         pelicula_CATEGORIA.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-        pelicula_CARTELERA.setCellValueFactory(new PropertyValueFactory<>("peliculaStatus"));
+        pelicula_CARTELERA.setCellValueFactory(data -> {
+            boolean isCartelera = data.getValue().isCarteleraStatus();
+            if(isCartelera){
+                return new SimpleStringProperty("Sí");
+            }
+            else{
+                return new SimpleStringProperty("No");
+            }
+        });
+        pelicula_DESDE.setCellValueFactory(new PropertyValueFactory<>("desde"));
+        pelicula_HASTA.setCellValueFactory(new PropertyValueFactory<>("hasta"));
         moviesView.setItems(movieList);
+        filterTextField();
 
     }
 }
