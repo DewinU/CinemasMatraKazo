@@ -118,6 +118,10 @@ public class dashboardStageController implements Initializable {
     private ImageView previousMovie;
     @FXML
     private ImageView nextMovie;
+    @FXML
+    private ImageView carteleraImg;
+    @FXML
+    private ImageView imgInfo;
 
 //    @FXML
 //    private Label backwardsButton;
@@ -142,6 +146,8 @@ public class dashboardStageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cartelera.setDisable(true);
         cartelera.setVisible(false);
+        imgInfo.setDisable(true);
+        imgInfo.setVisible(false);
         previousMovie.setDisable(true);
         previousMovie.setVisible(false);
         nextMovie.setDisable(true);
@@ -224,22 +230,19 @@ public class dashboardStageController implements Initializable {
         peliculasFiltro.forEach(p -> {
             new ZoomOut(p).play();
         });
+        new ZoomOut(carteleraImg).play();
         disablePanels();
         if (e.getSource().toString().substring(8, 18).equals(peliculas1.getId())) {
             showInfo(poster1, peliculas.getListPelicula().get(0));
-            movieIndex = 0;
         }
         else if (e.getSource().toString().substring(8, 18).equals(peliculas2.getId())) {
             showInfo(poster2, peliculas.getListPelicula().get(1));
-            movieIndex = 1;
         }
         else if (e.getSource().toString().substring(8, 18).equals(peliculas3.getId())) {
             showInfo(poster3, peliculas.getListPelicula().get(2));
-            movieIndex = 2;
         }
         else if (e.getSource().toString().substring(8, 18).equals(peliculas4.getId())) {
             showInfo(poster4, peliculas.getListPelicula().get(3));
-            movieIndex = 3;
         }
         else if (e.getSource().toString().substring(8, 18).equals(peliculas5.getId())) {
             showInfo(poster5, peliculas.getListPelicula().get(4));
@@ -247,7 +250,6 @@ public class dashboardStageController implements Initializable {
         }
         else {
             showInfo(poster6, peliculas.getListPelicula().get(5));
-            movieIndex = 5;
         }
     }
 
@@ -255,6 +257,8 @@ public class dashboardStageController implements Initializable {
 
 
     public void showInfo(ImageView movieAsked, Pelicula pelicula) {
+        imgInfo.setDisable(false);
+        imgInfo.setVisible(true);
         cartelera.setDisable(false);
         cartelera.setVisible(true);
         cartelera.getStyleClass().add("util-buttons");
@@ -297,6 +301,7 @@ public class dashboardStageController implements Initializable {
         peliculas4.setDisable(true);
         peliculas5.setDisable(true);
         peliculas6.setDisable(true);
+
     }
 
 
@@ -308,7 +313,7 @@ public class dashboardStageController implements Initializable {
 
             posters.get(i).setImage(new Image(urlImage));
             titulos.get(i).setText(titulo);
-            calificaciones.get(i).setText(calificacion);
+//            calificaciones.get(i).setText(calificacion);
         }
     }
 
@@ -337,6 +342,11 @@ public class dashboardStageController implements Initializable {
         previousMovie.setVisible(false);
         nextMovie.setDisable(true);
         nextMovie.setVisible(false);
+        carteleraImg.setDisable(false);
+        carteleraImg.setVisible(true);
+        imgInfo.setDisable(true);
+        imgInfo.setVisible(false);
+        new ZoomIn(carteleraImg).play();
         nextMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Siguiente.png")));
         previousMovie.setImage(new Image(getClass().getResourceAsStream("/Images/Anterior.png")));
     }

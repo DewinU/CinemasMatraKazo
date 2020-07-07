@@ -13,95 +13,88 @@
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" style="-fx-background-color: #2e3b50; -fx-border-color: #78808d;" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.dashboardStageController">
    <children>
-      <HBox layoutX="66.0" layoutY="48.0" prefHeight="298.0" prefWidth="1003.0" spacing="150.0">
+      <VBox layoutX="200.0" layoutY="40.0" prefHeight="632.0" prefWidth="728.0">
          <children>
-            <VBox fx:id="peliculas1" alignment="CENTER" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane" stylesheets="@../Styles/styleDEMO.css">
+            <HBox spacing="90.0">
                <children>
-                  <Label fx:id="calificacion1" layoutX="9.0" layoutY="-5.0" styleClass="calificacion">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-                  <ImageView fx:id="poster1" fitHeight="249.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombrePelicula1" alignment="CENTER" contentDisplay="CENTER" prefHeight="71.0" prefWidth="294.0" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font>
-                  </Label>
+                  <VBox fx:id="peliculas1" alignment="CENTER" onMouseClicked="#selectingMovie" styleClass="movie-pane" stylesheets="@../Styles/styleDEMO.css">
+                     <children>
+                        <Label fx:id="calificacion1" layoutX="9.0" layoutY="50.0" styleClass="calificacion">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fx:id="poster1" fitHeight="260.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="nombrePelicula1" alignment="CENTER" contentDisplay="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="FontAwesome Regular" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="peliculas2" alignment="TOP_CENTER" onMouseClicked="#selectingMovie" styleClass="movie-pane" stylesheets="@../Styles/styleDEMO.css">
+                     <children>
+                        <Label fx:id="calificacion2" layoutY="50.0" styleClass="calificacion" />
+                        <ImageView fx:id="poster2" fitHeight="260.0" fitWidth="220.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="nombrePelicula2" alignment="CENTER" contentDisplay="CENTER" stylesheets="@../Styles/styleDEMO.css" textFill="WHITE">
+                           <font>
+                              <Font name="FontAwesome Regular" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="peliculas3" alignment="CENTER" onMouseClicked="#selectingMovie" styleClass="movie-pane">
+                     <children>
+                        <Label fx:id="calificacion3" layoutY="50.0" styleClass="calificacion" />
+                        <ImageView fx:id="poster3" fitHeight="260.0" fitWidth="220.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="nombrePelicula3" alignment="CENTER" contentDisplay="CENTER" styleClass="movie-name" stylesheets="@../Styles/styleDEMO.css" textFill="WHITE">
+                           <font>
+                              <Font name="FontAwesome Regular" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox fx:id="peliculas2" alignment="TOP_CENTER" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane" stylesheets="@../Styles/styleDEMO.css">
+            </HBox>
+            <HBox prefHeight="316.0" prefWidth="881.0" spacing="90.0">
                <children>
-                  <Label fx:id="calificacion2" styleClass="calificacion" />
-                  <ImageView fx:id="poster2" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombrePelicula2" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="212.0" stylesheets="@../Styles/styleDEMO.css" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font>
-                  </Label>
+                  <VBox fx:id="peliculas4" alignment="CENTER" onMouseClicked="#selectingMovie" styleClass="movie-pane">
+                     <children>
+                        <Label fx:id="calificacion4" layoutY="50.0" styleClass="calificacion" />
+                        <ImageView fx:id="poster4" fitHeight="260.0" fitWidth="220.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="nombrePelicula4" alignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="FontAwesome Regular" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="peliculas5" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" styleClass="movie-pane">
+                     <children>
+                        <Label fx:id="calificacion5" layoutY="50.0" styleClass="calificacion" />
+                        <ImageView fx:id="poster5" fitHeight="260.0" fitWidth="220.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="nombrePelicula5" alignment="CENTER" prefHeight="17.0" prefWidth="175.0" textFill="WHITE">
+                           <font>
+                              <Font name="FontAwesome Regular" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="peliculas6" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" styleClass="movie-pane">
+                     <children>
+                        <Label fx:id="calificacion6" layoutY="50.0" styleClass="calificacion" />
+                        <ImageView fx:id="poster6" fitHeight="260.0" fitWidth="220.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="nombrePelicula6" alignment="CENTER" prefHeight="17.0" prefWidth="175.0" textFill="WHITE">
+                           <font>
+                              <Font name="FontAwesome Regular" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox fx:id="peliculas3" alignment="CENTER" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
-               <children>
-                  <Label fx:id="calificacion3" styleClass="calificacion" />
-                  <ImageView fx:id="poster3" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombrePelicula3" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="212.0" styleClass="movie-name" stylesheets="@../Styles/styleDEMO.css" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
+            </HBox>
          </children>
-      </HBox>
-      <HBox layoutX="53.0" layoutY="359.0" prefHeight="298.0" prefWidth="1003.0" spacing="150.0">
-         <children>
-            <VBox fx:id="peliculas4" alignment="CENTER" onMouseClicked="#selectingMovie" styleClass="movie-pane">
-               <children>
-                  <Label fx:id="calificacion4" styleClass="calificacion" />
-                  <ImageView fx:id="poster4" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombrePelicula4" alignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="peliculas5" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
-               <children>
-                  <Label fx:id="calificacion5" styleClass="calificacion" />
-                  <ImageView fx:id="poster5" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombrePelicula5" alignment="CENTER" prefHeight="17.0" prefWidth="175.0" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="peliculas6" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
-               <children>
-                  <Label fx:id="calificacion6" styleClass="calificacion" />
-                  <ImageView fx:id="poster6" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombrePelicula6" alignment="CENTER" prefHeight="17.0" prefWidth="175.0" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="peliculas61" alignment="CENTER" layoutX="734.0" layoutY="10.0" onMouseClicked="#selectingMovie" prefHeight="251.0" prefWidth="151.0" styleClass="movie-pane">
-               <children>
-                  <Label fx:id="calificacion61" styleClass="calificacion" />
-                  <ImageView fx:id="poster61" fitHeight="249.0" fitWidth="212.0" onMouseClicked="#selectingMovie" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombrePelicula61" alignment="CENTER" prefHeight="17.0" prefWidth="175.0" textFill="WHITE">
-                     <font>
-                        <Font name="FontAwesome Regular" size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
+      </VBox>
       <HBox fx:id="selectedMovie" layoutX="43.0" layoutY="120.0" spacing="25.0">
          <children>
             <AnchorPane>
@@ -199,19 +192,29 @@
             </VBox>
          </children>
       </HBox>
-      <ImageView fx:id="cartelera" fitHeight="87.0" fitWidth="82.0" layoutX="72.0" layoutY="27.0" onMouseClicked="#comeBackToCartelera" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cartelera" fitHeight="80.0" fitWidth="80.0" layoutX="72.0" layoutY="27.0" onMouseClicked="#comeBackToCartelera" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/home.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="previousMovie" fitHeight="91.0" fitWidth="89.0" layoutX="41.0" layoutY="584.0" onMouseClicked="#goToPreviousMovie" pickOnBounds="true">
+      <ImageView fx:id="previousMovie" fitHeight="70.0" fitWidth="70.0" layoutX="41.0" layoutY="584.0" onMouseClicked="#goToPreviousMovie" pickOnBounds="true">
          <image>
             <Image url="@../Images/Anterior.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="nextMovie" fitHeight="91.0" fitWidth="89.0" layoutX="813.0" layoutY="584.0" onMouseClicked="#goToNextMovie" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="nextMovie" fitHeight="70.0" fitWidth="70.0" layoutX="813.0" layoutY="584.0" onMouseClicked="#goToNextMovie" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/Siguiente.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="carteleraImg" fitHeight="110.0" fitWidth="600.0" layoutX="-180.0" layoutY="300.0" pickOnBounds="true" rotate="-90.0">
+         <image>
+            <Image url="@../Images/cartelera.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgInfo" fitHeight="80.0" fitWidth="497.0" layoutX="290.0" layoutY="27.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/cartelera%20(2).png" />
          </image>
       </ImageView>
    </children>
