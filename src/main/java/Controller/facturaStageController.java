@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,7 +16,9 @@ import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -326,6 +329,10 @@ public class facturaStageController implements Initializable {
     private Pane pnlReporte;
     @FXML
     private ImageView imgFacturando;
+    @FXML
+    private Label lblNumeroFactura;
+    @FXML
+    private Label lblNumeroFacturaFinal;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contentPane.setStyle("-fx-border-color: #000000");
@@ -363,7 +370,28 @@ public class facturaStageController implements Initializable {
         
         facturaList.LoadFromJsonPeliculas();
         
-        System.out.println("Pue, no dio error");
+        if(facturaList.LoadFromJsonFacturas()){
+            int i = (facturaList.getListFactura().size() + 1);
+            nuevaFactura.setNumeroFactura(i);
+            if(i < 10){
+                lblNumeroFactura.setText("F#000" + i);
+                lblNumeroFacturaFinal.setText("F#000" + i);
+            }else if(i >= 10 && i < 100){
+                lblNumeroFactura.setText("F#00" +  i);
+                lblNumeroFacturaFinal.setText("F#00" + i);
+            }else if (i >= 100 && i < 1000){
+                lblNumeroFactura.setText("F#0" + i);
+                lblNumeroFacturaFinal.setText("F#0" + i);
+            }else if(i >= 1000 && i < 10000){
+                lblNumeroFactura.setText("F#" + i);
+                lblNumeroFacturaFinal.setText("F#" + i);
+            }
+            
+        }else{
+            lblNumeroFactura.setText("F#0001");
+            lblNumeroFacturaFinal.setText("F#0001");
+            nuevaFactura.setNumeroFactura(1);
+        }
         
         threadPool.submit(task1);
         
@@ -379,6 +407,34 @@ public class facturaStageController implements Initializable {
                     cmbxHoraFunsion.getItems().clear();
                     cmbxHoraFunsion.getItems().addAll(facturaList.getListPelicula().get(i).getFuncion());
                     nuevaFactura.setNombrePelicula(newValue);
+
+                    if (!( nuevaFactura.getHoraFuncion() == null )) {
+                        
+                        listViewAsientos.getItems().clear();
+                        listViewComidaSelec.getItems().clear();
+                        listViewAlimentosFinal.getItems().clear();
+                        listViewAsientosSeleccionadosFinal.getItems().clear();
+                        listViewDescripcion.getItems().clear();
+                        listViewPrecioComidaSelec.getItems().clear();
+
+                        txtHoraFunsionFinal.setText("");
+                        txtNombreDePeliculaFinal.setText("");
+                        txtSalaFinal.setText("");
+                        txtSalaSelector.setText("");
+                        txtTotalComidaSelec.setText("");
+                        txtTotalDescripcion.setText("");
+                        txtTotalFinal.setText("");
+
+                        nuevaFactura.setAsientos(null);
+                        nuevaFactura.setHoraFuncion(null);
+                        nuevaFactura.setPreciosComida(null);
+                        nuevaFactura.setSala(null);
+                        nuevaFactura.setTipoComida(null);
+                        nuevaFactura.setTotal(0);
+
+                        loadAsiento();
+                    }
+                    break;
                 }
             }
         });
@@ -425,11 +481,9 @@ public class facturaStageController implements Initializable {
                 context.show(listViewComidaSelec, event.getScreenX(), event.getScreenY());
             }
         });
-
-        
     }
     //-----------------------------------------------------------------------------------
-    //ALGUNOS METODOS
+    //  ALGUNOS METODOS
     
         public void sumatoriaDePreciosDeComida(){
             int suma = 0;
@@ -653,141 +707,187 @@ public class facturaStageController implements Initializable {
                     switch(i){
                          case 0:
                         imgA1.setImage(imgDeso);
+                        A1.setDisable(false);
                         break;
                     case 1:
                         imgA2.setImage(imgDeso);
+                        A2.setDisable(false);
                         break;
                     case 2:
                         imgA3.setImage(imgDeso);
+                        A3.setDisable(false);
                         break;
                     case 3:
                         imgA4.setImage(imgDeso);
+                        A4.setDisable(false);
                         break;
                     case 4:
                         imgA5.setImage(imgDeso);
+                        A5.setDisable(false);
                         break;
                     case 5:
                         imgA6.setImage(imgDeso);
+                        A6.setDisable(false);
                         break;
                     case 6:
                         imgB1.setImage(imgDeso);
+                        B1.setDisable(false);
                         break;
                     case 7:
                         imgB2.setImage(imgDeso);
+                        B2.setDisable(false);
                         break;
                     case 8:
                         imgB3.setImage(imgDeso);
+                        B3.setDisable(false);
                         break;
                     case 9:
                         imgB4.setImage(imgDeso);
+                        B4.setDisable(false);
                         break;
                     case 10:
                         imgB5.setImage(imgDeso);
+                        B5.setDisable(false);
                         break;
                     case 11:
                         imgB6.setImage(imgDeso);
+                        B6.setDisable(false);
                         break;
                     case 12:
                         imgC1.setImage(imgDeso);
+                        C1.setDisable(false);
                         break;
                     case 13:
                         imgC2.setImage(imgDeso);
+                        C2.setDisable(false);
                         break;
                     case 14:
                         imgC3.setImage(imgDeso);
+                        C3.setDisable(false);
                         break;
                     case 15:
                         imgC4.setImage(imgDeso);
+                        C4.setDisable(false);
                         break;
                     case 16:
                         imgC5.setImage(imgDeso);
+                        C5.setDisable(false);
                         break;
                     case 17:
                         imgC6.setImage(imgDeso);
+                        C6.setDisable(false);
                         break;
                     case 18:
                         imgD1.setImage(imgDeso);
+                        D1.setDisable(false);
                         break;
                     case 19:
                         imgD2.setImage(imgDeso);
+                        D2.setDisable(false);
                         break;
                     case 20:
                         imgD3.setImage(imgDeso);
+                        D3.setDisable(false);
                         break;
                     case 21:
                         imgD4.setImage(imgDeso);
+                        D4.setDisable(false);
                         break;
                     case 22:
                         imgD5.setImage(imgDeso);
+                        D5.setDisable(false);
                         break;
                     case 23:
                         imgD6.setImage(imgDeso);
+                        D6.setDisable(false);
                         break;
                     case 24:
                         imgE1.setImage(imgDeso);
+                        E1.setDisable(false);
                         break;
                     case 25:
                         imgE2.setImage(imgDeso);
+                        E2.setDisable(false);
                         break;
                     case 26:
                         imgE3.setImage(imgDeso);
+                        E3.setDisable(false);
                         break;
                     case 27:
                         imgE4.setImage(imgDeso);
+                        E4.setDisable(false);
                         break;
                     case 28:
                         imgE5.setImage(imgDeso);
+                        E5.setDisable(false);
                         break;
                     case 29:
                         imgE6.setImage(imgDeso);
+                        E6.setDisable(false);
                         break;
                     case 30:
                         imgF0.setImage(imgDeso);
+                        F0.setDisable(false);
                         break;
                     case 31:
                         imgF1.setImage(imgDeso);
+                        F1.setDisable(false);
                         break;
                     case 32:
                         imgF2.setImage(imgDeso);
+                        F2.setDisable(false);
                         break;
                     case 33:
                         imgF3.setImage(imgDeso);
+                        F3.setDisable(false);
                         break;
                     case 34:
                         imgF4.setImage(imgDeso);
+                        F4.setDisable(false);
                         break;
                     case 35:
                         imgF5.setImage(imgDeso);
+                        F5.setDisable(false);
                         break;
                     case 36:
                         imgF6.setImage(imgDeso);
+                        F6.setDisable(false);
                         break;
                     case 37:
                         imgF7.setImage(imgDeso);
+                        F7.setDisable(false);
                         break;
                     case 38:
                         imgG0.setImage(imgDeso);
+                        G0.setDisable(false);
                         break;
                     case 39:
                         imgG1.setImage(imgDeso);
+                        G1.setDisable(false);
                         break;
                     case 40:
                         imgG2.setImage(imgDeso);
+                        G2.setDisable(false);
                         break;
                     case 41:
                         imgG3.setImage(imgDeso);
+                        G3.setDisable(false);
                         break;
                     case 42:
                         imgG4.setImage(imgDeso);
+                        G4.setDisable(false);
                         break;
                     case 43:
                         imgG5.setImage(imgDeso);
+                        G5.setDisable(false);
                         break;
                     case 44:
                         imgG6.setImage(imgDeso);
+                        G6.setDisable(false);
                         break;
                     case 45:
                         imgG7.setImage(imgDeso);
+                        G7.setDisable(false);
                         break;
                     default:
                         System.out.println("Error en el switch");
@@ -814,7 +914,7 @@ public class facturaStageController implements Initializable {
                     pnlBotonesAsientos.setVisible(true);
                     btnCancelar.setText("Cancelar Factura");
                 }
-                indexStageContinue--;
+                indexStageContinue = 0;
                 break;
             case 2:
                 //REGRESAR AL SELECTOR DE COMIDA
@@ -826,8 +926,10 @@ public class facturaStageController implements Initializable {
                 anchorPaneDetalle.setVisible(true);
                 btnCancelar.setText("Regresar");
                 btnContinuar.setText("Continuar");
-                indexStageContinue--;
+                indexStageContinue = 1;
+                break;
             case 3:
+                indexStageContinue = 2;
             default:
                 break;
         }
@@ -839,13 +941,32 @@ public class facturaStageController implements Initializable {
         switch(indexStageContinue){
             case 0:
                 // SELECCIONAR COMIDA
-                imgSelectorAsientosPrincipal.setVisible(false);
-                pnlBotonesAsientos.setVisible(false);
-                anchorPaneComidaBotones.setVisible(true);
-                anchorPaneDetalle.setVisible(true);
-                btnCancelar.setText("Regresar");
-                btnContinuar.setText("Continuar");
-                indexStageContinue++;
+                if (nuevaFactura.getNombrePelicula() == null || nuevaFactura.getHoraFuncion() == null || nuevaFactura.getAsientos().isEmpty()) {
+                    if (nuevaFactura.getNombrePelicula() == null) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡ALERTA!");
+                        alert.setContentText("¡DEBE SELECCIONAR UNA PELICULA!");
+                        alert.showAndWait();
+                    }else if(nuevaFactura.getHoraFuncion() == null){
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡ALERTA!");
+                        alert.setContentText("¡DEBE SELECCIONAR UNA HORA DE FUNCION!");
+                        alert.showAndWait();
+                    }else if(nuevaFactura.getAsientos().isEmpty()){
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡ALERTA!");
+                        alert.setContentText("¡DEBE SELECCIONAR AL MENOS UN ASIENTO!");
+                        alert.showAndWait();
+                    }
+                } else {
+                    imgSelectorAsientosPrincipal.setVisible(false);
+                    pnlBotonesAsientos.setVisible(false);
+                    anchorPaneComidaBotones.setVisible(true);
+                    anchorPaneDetalle.setVisible(true);
+                    btnCancelar.setText("Regresar");
+                    btnContinuar.setText("Continuar");
+                    indexStageContinue = 1;
+                }
                 break;
             case 1:
                 // TERMINAR FACTURA - REPORTE
@@ -871,15 +992,35 @@ public class facturaStageController implements Initializable {
                 listViewAlimentosFinal.getItems().addAll(nuevaFactura.getTipoComida());
                 
                 btnContinuar.setText("Facturar");
-                indexStageContinue++;
+                indexStageContinue = 2;
                 break;
             case 2:
                 imgFacturando.setVisible(true);
-                
-                indexStageContinue++;
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("CONFIRMACIÓN");
+                alert.setContentText("¿DESEA GUARDAR LOS CAMBIOS?");
+                Optional<ButtonType> action = alert.showAndWait();
+
+                if (action.get() == ButtonType.OK) {
+                    //  SE MUESTRA EL REPORTE
+                    
+                    // LO GUARDAMOS EN EL ARCHIVO
+                    facturaList.writeJsonFacturas(nuevaFactura);
+                    facturaList.saveSalaJson();
+         
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("INFORMACION");
+                    alert1.setContentText("¡Guardado correctamente!");
+                    alert1.showAndWait();
+                    // VOLVEMOS AL STAGE PRINCIPAL
+
+                }
                 break;
-                
             default :
+                System.out.println("DEFAULT BTNCONTINUAR");
+                break;
         }
     }
     

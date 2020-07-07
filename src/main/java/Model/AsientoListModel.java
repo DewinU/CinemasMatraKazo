@@ -39,7 +39,7 @@ public class AsientoListModel {
     
     public void writeToJson() {
         Gson gson = new Gson();
-        
+        System.out.println("RUTA: " + ruta);
         try {
             FileWriter writer = new FileWriter("./src/main/resources/Data/Salas/" + ruta);
             writer.write(gson.toJson(data));
