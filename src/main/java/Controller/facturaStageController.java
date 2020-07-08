@@ -479,6 +479,8 @@ public class facturaStageController implements Initializable {
             listViewPrecioComidaSelec.getItems().remove(index);
             listViewComidaSelec.getItems().remove(s);
             
+            listViewAlimentosFinal.getItems().remove(index);
+            
             sumatoriaDePreciosDeComida();
         });
         

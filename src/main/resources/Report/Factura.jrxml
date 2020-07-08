@@ -44,7 +44,7 @@
 			</staticText>
 			<image>
 				<reportElement x="38" y="0" width="239" height="71" uuid="fb74c81b-dae7-433a-b54a-c19e435cf6df"/>
-				<imageExpression><![CDATA["C:/NesbinProje/CinemasMatraKazo/src/main/resources/Images/Logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["./src/main/resources/Images/Logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

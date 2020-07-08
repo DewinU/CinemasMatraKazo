@@ -698,11 +698,11 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbxPelicula" layoutX="10.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="210.0" promptText="          Seleccione Una Pelicula" style="-fx-background-color: #df9c37;">
+            <ComboBox fx:id="cmbxPelicula" layoutX="10.0" layoutY="66.0" onAction="#cmbxPeliculaOnAction" prefHeight="25.0" prefWidth="210.0" promptText="          Seleccione Una Película" style="-fx-background-color: #df9c37;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
-            <ComboBox fx:id="cmbxHoraFunsion" layoutX="20.0" layoutY="100.0" prefHeight="25.0" prefWidth="187.0" promptText="          Hora De La Funsión" style="-fx-background-color: #df9c37;">
+            <ComboBox fx:id="cmbxHoraFunsion" layoutX="20.0" layoutY="100.0" prefHeight="25.0" prefWidth="187.0" promptText="          Hora De La Función" style="-fx-background-color: #df9c37;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
