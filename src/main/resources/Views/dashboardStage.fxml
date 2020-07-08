@@ -13,6 +13,11 @@
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" style="-fx-background-color: #2e3b50; -fx-border-color: #78808d;" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.dashboardStageController">
    <children>
+      <ImageView fx:id="carteleraImg" fitHeight="645.0" fitWidth="183.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/carteleraMain.png" />
+         </image>
+      </ImageView>
       <VBox layoutX="200.0" layoutY="40.0" prefHeight="632.0" prefWidth="728.0">
          <children>
             <HBox spacing="90.0">
@@ -207,14 +212,14 @@
             <Image url="@../Images/Siguiente.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="carteleraImg" fitHeight="110.0" fitWidth="600.0" layoutX="-180.0" layoutY="300.0" pickOnBounds="true" rotate="-90.0">
-         <image>
-            <Image url="@../Images/cartelera.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="imgInfo" fitHeight="80.0" fitWidth="497.0" layoutX="290.0" layoutY="27.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/cartelera%20(2).png" />
+            <Image url="@../Images/carteleraInfo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="carteleraVaciaImg" fitHeight="330.0" fitWidth="796.0" layoutX="85.0" layoutY="170.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../Images/noHayPeliculasDisponibles.png" />
          </image>
       </ImageView>
    </children>
