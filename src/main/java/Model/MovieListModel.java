@@ -14,7 +14,7 @@ public class MovieListModel {
     private List<Pelicula> peliculasAll;
     private List<Pelicula> peliculasCartelera;
     private Gson gson;
-    private final String PATH = "./src/main/resources/Data/PeliculasDisponibles.json";
+    private final String PATH = "./src/main/resources/Data/Dewin.json";
 
     public MovieListModel() {
         peliculasAll = new ArrayList<>();
@@ -56,7 +56,7 @@ public class MovieListModel {
 
     public void loadCarteleraFromJson(){
         for (Pelicula c : peliculasAll) {
-            if(!c.isCarteleraStatus()) {
+            if(c.isCarteleraStatus()) {
                 peliculasCartelera.add(c);
             }
         }
