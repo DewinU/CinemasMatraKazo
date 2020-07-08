@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,33 +22,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import static Main.App.loadFXML;
 
 public class peliculasStageController implements Initializable {
-    MovieListModel moviesListModel;
-    ObservableList<Pelicula> movieList;
+    private MovieListModel moviesListModel;
+    public static ObservableList<Pelicula> movieList;
 
     Alert alerta;
-    Alert confirmAlerta;
-    ButtonType yesButton = new ButtonType("Sí", ButtonBar.ButtonData.YES);
-    ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+    File imageFile;
     @FXML
     private ImageView movieImageView;
 
     @FXML
     private Text txtTitulo;
-
-    @FXML
-    private Text txtDuracion;
 
     @FXML
     private Text txtGenero;
@@ -112,64 +106,70 @@ public class peliculasStageController implements Initializable {
         }
 
         else{
-            alerta = new Alert(Alert.AlertType.CONFIRMATION,"¿Seguro que desea eliminar esta pelicula?",yesButton,noButton);
-            alerta.showAndWait().ifPresent(type -> {
-                if (type == yesButton) {
-                    movieList.remove(pelicula);
-                    moviesView.setItems(movieList);
-                    moviesListModel.updateJson(movieList);
-
-                }
-
-            });
+            alerta = new Alert(Alert.AlertType.CONFIRMATION,"¿Seguro que desea eliminar esta pelicula?",ButtonType.YES,ButtonType.NO);
+            alerta.showAndWait();
+            if(alerta.getResult() == ButtonType.YES){
+                movieList.remove(pelicula);
+                moviesListModel.updateJson(movieList);
+            }
 
         }
-
-
-
     }
 
     @FXML
-    void buttonEdit(MouseEvent event) {
-        if(moviesView.getSelectionModel().getSelectedItem() == null){
-            alerta.setAlertType(Alert.AlertType.ERROR);
+    void buttonEdit(MouseEvent event) throws IOException {
+        Pelicula pelicula = moviesView.getSelectionModel().getSelectedItem();
+        if(pelicula == null){
+            alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Vaya!");
-            alerta.setContentText("Debes elegir una película a editar! ");
+            alerta.setContentText("Debes elegir una película a eliminar! ");
             alerta.show();
         }
-
-
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/loginDialog.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+            fxmlLoader.setLocation(getClass().getResource("/Views/loginDialog.fxml"));
+            loginDialogController loginDlg = fxmlLoader.getController();
+            loginDlg.isEdit(moviesView.getSelectionModel().getSelectedItem(),true,moviesView.getSelectionModel().getSelectedIndex());
+            moviesListModel.updateJson(movieList);
+            moviesView.refresh();
+        }
     }
+
 
     @FXML
     void buttonNew(MouseEvent event) throws IOException {
-
-        Parent root = loadFXML("loginDialog");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/loginDialog.fxml"));
+        Parent root = fxmlLoader.load();
         Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root));
-        stage.setTitle("AAAJAJSJAJSJA");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
-
+        fxmlLoader.setLocation(getClass().getResource("/Views/loginDialog.fxml"));
     }
 
     @FXML
-    void showMovie(MouseEvent event) {
+    void showMovie(MouseEvent event){
         Pelicula pelicula = moviesView.getSelectionModel().getSelectedItem();
-        movieImageView.setImage(new Image(pelicula.getFotoUrl()));
-        txtTitulo.setText(pelicula.getTitulo());
-        txtDirector.setText(pelicula.getDirector());
-        txtDescripcion.setText(pelicula.getDescripcion());
-        txtGenero.setText(pelicula.getGenero());
-        String funciones = "";
-        for(int i = 0; i < pelicula.getFuncion().size() - 1; i++){
-            funciones += pelicula.getFuncion().get(i) + "\n";
+        if(pelicula != null){
+            movieImageView.setImage(new Image(new File(pelicula.getFotoUrl()).toURI().toString()));
+            txtTitulo.setText(pelicula.getTitulo());
+            txtDirector.setText(pelicula.getDirector());
+            txtDescripcion.setText(pelicula.getDescripcion());
+            txtGenero.setText(pelicula.getGenero());
+            String funciones = "";
+            for(int i = 0; i < pelicula.getFuncion().size() - 1; i++){
+                funciones += pelicula.getFuncion().get(i) + "\n";
+            }
+            funciones +=  pelicula.getFuncion().get(pelicula.getFuncion().size() - 1);
+            txtFuncion.setText(funciones);
+            txtDesde.setText(pelicula.getDesde().toString());
+            txtHasta.setText(pelicula.getHasta().toString());
         }
-        funciones +=  pelicula.getFuncion().get(pelicula.getFuncion().size() - 1);
-        txtFuncion.setText(funciones);
-        txtDesde.setText(pelicula.getDesde().toString());
-        txtHasta.setText(pelicula.getHasta().toString());
-
 
     }
 
@@ -229,6 +229,5 @@ public class peliculasStageController implements Initializable {
         pelicula_HASTA.setCellValueFactory(new PropertyValueFactory<>("hasta"));
         moviesView.setItems(movieList);
         filterTextField();
-
     }
 }

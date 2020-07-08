@@ -3,22 +3,18 @@ package Model;
 import Pojo.Pelicula;
 import com.google.gson.Gson;
 import javafx.collections.ObservableList;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MovieListModel {
-    List<Pelicula> peliculasAll;
-    List<Pelicula> peliculasCartelera;
-    Gson gson;
+
+    private List<Pelicula> peliculasAll;
+    private List<Pelicula> peliculasCartelera;
+    private Gson gson;
+    private final String PATH = "./src/main/resources/Data/Dewin.json";
 
     public MovieListModel() {
         peliculasAll = new ArrayList<>();
@@ -30,7 +26,7 @@ public class MovieListModel {
 
     public void updateJson(ObservableList<Pelicula> peliculas){
         try {
-            FileWriter writer = new FileWriter("./src/main/resources/Data/PeliculasDisponibles.json");
+            FileWriter writer = new FileWriter(PATH);
             writer.write(gson.toJson(peliculas));
             writer.close();
         } catch (IOException ex) {
@@ -40,16 +36,22 @@ public class MovieListModel {
 
     public void loadAllFromJson(){
         try {
-            LocalDate thisDate = LocalDate.now();
-            peliculasAll.addAll(Arrays.asList(gson.fromJson(new FileReader("./src/main/resources/Data/PeliculasDisponibles.json"), Pelicula[].class)));
-            for (Pelicula c : peliculasAll) {
-                if(thisDate.isAfter(c.getHasta())){
-                    c.setCarteleraStatus(false);
-                }
+            File archivo = new File(PATH);
+            if(!archivo.exists()){
+                archivo.createNewFile();
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FacturaListModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            else if(archivo.length() > 0){
+                LocalDate thisDate = LocalDate.now();
+                peliculasAll.addAll(Arrays.asList(gson.fromJson(new FileReader(PATH), Pelicula[].class)));
+                for (Pelicula c : peliculasAll) {
+                    if(thisDate.isAfter(c.getHasta()) || thisDate.isBefore(c.getDesde())){
+                        c.setCarteleraStatus(false);
+                    }
+                }
+                Collections.sort(peliculasAll);
+            }
+
+        } catch (IOException ex) { }
     }
 
     public void loadCarteleraFromJson(){

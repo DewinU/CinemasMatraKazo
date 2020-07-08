@@ -7,13 +7,14 @@ package Pojo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  *
  * @author Silencraft26
  */
-public class Pelicula {
+public class Pelicula implements Comparable<Pelicula>{
     
     private String titulo;
     private String anio;
@@ -29,7 +30,8 @@ public class Pelicula {
     private LocalDate desde;
     private LocalDate hasta;
 
-    public Pelicula() {
+    public Pelicula()
+    {
         funcion = new ArrayList<>();
         sala = new ArrayList<>();
     }
@@ -152,5 +154,27 @@ public class Pelicula {
         this.carteleraStatus = carteleraStatus;
         this.desde = desde;
         this.hasta = hasta;
+    }
+
+    @Override
+    public int compareTo(Pelicula o) {
+        return Boolean.compare(o.isCarteleraStatus(),this.isCarteleraStatus());
+    }
+
+    public String getFuncionesAsString(){
+        return getString(funcion);
+    }
+
+    public String getSalasAsString(){
+        return getString(sala);
+    }
+
+    private String getString(List<String> listToAppend) {
+        String append = "";
+        for(int i = 0; i < listToAppend.size() - 1 ; i++){
+            append += listToAppend.get(i) + ", ";
+        }
+        append += listToAppend.get(listToAppend.size() - 1);
+        return append;
     }
 }
