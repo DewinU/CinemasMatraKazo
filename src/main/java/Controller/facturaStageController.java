@@ -3,10 +3,13 @@ package Controller;
 import Model.FacturaListModel;
 import Pojo.Asiento;
 import Pojo.Factura;
+import Pojo.Reporte;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -252,6 +255,8 @@ public class facturaStageController implements Initializable {
     
     //Creando la Nueva Factura
     Factura nuevaFactura;
+    Reporte reporte;
+    
     @FXML
     private ListView<String> listViewAsientos;
     @FXML
@@ -337,6 +342,7 @@ public class facturaStageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         contentPane.setStyle("-fx-border-color: #000000");
         facturaList = new FacturaListModel();
+        reporte = new Reporte();
         
         //CREANDO LA NUEVA FACTURA
         nuevaFactura = new Factura();
@@ -472,6 +478,8 @@ public class facturaStageController implements Initializable {
             
             listViewPrecioComidaSelec.getItems().remove(index);
             listViewComidaSelec.getItems().remove(s);
+            
+            listViewAlimentosFinal.getItems().remove(index);
             
             sumatoriaDePreciosDeComida();
         });
@@ -985,6 +993,10 @@ public class facturaStageController implements Initializable {
                     suma += f;
                 }
                 txtTotalFinal.setText("C$ " + (suma + (nuevaFactura.getAsientos().size())*100));
+                nuevaFactura.setSubTotal((suma + (nuevaFactura.getAsientos().size())*100));
+                nuevaFactura.setIva((nuevaFactura.getSubTotal()) * ((float)0.3));
+                nuevaFactura.setTotal(nuevaFactura.getIva() + nuevaFactura.getSubTotal());
+                
                 //-----------------------
                 listViewAsientosSeleccionadosFinal.getItems().clear();
                 listViewAsientosSeleccionadosFinal.getItems().addAll(nuevaFactura.getAsientos());
@@ -1004,7 +1016,7 @@ public class facturaStageController implements Initializable {
                 Optional<ButtonType> action = alert.showAndWait();
 
                 if (action.get() == ButtonType.OK) {
-                    //  SE MUESTRA EL REPORTE
+                    
                     
                     // LO GUARDAMOS EN EL ARCHIVO
                     facturaList.writeJsonFacturas(nuevaFactura);
@@ -1014,6 +1026,17 @@ public class facturaStageController implements Initializable {
                     alert1.setTitle("INFORMACION");
                     alert1.setContentText("¡Guardado correctamente!");
                     alert1.showAndWait();
+                    
+                    //  SE MUESTRA EL REPORTE
+                    nuevaFactura.setAsientosFactura(nuevaFactura.toStringAsientos());
+                    nuevaFactura.setTipoComidaFactura(nuevaFactura.toStringComida());
+                    nuevaFactura.setPreciosComidaFactura(nuevaFactura.toStringPrecios());
+                    
+                    List<Factura> listReport = new ArrayList<>();
+                    listReport.add(nuevaFactura);
+                    
+                    reporte.generarReporte(listReport);
+                    
                     // VOLVEMOS AL STAGE PRINCIPAL
 
                 }
@@ -2292,7 +2315,7 @@ public class facturaStageController implements Initializable {
     @FXML
     private void btnCombo1OnMouseClicked(MouseEvent event) {
       
-        nuevaFactura.getTipoComida().add("- COMBO 1");
+        nuevaFactura.getTipoComida().add("COMBO 1");
         nuevaFactura.getPreciosComida().add(Float.valueOf(35+25));
         
         listViewComidaSelec.getItems().add("- COMBO 1");
@@ -2327,7 +2350,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnCombo2Clicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- COMBO 2");
+        nuevaFactura.getTipoComida().add("COMBO 2");
         nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 25 + 25));
         
         listViewComidaSelec.getItems().add("- COMBO 2");
@@ -2353,7 +2376,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnCombo3Clicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- COMBO 3");
+        nuevaFactura.getTipoComida().add("COMBO 3");
         nuevaFactura.getPreciosComida().add(Float.valueOf(35 + 25 + 60));
         
         listViewComidaSelec.getItems().add("- COMBO 3");
@@ -2380,7 +2403,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnCombo4Clicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- COMBO 4");
+        nuevaFactura.getTipoComida().add("COMBO 4");
         nuevaFactura.getPreciosComida().add(Float.valueOf(35 + 25 + 70));
         
         listViewComidaSelec.getItems().add("- COMBO 4");
@@ -2407,7 +2430,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnCombo5Clicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- COMBO 5");
+        nuevaFactura.getTipoComida().add("COMBO 5");
         nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 40 + 40 + 60 + 60));
         
         listViewComidaSelec.getItems().add("- COMBO 5");
@@ -2434,7 +2457,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnCombo6Clicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- COMBO 6");
+        nuevaFactura.getTipoComida().add("COMBO 6");
         nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 40 + 40 + 70));
         
         listViewComidaSelec.getItems().add("- COMBO 6");
@@ -2461,7 +2484,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnCombo7Clicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- COMBO 7");
+        nuevaFactura.getTipoComida().add("COMBO 7");
         nuevaFactura.getPreciosComida().add(Float.valueOf(60 + 60 + 40 + 40 + 70));
         
         listViewComidaSelec.getItems().add("- COMBO 7");
@@ -2488,7 +2511,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnCombo8Clicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- COMBO 8");
+        nuevaFactura.getTipoComida().add("COMBO 8");
         nuevaFactura.getPreciosComida().add(Float.valueOf(50 + 60 + 60 + 40 + 40 + 70));
         
         listViewComidaSelec.getItems().add("- COMBO 8");
@@ -2516,7 +2539,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnPalomitaGrandeClicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- PALOMITA GRANDE");
+        nuevaFactura.getTipoComida().add("PALOMITA GRANDE");
         nuevaFactura.getPreciosComida().add(Float.valueOf(50));
         
         listViewComidaSelec.getItems().add("- PALOMITA GRANDE");
@@ -2541,7 +2564,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnPalomitaPequeClicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- PALOMITA PEQUEÑA");
+        nuevaFactura.getTipoComida().add("PALOMITA PEQUEÑA");
         nuevaFactura.getPreciosComida().add(Float.valueOf(35));
         
         listViewComidaSelec.getItems().add("- PALOMITA PEQUEÑA");
@@ -2566,7 +2589,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnBebidaGrandeClicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- BEBIDA GRANDE");
+        nuevaFactura.getTipoComida().add("BEBIDA GRANDE");
         nuevaFactura.getPreciosComida().add(Float.valueOf(40));
         
         listViewComidaSelec.getItems().add("- BEBIDA GRANDE");
@@ -2591,7 +2614,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnBebidaPequeClicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- BEBIDA PEQUEÑA");
+        nuevaFactura.getTipoComida().add("BEBIDA PEQUEÑA");
         nuevaFactura.getPreciosComida().add(Float.valueOf(25));
         
         listViewComidaSelec.getItems().add("- BEBIDA PEQUEÑA");
@@ -2616,10 +2639,10 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnNachosClicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- NACHOS");
+        nuevaFactura.getTipoComida().add("NACHOS");
         nuevaFactura.getPreciosComida().add(Float.valueOf(70));
         
-        listViewComidaSelec.getItems().add("- NACHOS");
+        listViewComidaSelec.getItems().add(" NACHOS");
         listViewPrecioComidaSelec.getItems().add(("C$ ") + (70));
         sumatoriaDePreciosDeComida();
     }
@@ -2641,7 +2664,7 @@ public class facturaStageController implements Initializable {
 
     @FXML
     private void btnHotDogClicked(MouseEvent event) {
-        nuevaFactura.getTipoComida().add("- HOT - DOG");
+        nuevaFactura.getTipoComida().add("HOT - DOG");
         nuevaFactura.getPreciosComida().add(Float.valueOf(60));
         
         listViewComidaSelec.getItems().add("- HOT - DOG");

@@ -22,25 +22,38 @@ public class Factura {
     private String carnetEmpleado;
     private List<String> tipoComida;
     private List<Float> preciosComida;
+    
     private float total;
 
+    private float subTotal;
+    private float iva;
+    
+    private String asientosFactura;
+    private String tipoComidaFactura;
+    private String preciosComidaFactura;
+    
     public Factura() {
         asientos = new ArrayList<>();
         tipoComida = new ArrayList<>();
         preciosComida = new ArrayList<>();
     }
 
-    public Factura(int numeroFactura, String nombrePelicula, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado, float total, List<String> nombreComida, List<Float> preciosComida) {
+    public Factura(int numeroFactura, String nombrePelicula, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado, List<String> tipoComida, List<Float> preciosComida, float total, String asientosFactura, String tipoComidaFactura, String preciosComidaFactura) {
         this.numeroFactura = numeroFactura;
         this.nombrePelicula = nombrePelicula;
         this.horaFuncion = horaFuncion;
         this.sala = sala;
         this.asientos = asientos;
         this.carnetEmpleado = carnetEmpleado;
-        this.total = total;
-        this.tipoComida = nombreComida;
+        this.tipoComida = tipoComida;
         this.preciosComida = preciosComida;
+        this.total = total;
+        this.asientosFactura = asientosFactura;
+        this.tipoComidaFactura = tipoComidaFactura;
+        this.preciosComidaFactura = preciosComidaFactura;
     }
+
+    
 
     public int getNumeroFactura() {
         return numeroFactura;
@@ -113,4 +126,70 @@ public class Factura {
     public void setPreciosComida(List<Float> preciosComida) {
         this.preciosComida = preciosComida;
     }
+
+    public String getAsientosFactura() {
+        return asientosFactura;
+    }
+
+    public void setAsientosFactura(String asientosFactura) {
+        this.asientosFactura = asientosFactura;
+    }
+
+    public String getTipoComidaFactura() {
+        return tipoComidaFactura;
+    }
+
+    public void setTipoComidaFactura(String tipoComidaFactura) {
+        this.tipoComidaFactura = tipoComidaFactura;
+    }
+
+    public String getPreciosComidaFactura() {
+        return preciosComidaFactura;
+    }
+
+    public void setPreciosComidaFactura(String preciosComidaFactura) {
+        this.preciosComidaFactura = preciosComidaFactura;
+    }
+    
+    
+    public String toStringAsientos(){
+        String lis = "";
+        for (String s : this.asientos){
+            lis = lis + "\n" + s;
+        }
+        return lis;
+    }
+    public String toStringComida(){
+        String lis = "";
+        for (String s : this.tipoComida){
+            lis = lis + "\n" + s;
+        }
+        return lis;
+    }
+    public String toStringPrecios(){
+        String lis = "";
+        for (Float s : this.preciosComida){
+            lis = lis + "\n" + s;
+        }
+        return lis;
+    }
+
+    public float getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(float subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public float getIva() {
+        return iva;
+    }
+
+    public void setIva(float iva) {
+        this.iva = iva;
+    }
+    
+    
+    
 }
