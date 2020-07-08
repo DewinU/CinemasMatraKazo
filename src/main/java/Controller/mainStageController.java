@@ -13,7 +13,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import static Main.App.loadFXML;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
@@ -48,8 +50,12 @@ public class mainStageController implements Initializable {
     public static boolean activoHilo;
     
     static ExecutorService threadPool;
-//    static Runnable task1;
-//    static Runnable task2;
+    static Runnable task1;
+    static Runnable task2;
+    @FXML
+    private AnchorPane anchorPaneNuevFacturaPromociones;
+    @FXML
+    private ImageView imgNuevaFactura;
     
     
     @Override
@@ -62,44 +68,14 @@ public class mainStageController implements Initializable {
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
         
-
-//        threadPool = Executors.newCachedThreadPool();
-//        task1 = () -> {
-//            
-//            inicioButton.setVisible(false);
-//            menuButton.setVisible(false);
-//            historyButton.setVisible(false);
-//            logoutButton.setVisible(false);
-//            peliculasButton.setVisible(false);
-//            empleadosButton.setVisible(false);
-//            welcomeText.setVisible(false);
-//
-//            facturaButton.setLayoutY(100);
-//        };
-//        
-//
-//        task2 = () -> {
-//
-//            facturaButton.setLayoutY(340);
-//
-//            inicioButton.setVisible(true);
-//            menuButton.setVisible(true);
-//            historyButton.setVisible(true);
-//            logoutButton.setVisible(true);
-//            peliculasButton.setVisible(true);
-//            empleadosButton.setVisible(true);
-//            welcomeText.setVisible(true);
-//        };
+        threadPool = Executors.newCachedThreadPool();
+        task1 = () -> {
+            anchorPaneNuevFacturaPromociones.setVisible(true);
+        };
+        task2 = () -> {
+            anchorPaneNuevFacturaPromociones.setVisible(false);
+        };
     }
-    
-//    public static void NuevaFacturaMainStageEvent(boolean a){
-//        if(a){
-//            if(activoHilo){
-//               threadPool.execute(task1); 
-//               activoHilo = false;
-//            }
-//        }
-//    }
 
 
     @FXML
@@ -155,6 +131,7 @@ public class mainStageController implements Initializable {
 
     @FXML
     void facturaButton(MouseEvent event) throws IOException {
+        threadPool.execute(task1);
         Node child = loadFXML("facturaStage");
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);

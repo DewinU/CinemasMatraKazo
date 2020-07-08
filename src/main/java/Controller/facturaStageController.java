@@ -1,9 +1,11 @@
 package Controller;
 
+import static Main.App.loadFXML;
 import Model.FacturaListModel;
 import Pojo.Asiento;
 import Pojo.Factura;
 import Pojo.Reporte;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +21,7 @@ import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -912,8 +915,29 @@ public class facturaStageController implements Initializable {
         
         switch(indexStageContinue){
             case 0:
-                // REGRESAR AL INICIO (CANCELAR FACTURA)
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("CONFIRMACIÓN");
+                alert.setContentText("¿ESTA SEGURO DE CANCELAR FACTURA?");
+                Optional<ButtonType> action = alert.showAndWait();
+
+                if (action.get() == ButtonType.OK) {
+                    
+                    mainStageController.threadPool.execute(mainStageController.task2);
+
+                    try {
+                        // REGRESAR AL INICIO (CANCELAR FACTURA)
+                        Node child = loadFXML("dashboardStage");
+                        contentPane.getChildren().clear();
+                        contentPane.getChildren().add(child);
+                    } catch (IOException ex) {
+                        Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
                 break;
+
             case 1:
                 //REGRESAR AL SELECTOR DE ASIENTOS Y PELICULAS
                 if (btnCancelar.getText().equals("Regresar")) {
@@ -937,7 +961,17 @@ public class facturaStageController implements Initializable {
                 indexStageContinue = 1;
                 break;
             case 3:
-                indexStageContinue = 2;
+                mainStageController.threadPool.execute(mainStageController.task2);
+
+                    try {
+                        // REGRESAR AL INICIO (CANCELAR FACTURA)
+                        Node child = loadFXML("dashboardStage");
+                        contentPane.getChildren().clear();
+                        contentPane.getChildren().add(child);
+                    } catch (IOException ex) {
+                        Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                indexStageContinue = 0;
             default:
                 break;
         }
@@ -1024,7 +1058,7 @@ public class facturaStageController implements Initializable {
          
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                     alert1.setTitle("INFORMACION");
-                    alert1.setContentText("¡Guardado correctamente!");
+                    alert1.setContentText("\nIMPRIMIENDO EL REPORTE POR FAVOR ESPERE");
                     alert1.showAndWait();
                     
                     //  SE MUESTRA EL REPORTE
@@ -1038,8 +1072,23 @@ public class facturaStageController implements Initializable {
                     reporte.generarReporte(listReport);
                     
                     // VOLVEMOS AL STAGE PRINCIPAL
-
+                    indexStageContinue = 3;
+                    btnContinuar.setText("Nueva Factura");
+                    btnCancelar.setText("Volver al Inicio");
                 }
+            
+                break;
+            case 3:
+                // Nueva Factura
+
+                    try {
+                        // Nueva Factura
+                        Node child = loadFXML("facturaStage");
+                        contentPane.getChildren().clear();
+                        contentPane.getChildren().add(child);
+                    } catch (IOException ex) {
+                        Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 break;
             default :
                 System.out.println("DEFAULT BTNCONTINUAR");
