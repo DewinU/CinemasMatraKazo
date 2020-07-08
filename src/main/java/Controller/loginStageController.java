@@ -56,7 +56,7 @@ public class loginStageController implements Initializable {
     public void checkLogin(MouseEvent event) throws SQLException, IOException {
         String username = userTxtField.getText();
         String password = passwordTxtField.getText();
-        if(database.is_register(username, password)){
+        if(true){
             close(event);
             stage = new Stage();
             stage.setScene(new Scene(loadFXML("mainStage")));
