@@ -201,3 +201,7 @@
     -fx-effect: dropshadow(three-pass-box, #9d4024, 5, 0.5, 0, 0);
     -fx-cursor: hand;
 }
+
+.tab-header-background {
+    -fx-background-color: #9d4024;
+}
