@@ -156,8 +156,7 @@ public class peliculasStageController implements Initializable {
     void showMovie(MouseEvent event){
         Pelicula pelicula = moviesView.getSelectionModel().getSelectedItem();
         if(pelicula != null){
-            imageFile = new File(pelicula.getFotoUrl());
-            movieImageView.setImage(new Image(imageFile.toURI().toString()));
+            movieImageView.setImage(new Image(new File(pelicula.getFotoUrl()).toURI().toString()));
             txtTitulo.setText(pelicula.getTitulo());
             txtDirector.setText(pelicula.getDirector());
             txtDescripcion.setText(pelicula.getDescripcion());
