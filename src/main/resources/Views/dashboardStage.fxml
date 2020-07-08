@@ -15,7 +15,7 @@
    <children>
       <ImageView fx:id="carteleraImg" fitHeight="645.0" fitWidth="183.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/cartelera%20(3).png" />
+            <Image url="@../Images/carteleraMain.png" />
          </image>
       </ImageView>
       <VBox layoutX="200.0" layoutY="40.0" prefHeight="632.0" prefWidth="728.0">
@@ -214,7 +214,7 @@
       </ImageView>
       <ImageView fx:id="imgInfo" fitHeight="80.0" fitWidth="497.0" layoutX="290.0" layoutY="27.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/cartelera%20(2).png" />
+            <Image url="@../Images/carteleraInfo.png" />
          </image>
       </ImageView>
       <ImageView fx:id="carteleraVaciaImg" fitHeight="330.0" fitWidth="796.0" layoutX="85.0" layoutY="170.0" pickOnBounds="true" visible="false">
