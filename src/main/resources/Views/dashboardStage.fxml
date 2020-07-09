@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" style="-fx-background-color: #2e3b50; -fx-border-color: #78808d;" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.dashboardStageController">
    <children>
-      <ImageView fx:id="carteleraImg" fitHeight="645.0" fitWidth="183.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true">
+      <ImageView fx:id="carteleraImg" fitHeight="680.0" fitWidth="183.0" pickOnBounds="true">
          <image>
             <Image url="@../Images/carteleraMain.png" />
          </image>

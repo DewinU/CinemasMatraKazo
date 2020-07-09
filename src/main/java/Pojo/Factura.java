@@ -6,6 +6,7 @@
 package Pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class Factura {
     
-    private int numeroFactura;
+    private int id;
     private String nombrePelicula;
     private String horaFuncion;
     private String sala;
@@ -28,9 +29,12 @@ public class Factura {
     private float subTotal;
     private float iva;
     
+    private String numeroFactura;
     private String asientosFactura;
     private String tipoComidaFactura;
     private String preciosComidaFactura;
+    
+    private Date fecha = new Date();
     
     public Factura() {
         asientos = new ArrayList<>();
@@ -38,8 +42,8 @@ public class Factura {
         preciosComida = new ArrayList<>();
     }
 
-    public Factura(int numeroFactura, String nombrePelicula, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado, List<String> tipoComida, List<Float> preciosComida, float total, String asientosFactura, String tipoComidaFactura, String preciosComidaFactura) {
-        this.numeroFactura = numeroFactura;
+    public Factura(int id, String nombrePelicula, String horaFuncion, String sala, List<String> asientos, String carnetEmpleado, List<String> tipoComida, List<Float> preciosComida, float total, float subTotal, float iva, String numeroFactura, String asientosFactura, String tipoComidaFactura, String preciosComidaFactura) {
+        this.id = id;
         this.nombrePelicula = nombrePelicula;
         this.horaFuncion = horaFuncion;
         this.sala = sala;
@@ -48,19 +52,20 @@ public class Factura {
         this.tipoComida = tipoComida;
         this.preciosComida = preciosComida;
         this.total = total;
+        this.subTotal = subTotal;
+        this.iva = iva;
+        this.numeroFactura = numeroFactura;
         this.asientosFactura = asientosFactura;
         this.tipoComidaFactura = tipoComidaFactura;
         this.preciosComidaFactura = preciosComidaFactura;
     }
-
     
-
-    public int getNumeroFactura() {
-        return numeroFactura;
+    public int getId() {
+        return id;
     }
 
-    public void setNumeroFactura(int numeroFactura) {
-        this.numeroFactura = numeroFactura;
+    public void setId(int numeroFactura) {
+        this.id = numeroFactura;
     }
 
     public String getNombrePelicula() {
@@ -188,6 +193,22 @@ public class Factura {
 
     public void setIva(float iva) {
         this.iva = iva;
+    }
+
+    public String getNumeroFactura() {
+        return numeroFactura;
+    }
+
+    public void setNumeroFactura(String numeroFactura) {
+        this.numeroFactura = numeroFactura;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
     
