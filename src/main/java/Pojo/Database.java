@@ -25,7 +25,7 @@ public class Database {
     ResultSet rs;
     PreparedStatement query;
 
-    String checkLogin = "SELECT check_login(?, ?)";
+    String checkLogin = "SELECT * from check_login(?,?)";
     String createEmpleado ="SELECT add_empleado(?,?,?,?,?,?,?,?,?,?,?,?)"; //C
     String readAll = "SELECT * from users";                                //R
     String updateEmpleado = "SELECT edit_empleado(?,?,?,?,?,?,?,?,?,?,?)"; //U
@@ -40,13 +40,21 @@ public class Database {
         return DriverManager.getConnection(dbUrl, username, password);
     }
 
-    public boolean is_register(String username, String password) throws SQLException{
-
+    public String[] is_register(String username, String password) throws SQLException{
+        String[] usuario = new String[2];
+        String firstName = null;
+        String cargo = null;
         query = con.prepareStatement(checkLogin);
         query.setString(1,username);
         query.setString(2,password);
-
-        return query.execute();
+        rs = query.executeQuery();
+        while (rs.next()){
+             firstName = rs.getString(1);
+             cargo = rs.getString(2);
+        }
+        usuario[0] = firstName;
+        usuario[1] = cargo;
+        return usuario;
     }
 
     public void showAll(ObservableList<UserTableModel> obList) throws SQLException {

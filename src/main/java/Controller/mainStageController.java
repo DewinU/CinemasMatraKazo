@@ -20,51 +20,48 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class mainStageController implements Initializable {
-    double x;
-    double y;
-    Stage stage;
-    
-    
-    
+    private String cargo;
+    private double x;
+    private double y;
+    private Stage stage;
     @FXML
     private AnchorPane contentPane;
-    @FXML
-    private HBox windowsBar;
+
     @FXML
     public Button inicioButton;
-    @FXML
-    private Button menuButton;
-    @FXML
-    private Button facturaButton;
-    @FXML
-    private Button historyButton;
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private Button peliculasButton;
-    @FXML
-    private Button empleadosButton;
+
     @FXML
     private Text welcomeText;
 
-    public static boolean activoHilo;
-    
+    @FXML
+    private Button historyButton;
+
+    @FXML
+    private Button peliculasButton;
+
+    @FXML
+    private Button empleadosButton;
+
+
     static ExecutorService threadPool;
     static Runnable task1;
     static Runnable task2;
     @FXML
     private AnchorPane anchorPaneNuevFacturaPromociones;
-    @FXML
-    private ImageView imgNuevaFactura;
-    
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(cargo == null || !cargo.toLowerCase().equals("admin")){
+            historyButton.setDisable(true);
+            empleadosButton.setDisable(true);
+            peliculasButton.setDisable(true);
+        }
         Node child = null;
         try {
             child = loadFXML("dashboardStage");
         } catch (IOException e) {
         }
+        welcomeText.setText("Bienvenido ");
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
         
@@ -118,7 +115,7 @@ public class mainStageController implements Initializable {
     @FXML
     void inicioButton(MouseEvent event) throws IOException {
         Node child = loadFXML("dashboardStage");
-//        contentPane.getChildren().clear();
+        contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
     }
 
@@ -178,5 +175,15 @@ public class mainStageController implements Initializable {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
+
+    public void setWelcomeText(String welcomeText) {
+        this.welcomeText.setText("Bienvenido " + welcomeText + "!");
+    }
+
+    public void setCargo(String cargo){
+        this.cargo = cargo;
+    }
+
+
 
 }

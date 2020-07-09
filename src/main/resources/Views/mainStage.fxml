@@ -48,23 +48,23 @@
                   <Image url="@../Images/Logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="inicioButton" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#inicioButton" prefHeight="65.0" prefWidth="300.0" text="Inicio" textAlignment="CENTER">
+            <Button fx:id="inicioButton" alignment="BASELINE_LEFT" graphicTextGap="0.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#inicioButton" prefHeight="65.0" prefWidth="300.0" text="Inicio" textAlignment="CENTER">
                <graphic>
-                  <MaterialDesignIconView glyphName="VIEW_DASHBOARD" styleClass="Icons" wrappingWidth="34.0" />
+                  <MaterialDesignIconView glyphName="VIEW_DASHBOARD" styleClass="Icons" text="" wrappingWidth="23.0" />
                </graphic>
             </Button>
             <Text fx:id="welcomeText" layoutX="55.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText" text="Bienvenido, DewinU!" />
-            <Button fx:id="menuButton" alignment="BASELINE_LEFT" graphicTextGap="14.0" layoutX="2.0" layoutY="405.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefHeight="65.0" prefWidth="300.0" text="Menu">
+            <Button fx:id="menuButton" alignment="BASELINE_LEFT" graphicTextGap="14.0" layoutX="4.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefHeight="65.0" prefWidth="300.0" text="Menu">
                <graphic>
                   <MaterialDesignIconView glyphName="FOOD" styleClass="Icons" />
                </graphic>
             </Button>
-            <Button fx:id="facturaButton" alignment="BASELINE_LEFT" graphicTextGap="14.0" layoutX="2.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#facturaButton" prefHeight="65.0" prefWidth="300.0" text="Nueva Factura">
+            <Button fx:id="facturaButton" alignment="BASELINE_LEFT" graphicTextGap="14.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#facturaButton" prefHeight="65.0" prefWidth="300.0" text="Nueva Factura">
                <graphic>
                   <MaterialDesignIconView glyphName="TICKET_CONFIRMATION" styleClass="Icons" />
                </graphic>
             </Button>
-            <Button fx:id="historyButton" alignment="BASELINE_LEFT" graphicTextGap="14.0" layoutX="2.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#historyButton" prefHeight="65.0" prefWidth="300.0" text="Historial">
+            <Button fx:id="historyButton" alignment="BASELINE_LEFT" graphicTextGap="14.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#historyButton" prefHeight="65.0" prefWidth="300.0" text="Historial">
                <graphic>
                   <MaterialDesignIconView glyphName="HISTORY" styleClass="Icons" />
                </graphic>
