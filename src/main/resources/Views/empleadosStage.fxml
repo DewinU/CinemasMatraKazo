@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.empladosStageController">
+   <children>
+      <TableView fx:id="table_Emplados" layoutX="22.0" layoutY="186.0" prefHeight="425.0" prefWidth="796.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="185.0">
+        <columns>
+          <TableColumn fx:id="column_ID" prefWidth="46.0" text="ID" />
+          <TableColumn fx:id="column_COD" minWidth="200.0" prefWidth="200.0" text="Codigo" />
+            <TableColumn fx:id="column_USERNAME" minWidth="200.0" prefWidth="200.0" text="Username" />
+            <TableColumn fx:id="column_FIRSTNAME" minWidth="200.0" prefWidth="200.0" text="Nombres" />
+            <TableColumn fx:id="column_LASTNAME" minWidth="200.0" prefWidth="200.0" text="Apellidos" />
+            <TableColumn fx:id="column_CEDULA" minWidth="200.0" prefWidth="200.0" text="Cédula" />
+            <TableColumn fx:id="column_TELEFONO" minWidth="200.0" prefWidth="200.0" text="Teléfono" />
+            <TableColumn fx:id="column_EMAIL" minWidth="200.0" prefWidth="200.0" text="Email" />
+            <TableColumn fx:id="column_HIREDATE" minWidth="200.0" prefWidth="200.0" text="Contratado" />
+            <TableColumn fx:id="column_CARGO" minWidth="200.0" prefWidth="200.0" text="Cargo" />
+            <TableColumn fx:id="column_TURNO" minWidth="200.0" prefWidth="200.0" text="Turno" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
