@@ -51,6 +51,7 @@ public class mainStageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        cargo = loginStageController.usuario[1];
         if(cargo == null || !cargo.toLowerCase().equals("admin")){
             historyButton.setDisable(true);
             empleadosButton.setDisable(true);

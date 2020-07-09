@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.historyStageController">
    <children>
-      <TableView layoutX="23.0" layoutY="114.0" prefHeight="546.0" prefWidth="936.0">
+      <TableView fx:id="tableViewPrincipal" layoutX="23.0" layoutY="114.0" prefHeight="546.0" prefWidth="936.0">
         <columns>
           <TableColumn fx:id="tbColID" prefWidth="51.0" text="ID" />
           <TableColumn fx:id="tblColPelicula" prefWidth="145.0" text="Película" />
@@ -22,7 +22,6 @@
             <TableColumn fx:id="tblColumPrecio" prefWidth="84.0" text="Precio" />
             <TableColumn fx:id="tblColumCarnet" prefWidth="163.0" text="Carnet del Empleado" />
             <TableColumn fx:id="tblColumTotal" prefWidth="75.0" text="Total" />
-            <TableColumn fx:id="tblColumTotal1" prefWidth="66.0" text="Total" />
         </columns>
       </TableView>
       <Label layoutX="23.0" layoutY="14.0" text="GESTIÓN DE FACTFURAS" textFill="WHITE">
