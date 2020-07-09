@@ -13,11 +13,9 @@ import javafx.stage.StageStyle;
  */
 public class App extends Application {
 
-    private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("loginStage"));
+        Scene scene = new Scene(loadFXML("loginStage"));
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);

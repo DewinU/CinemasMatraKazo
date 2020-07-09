@@ -324,9 +324,9 @@ public class loginDialogController implements Initializable {
     @FXML
     void uploadImageClick(MouseEvent event) throws IllegalArgumentException, IOException {
         FileChooser fc = new FileChooser();
-        FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)", "*.jpg","*.jpeg","*.jpe","*.jfif","*.png");
-        fc.getExtensionFilters().add(extFilter);
+        fc.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter
+                        ("Image files (*.jpg, *.jpeg,  *.png)", "*.png", "*.jpg", "*.jpeg"));
         File selectedImage = fc.showOpenDialog(null);
         if (selectedImage == null)
             return;

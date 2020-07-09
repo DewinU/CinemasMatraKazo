@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" styleClass="dashBoard" stylesheets="@../Styles/styleDEMO.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.empladosStageController">
    <children>
-      <TableView fx:id="table_Emplados" layoutX="22.0" layoutY="186.0" prefHeight="425.0" prefWidth="796.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="185.0">
+      <TableView fx:id="table_Emplados" layoutX="45.0" layoutY="193.0" onContextMenuRequested="#showEmpleado" onMouseClicked="#showEmpleado" prefHeight="445.0" prefWidth="611.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="192.0">
         <columns>
           <TableColumn fx:id="column_ID" prefWidth="46.0" text="ID" />
           <TableColumn fx:id="column_COD" minWidth="200.0" prefWidth="200.0" text="Codigo" />
@@ -21,5 +27,18 @@
             <TableColumn fx:id="column_TURNO" minWidth="200.0" prefWidth="200.0" text="Turno" />
         </columns>
       </TableView>
+      <Separator layoutX="693.0" layoutY="160.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="0.0" />
+      <Label layoutX="36.0" layoutY="141.0" prefHeight="16.0" prefWidth="48.0" style="-fx-font-family: Arial;" styleClass="welcomeText" stylesheets="@../Styles/styleDEMO.css" text="Buscar" />
+      <JFXTextField fx:id="txtBuscar" layoutX="84.0" layoutY="138.0" prefHeight="6.0" prefWidth="308.0" style="-fx-font-family: Arial;" />
+      <ImageView fx:id="uploadedImage" fitHeight="238.0" fitWidth="185.0" layoutX="744.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="726.0" layoutY="452.0" style="-fx-text-fill: #000000;" text="Nombre:" />
+      <Label layoutX="727.0" layoutY="535.0" prefHeight="17.0" prefWidth="66.0" style="-fx-text-fill: #000000;" text="Dirección:" />
+      <Label layoutX="726.0" layoutY="506.0" prefHeight="17.0" prefWidth="56.0" style="-fx-text-fill: #000000;" text="Número:" />
+      <Text fx:id="txtNombre" layoutX="800.0" layoutY="464.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" wrappingWidth="146.1367267370224" />
+      <Text fx:id="txtCargo" layoutX="801.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" wrappingWidth="146.1367267370224" />
+      <Label layoutX="727.0" layoutY="478.0" prefHeight="17.0" prefWidth="73.0" style="-fx-text-fill: #000000;" text="Cargo:" />
+      <Text fx:id="txtNumero" layoutX="801.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" wrappingWidth="160.13672590255737" />
+      <Text fx:id="txtDireccion" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="800.0" layoutY="548.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial;" wrappingWidth="146.1367267370224" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="404.0" layoutY="158.0" size="2em" />
    </children>
 </AnchorPane>

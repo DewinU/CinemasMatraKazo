@@ -63,10 +63,10 @@ public class Database {
         while(rs.next()) {
             obList.add(new UserTableModel(rs.getInt("id"),rs.getString("cod"),
                     rs.getString("username"),rs.getString("firstname"),
-                    rs.getString("lastname"),rs.getString("cedula"),
+                    rs.getString("lastname"),rs.getString("address"),rs.getString("cedula"),
                     rs.getString("telefono"),rs.getString("email"),
                     rs.getString("cargo"),rs.getString("turno"),
-                    rs.getDate("hiredate")));
+                    rs.getString("fotourl"),rs.getDate("hiredate")));
         }
     }
 

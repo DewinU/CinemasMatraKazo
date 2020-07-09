@@ -4,22 +4,22 @@ import java.sql.Date;
 
 public class UserTableModel {
     int id;
-    String cod, username, firstname, lastname, cedula, telefono,email,cargo,turno;
+    String cod, username, firstname, lastname,direccion, cedula, telefono,email,cargo,turno,fotoUrl;
     Date hiredate;
 
-    public UserTableModel(int id, String cod, String username,
-                          String firstname, String lastname, String cedula, String telefono,
-                          String email, String cargo, String turno, Date hiredate) {
+    public UserTableModel(int id, String cod, String username, String firstname, String lastname, String direccion, String cedula, String telefono, String email, String cargo, String turno, String fotoUrl, Date hiredate) {
         this.id = id;
         this.cod = cod;
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.direccion = direccion;
         this.cedula = cedula;
         this.telefono = telefono;
         this.email = email;
         this.cargo = cargo;
         this.turno = turno;
+        this.fotoUrl = fotoUrl;
         this.hiredate = hiredate;
     }
 
@@ -111,5 +111,19 @@ public class UserTableModel {
         this.hiredate = hiredate;
     }
 
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
 
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 }

@@ -29,14 +29,11 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
-import static Main.App.loadFXML;
-
 public class peliculasStageController implements Initializable {
     private MovieListModel moviesListModel;
     public static ObservableList<Pelicula> movieList;
 
     Alert alerta;
-    File imageFile;
     @FXML
     private ImageView movieImageView;
 
