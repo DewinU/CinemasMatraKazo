@@ -3,8 +3,10 @@ package Controller;
 import static Main.App.loadFXML;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,7 +22,8 @@ import java.util.ResourceBundle;
 public class loginStageController implements Initializable {
     double x,y;
     Stage stage;
-    Database database;  
+    Database database;
+    private  String  firstName;
     @FXML
     private MaterialDesignIconView account;
     @FXML
@@ -56,13 +59,18 @@ public class loginStageController implements Initializable {
     public void checkLogin(MouseEvent event) throws SQLException, IOException {
         String username = userTxtField.getText();
         String password = passwordTxtField.getText();
-        if(true){
+        String[] usuario = database.is_register(username,password);
+        if(usuario != null){
             close(event);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/mainStage.fxml"));
+            Parent root = fxmlLoader.load();
             stage = new Stage();
-            stage.setScene(new Scene(loadFXML("mainStage")));
-            stage.setResizable(false);
-            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            mainStageController mainStg = fxmlLoader.getController();
+            mainStg.setWelcomeText(usuario[0]);
+            mainStg.setCargo(usuario[1]);
         }
         else{
             userTxtField.getStyleClass().add("error-text-field");
@@ -73,6 +81,8 @@ public class loginStageController implements Initializable {
         }
 
     }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
