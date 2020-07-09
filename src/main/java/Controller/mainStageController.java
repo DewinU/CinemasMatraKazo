@@ -15,8 +15,6 @@ import static Main.App.loadFXML;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class mainStageController implements Initializable {
