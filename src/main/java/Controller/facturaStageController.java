@@ -381,25 +381,30 @@ public class facturaStageController implements Initializable {
         
         if(facturaList.LoadFromJsonFacturas()){
             int i = (facturaList.getListFactura().size() + 1);
-            nuevaFactura.setNumeroFactura(i);
+            nuevaFactura.setId(i);
             if(i < 10){
                 lblNumeroFactura.setText("F#000" + i);
                 lblNumeroFacturaFinal.setText("F#000" + i);
+                nuevaFactura.setNumeroFactura("F#000" + i);
             }else if(i >= 10 && i < 100){
                 lblNumeroFactura.setText("F#00" +  i);
                 lblNumeroFacturaFinal.setText("F#00" + i);
+                nuevaFactura.setNumeroFactura("F#00" + i);
             }else if (i >= 100 && i < 1000){
                 lblNumeroFactura.setText("F#0" + i);
                 lblNumeroFacturaFinal.setText("F#0" + i);
+                nuevaFactura.setNumeroFactura("F#0" + i);
             }else if(i >= 1000 && i < 10000){
                 lblNumeroFactura.setText("F#" + i);
                 lblNumeroFacturaFinal.setText("F#" + i);
+                nuevaFactura.setNumeroFactura("F#" + i);
             }
             
         }else{
             lblNumeroFactura.setText("F#0001");
             lblNumeroFacturaFinal.setText("F#0001");
-            nuevaFactura.setNumeroFactura(1);
+            nuevaFactura.setNumeroFactura("F#0001");
+            nuevaFactura.setId(1);
         }
         
         threadPool.submit(task1);
@@ -482,7 +487,7 @@ public class facturaStageController implements Initializable {
             listViewPrecioComidaSelec.getItems().remove(index);
             listViewComidaSelec.getItems().remove(s);
             
-            listViewAlimentosFinal.getItems().remove(index);
+            listViewAlimentosFinal.getItems().remove(s);
             
             sumatoriaDePreciosDeComida();
         });
@@ -933,11 +938,8 @@ public class facturaStageController implements Initializable {
                     } catch (IOException ex) {
                         Logger.getLogger(facturaStageController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
                 }
-
                 break;
-
             case 1:
                 //REGRESAR AL SELECTOR DE ASIENTOS Y PELICULAS
                 if (btnCancelar.getText().equals("Regresar")) {
@@ -978,8 +980,7 @@ public class facturaStageController implements Initializable {
     }
     
     @FXML
-    private void btnContinuarOnAction(ActionEvent event) {
-        
+    private void btnContinuarOnAction(ActionEvent event) {     
         switch(indexStageContinue){
             case 0:
                 // SELECCIONAR COMIDA
@@ -1021,17 +1022,20 @@ public class facturaStageController implements Initializable {
                 txtHoraFunsionFinal.setText(nuevaFactura.getHoraFuncion());
                 txtSalaFinal.setText(nuevaFactura.getSala());
                 txtNombreDePeliculaFinal.setText(nuevaFactura.getNombrePelicula());
+                
                 //calculo del total final
+                
                 int suma = 0;
                 for (Float f : nuevaFactura.getPreciosComida()) {
                     suma += f;
                 }
                 txtTotalFinal.setText("C$ " + (suma + (nuevaFactura.getAsientos().size())*100));
                 nuevaFactura.setSubTotal((suma + (nuevaFactura.getAsientos().size())*100));
-                nuevaFactura.setIva((nuevaFactura.getSubTotal()) * ((float)0.3));
+                nuevaFactura.setIva((nuevaFactura.getSubTotal()) * ((float)0.15));
                 nuevaFactura.setTotal(nuevaFactura.getIva() + nuevaFactura.getSubTotal());
                 
-                //-----------------------
+                //-----------------------------------------------------------------------------
+                
                 listViewAsientosSeleccionadosFinal.getItems().clear();
                 listViewAsientosSeleccionadosFinal.getItems().addAll(nuevaFactura.getAsientos());
                 listViewAlimentosFinal.getItems().clear();
@@ -1058,7 +1062,7 @@ public class facturaStageController implements Initializable {
          
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                     alert1.setTitle("INFORMACION");
-                    alert1.setContentText("\nIMPRIMIENDO EL REPORTE POR FAVOR ESPERE");
+                    alert1.setContentText("\nIMPRIMIENDO EL REPORTE POR FAVOR ESPERE (OK PARA CONTINUAR)");
                     alert1.showAndWait();
                     
                     //  SE MUESTRA EL REPORTE
