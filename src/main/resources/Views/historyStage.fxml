@@ -13,15 +13,15 @@
    <children>
       <TableView fx:id="tableViewPrincipal" layoutX="23.0" layoutY="114.0" prefHeight="546.0" prefWidth="936.0">
         <columns>
-          <TableColumn fx:id="tbColID" prefWidth="51.0" text="ID" />
-          <TableColumn fx:id="tblColPelicula" prefWidth="145.0" text="Película" />
-            <TableColumn fx:id="tblColumFuncion" prefWidth="120.0" text="Función" />
-            <TableColumn fx:id="tblColumSala" prefWidth="86.0" text="Sala" />
-            <TableColumn fx:id="tblColumAsientos" prefWidth="99.0" text="Asientos" />
-            <TableColumn fx:id="tblColumComida" prefWidth="110.0" text="Comida" />
+          <TableColumn fx:id="tbColID" prefWidth="35.0" text="ID" />
+          <TableColumn fx:id="tblColPelicula" prefWidth="138.0" text="Película" />
+            <TableColumn fx:id="tblColumFuncion" prefWidth="125.0" text="Función" />
+            <TableColumn fx:id="tblColumSala" prefWidth="89.0" text="Sala" />
+            <TableColumn fx:id="tblColumAsientos" prefWidth="120.0" text="Asientos" />
+            <TableColumn fx:id="tblColumComida" prefWidth="137.0" text="Comida" />
             <TableColumn fx:id="tblColumPrecio" prefWidth="84.0" text="Precio" />
-            <TableColumn fx:id="tblColumCarnet" prefWidth="163.0" text="Carnet del Empleado" />
-            <TableColumn fx:id="tblColumTotal" prefWidth="75.0" text="Total" />
+            <TableColumn fx:id="tblColumCarnet" prefWidth="130.0" text="Carnet del Empleado" />
+            <TableColumn fx:id="tblColumTotal" prefWidth="77.0" text="Total" />
         </columns>
       </TableView>
       <Label layoutX="23.0" layoutY="14.0" text="GESTIÓN DE FACTFURAS" textFill="WHITE">
@@ -33,8 +33,7 @@
          </effect>
       </Label>
       <Separator layoutX="23.0" layoutY="86.0" prefHeight="3.0" prefWidth="584.0" />
-      <Button layoutX="630.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: white;" text="Ver Reporte" />
-      <Button layoutX="744.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: white;" text="Eliminar" />
-      <Button layoutX="855.0" layoutY="59.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: white;" text="Ver Detalles" />
+      <Button fx:id="btnVerReporte" layoutX="742.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnVerReporteOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: white;" text="Ver Reporte" />
+      <Button fx:id="btnEliminar" layoutX="855.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnEliminarOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: white;" text="Eliminar" />
    </children>
 </AnchorPane>

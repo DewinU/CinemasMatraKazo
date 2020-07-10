@@ -2,13 +2,19 @@ package Controller;
 
 import Model.FacturaListModel;
 import Pojo.Factura;
+import Pojo.Reporte;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,6 +47,10 @@ public class historyStageController implements Initializable {
     private FacturaListModel facturaModel;
     @FXML
     private TableView<Factura> tableViewPrincipal;
+    @FXML
+    private Button btnVerReporte;
+    @FXML
+    private Button btnEliminar;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,5 +72,42 @@ public class historyStageController implements Initializable {
         tblColumTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         
         tableViewPrincipal.setItems(facturaList);
+    }
+
+    @FXML
+    private void btnVerReporteOnAction(ActionEvent event) {
+        Reporte report = new Reporte();
+        report.generarReportes(facturaModel.getListFactura());
+    }
+
+    @FXML
+    private void btnEliminarOnAction(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("CONFIRMACIÓN");
+                alert.setContentText("¿DESEA ELIMINAR LA FACTURA?");
+                Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+
+            if (!(tableViewPrincipal.getSelectionModel().getSelectedItem() == null)) {
+                Factura f = tableViewPrincipal.getSelectionModel().getSelectedItem();
+
+                facturaModel.getListFactura().remove(f);
+                int i = 0;
+                for (Factura fac : facturaModel.getListFactura()) {
+                    fac.setId(i);
+                    i++;
+                }
+                
+                facturaModel.writeJsonFacturas();
+                facturaList = FXCollections.observableArrayList(facturaModel.getListFactura());
+                tableViewPrincipal.getItems().clear();
+                tableViewPrincipal.setItems(facturaList);
+            }
+            
+        }
+
+        
     }
 }
