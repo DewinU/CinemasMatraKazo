@@ -23,7 +23,7 @@ public class loginStageController implements Initializable {
     private double x,y;
     private Stage stage;
     private Database database;
-    static String[] usuario;
+    public static String[] usuario;
     @FXML
     private MaterialDesignIconView account;
     @FXML
