@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.File;
@@ -119,7 +120,7 @@ public class peliculasStageController implements Initializable {
         if(pelicula == null){
             alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Vaya!");
-            alerta.setContentText("Debes elegir una película a eliminar! ");
+            alerta.setContentText("Debes elegir una película a editar! ");
             alerta.show();
         }
         else{
@@ -128,6 +129,7 @@ public class peliculasStageController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
             fxmlLoader.setLocation(getClass().getResource("/Views/peliculaDialog.fxml"));
             peliculaDialogController loginDlg = fxmlLoader.getController();
@@ -145,6 +147,7 @@ public class peliculasStageController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         fxmlLoader.setLocation(getClass().getResource("/Views/peliculaDialog.fxml"));
     }

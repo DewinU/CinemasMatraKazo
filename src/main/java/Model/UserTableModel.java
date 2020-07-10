@@ -1,13 +1,13 @@
 package Model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class UserTableModel {
     int id;
-    String cod, username,password, firstname, lastname,cedula, telefono,email, direccion, cargo,turno,fotoUrl;
-    Date hiredate;
+    String cod, username,password, firstname, lastname,cedula, telefono,email, direccion,hiredate, cargo,turno,fotoUrl;
 
-    public UserTableModel(int id, String cod, String username, String password, String firstname, String lastname, String cedula, String telefono, String email, String direccion, Date hiredate,String cargo, String turno, String fotoUrl) {
+    public UserTableModel(int id, String cod, String username, String password, String firstname, String lastname, String cedula, String telefono, String email, String direccion, String hiredate,String cargo, String turno, String fotoUrl) {
         this.id = id;
         this.cod = cod;
         this.username = username;
@@ -22,6 +22,22 @@ public class UserTableModel {
         this.cargo = cargo;
         this.turno = turno;
         this.fotoUrl = fotoUrl;
+    }
+
+    public UserTableModel(String cod, String username, String password, String firstname, String lastname, String cedula, String telefono, String email, String direccion,String hiredate, String cargo, String turno, String fotoUrl) {
+        this.cod = cod;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.email = email;
+        this.direccion = direccion;
+        this.cargo = cargo;
+        this.turno = turno;
+        this.fotoUrl = fotoUrl;
+        this.hiredate = hiredate;
     }
 
     public UserTableModel() {
@@ -131,11 +147,11 @@ public class UserTableModel {
         this.fotoUrl = fotoUrl;
     }
 
-    public Date getHiredate() {
+    public String getHiredate() {
         return hiredate;
     }
 
-    public void setHiredate(Date hiredate) {
+    public void setHiredate(String hiredate) {
         this.hiredate = hiredate;
     }
 }

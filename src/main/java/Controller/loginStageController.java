@@ -60,7 +60,7 @@ public class loginStageController implements Initializable {
         String username = userTxtField.getText();
         String password = passwordTxtField.getText();
         usuario = database.is_register(username,password);
-        if(usuario != null){
+        if(usuario[0] != null || usuario[1]!=null || usuario[2] != null){
             close(event);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/mainStage.fxml"));
             Parent root = fxmlLoader.load();
@@ -68,9 +68,6 @@ public class loginStageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
-            mainStageController mainStg = fxmlLoader.getController();
-            mainStg.setWelcomeText(usuario[0]);
-            mainStg.setCargo(usuario[1]);
         }
         else{
             userTxtField.getStyleClass().add("error-text-field");

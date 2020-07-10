@@ -3,6 +3,8 @@ package Controller;
 import Model.UserTableModel;
 import Pojo.Database;
 import Pojo.Pelicula;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,10 +22,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class empleadoDialogController implements Initializable {
+    private ObservableList<String> cargo = FXCollections.observableArrayList("Gerente","Cajero","Administrador");
+    private ObservableList<String> turno = FXCollections.observableArrayList("Matutino","Vespertirno","Nocturno","No Aplica");
+
     private Database database;
+
+    private UserTableModel usuario;
 
     private Stage stage;
 
@@ -31,9 +39,11 @@ public class empleadoDialogController implements Initializable {
 
     private double y;
 
-    private Boolean isEdit;
+    private Boolean isEdit = false;
 
     private int index;
+
+    private int idDb;
 
     @FXML
     private ImageView uploadedImage;
@@ -107,7 +117,6 @@ public class empleadoDialogController implements Initializable {
     void close(MouseEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
-
     }
 
     @FXML
@@ -125,15 +134,41 @@ public class empleadoDialogController implements Initializable {
     }
 
     @FXML
-    void btnAdd(MouseEvent event) throws IOException {
+    void btnAdd(MouseEvent event) throws IOException, SQLException {
         saveToFile(uploadedImage);
+        if(isEdit){
+            usuario = new UserTableModel(txtCod.getText(),txtUsuario.getText(),txtPassword.getText(),txtFirstName.getText(),
+                    txtLastName.getText(),txtCedula.getText(),txtPhoneNumber.getText(),txtEmail.getText(),txtAddress.getText(),LocalDate.now().toString(),
+                    cmbCargo.getValue(),cmbTurno.getValue(),getImagePath());
+            database.updateEmpleado(idDb,txtCod.getText(),txtUsuario.getText(),txtFirstName.getText(),txtLastName.getText(),txtCedula.getText(),
+                    txtPhoneNumber.getText(),txtEmail.getText(),txtAddress.getText(),cmbCargo.getValue(),cmbTurno.getValue(),
+                    getImagePath());
+            System.out.println(index);
+            empladosStageController.obList.set(index,usuario);
+        }
+        else{
+            usuario = new UserTableModel(txtCod.getText(),txtUsuario.getText(),txtPassword.getText(),txtFirstName.getText(),
+                    txtLastName.getText(),txtCedula.getText(),txtPhoneNumber.getText(),txtEmail.getText(),txtAddress.getText(),LocalDate.now().toString(),
+                    cmbCargo.getValue(),cmbTurno.getValue(),getImagePath());
+            database.addEmpleado(usuario.getCod(),usuario.getUsername(),usuario.getPassword(),usuario.getFirstname(),usuario.getLastname(),usuario.getCedula(),usuario.getTelefono(),usuario.getEmail(),usuario.getDireccion(),LocalDate.now().toString(),usuario.getCargo(),usuario.getTurno(),usuario.getFotoUrl());
+            empladosStageController.obList.add(usuario);
 
-
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "La operación se ha hecho con exito", ButtonType.OK);
+        alert.show();
     }
 
     @FXML
     void btnCancel(MouseEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Alert alert = new Alert(Alert.AlertType.WARNING, "¿Esta seguro que desea cancelar?", ButtonType.YES,ButtonType.NO);
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES) {
+            alert.close();
+            stage.close();
+        }
     }
 
 
@@ -149,6 +184,7 @@ public class empleadoDialogController implements Initializable {
     }
 
     public  void isEdit(UserTableModel usuario, boolean state, int id){
+        uploadedImage.setImage(new Image(new File(usuario.getFotoUrl()).toURI().toString()));
         txtUsuario.setText(usuario.getUsername());
         txtPassword.setEditable(false);
         txtFirstName.setText(usuario.getFirstname());
@@ -163,12 +199,15 @@ public class empleadoDialogController implements Initializable {
         txtUrl.setText(usuario.getFotoUrl());
         isEdit = state;
         index = id;
+        idDb = usuario.getId();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             database = new Database();
+            cmbTurno.setItems(turno);
+            cmbCargo.setItems(cargo);
         } catch (SQLException throwables) { }
 
     }
