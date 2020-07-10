@@ -29,7 +29,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class loginDialogController implements Initializable {
+public class peliculaDialogController implements Initializable {
 
     private Pelicula pelicula;
     private boolean editState;
@@ -314,9 +314,7 @@ public class loginDialogController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(),
                     ButtonType.OK);
             alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                return;
-            }
+
         }
     }
 

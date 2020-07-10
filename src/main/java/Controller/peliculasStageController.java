@@ -123,14 +123,14 @@ public class peliculasStageController implements Initializable {
             alerta.show();
         }
         else{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/loginDialog.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/peliculaDialog.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
-            fxmlLoader.setLocation(getClass().getResource("/Views/loginDialog.fxml"));
-            loginDialogController loginDlg = fxmlLoader.getController();
+            fxmlLoader.setLocation(getClass().getResource("/Views/peliculaDialog.fxml"));
+            peliculaDialogController loginDlg = fxmlLoader.getController();
             loginDlg.isEdit(moviesView.getSelectionModel().getSelectedItem(),true,moviesView.getSelectionModel().getSelectedIndex());
             moviesListModel.updateJson(movieList);
             moviesView.refresh();
@@ -140,13 +140,13 @@ public class peliculasStageController implements Initializable {
 
     @FXML
     void buttonNew(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/loginDialog.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/peliculaDialog.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
-        fxmlLoader.setLocation(getClass().getResource("/Views/loginDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/Views/peliculaDialog.fxml"));
     }
 
     @FXML

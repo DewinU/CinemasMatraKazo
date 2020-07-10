@@ -8,6 +8,7 @@ import Model.UserTableModel;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 /**
  *
@@ -26,9 +27,9 @@ public class Database {
     PreparedStatement query;
 
     String checkLogin = "SELECT * from check_login(?,?)";
-    String createEmpleado ="SELECT add_empleado(?,?,?,?,?,?,?,?,?,?,?,?)"; //C
+    String createEmpleado ="SELECT add_empleado(?,?,?,?,?,?,?,?,?,?,?,?,?)"; //C
     String readAll = "SELECT * from users";                                //R
-    String updateEmpleado = "SELECT edit_empleado(?,?,?,?,?,?,?,?,?,?,?)"; //U
+    String updateEmpleado = "SELECT edit_empleado(?,?,?,?,?,?,?,?,?,?,?,?,?)"; //U
     String deleteEmpleado = "SELECT delete_empleado(?)";                   //R
 
     public Database() throws SQLException {
@@ -61,50 +62,58 @@ public class Database {
         query = con.prepareStatement(readAll);
         rs = query.executeQuery();
         while(rs.next()) {
-            obList.add(new UserTableModel(rs.getInt("id"),rs.getString("cod"),
-                    rs.getString("username"),rs.getString("firstname"),
-                    rs.getString("lastname"),rs.getString("address"),rs.getString("cedula"),
-                    rs.getString("telefono"),rs.getString("email"),
-                    rs.getString("cargo"),rs.getString("turno"),
-                    rs.getString("fotourl"),rs.getDate("hiredate")));
+            obList.add(new UserTableModel(rs.getInt(1),rs.getString(2),
+                    rs.getString(3),rs.getString(4),rs.getString(5),
+                    rs.getString(6),rs.getString(7),rs.getString(8),
+                    rs.getString(9),rs.getString(10),
+                    rs.getDate(11), rs.getString(12),rs.getString(13),
+                    rs.getString(14)));
         }
     }
 
-    public boolean addEmpleado(String cod, String username,
+    public void addEmpleado(String cod, String username, String password,
                                String firstName, String lastName, String cedula, String telefono,
                                String email,String address, String cargo, String turno, String fotoUrl) throws SQLException {
         query = con.prepareStatement(createEmpleado);
         query.setString(1,cod);
         query.setString(2,username);
-        query.setString(3,firstName);
-        query.setString(4,lastName);
-        query.setString(5,cedula);
-        query.setString(6,telefono);
-        query.setString(7,email);
-        query.setString(8,address);
-        query.setString(9,cargo);
-        query.setString(10,turno);
-        query.setString(11,fotoUrl);
-        return query.execute();
+        query.setString(3,password);
+        query.setString(4,firstName);
+        query.setString(5,lastName);
+        query.setString(6,cedula);
+        query.setString(7,telefono);
+        query.setString(8,email);
+        query.setString(9,address);
+        query.setObject(10, LocalDate.now());
+        query.setString(11,cargo);
+        query.setString(12,turno);
+        query.setString(13,fotoUrl);
+        query.executeUpdate();
     }
 
-    public boolean updateEmpleado(String cod, String username,String password,
-                                  String firstName, String lastName, String cedula, String telefono,
-                                  String email,String address, String cargo, String turno, String fotoUrl) throws SQLException {
+    public void updateEmpleado(int id,String cod, String username,String firstName, String lastName, String cedula, String telefono,
+                               String email,String address,String cargo, String turno, String fotoUrl) throws SQLException {
         query = con.prepareStatement(updateEmpleado);
-        query.setString(1,cod);
-        query.setString(2,username);
-        query.setString(3,firstName);
-        query.setString(4,lastName);
-        query.setString(5,cedula);
-        query.setString(6,telefono);
-        query.setString(7,email);
-        query.setString(8,address);
-        query.setString(9,cargo);
-        query.setString(10,turno);
-        query.setString(11,fotoUrl);
+        query.setInt(1,id);
+        query.setString(2,cod);
+        query.setString(3,username);
+        query.setString(4,firstName);
+        query.setString(5,lastName);
+        query.setString(6,cedula);
+        query.setString(7,telefono);
+        query.setString(8,email);
+        query.setString(9,address);
+        query.setObject(10,LocalDate.now());
+        query.setString(11,cargo);
+        query.setString(12,turno);
+        query.setString(13,fotoUrl);
+        query.executeUpdate();
+    }
 
-        return query.execute();
+    public void deleteEmpleado(int index) throws SQLException {
+        query = con.prepareStatement(updateEmpleado);
+        query.setInt(1,index);
+        query.executeUpdate();
     }
     
 }
