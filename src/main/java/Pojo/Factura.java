@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static Controller.loginStageController.usuario;
+
 /**
  *
  * @author Silencraft26
@@ -20,7 +22,7 @@ public class Factura {
     private String horaFuncion;
     private String sala;
     private List<String> asientos;
-    private String carnetEmpleado;
+    private String carnetEmpleado = usuario[0];
     private List<String> tipoComida;
     private List<Float> preciosComida;
     
