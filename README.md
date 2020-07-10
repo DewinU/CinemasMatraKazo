@@ -15,10 +15,10 @@ El Siguiente proyecto fué creado en un tiempo de 1 mes, por lo que
 creemos que necesitaría un pequeño manual, ya que hay unas herramientas
 que no están a simple vista:
 
-El login es capaz de aceptar 2 tipos de cuentas que debería usar:
+Le proporcionamos 2 cuenta:
 
-cuenta 1 
-contraseña 1
+Usuario: Ana 
+contraseña: 1234
 
 Esta cuenta fué pensada para empleados, al acceder se observaría un inicio
 el cual muestra la cartelera actual del cinema, usted podrá darle click 
@@ -48,13 +48,15 @@ Si le damos a regresar al inicio, aparece la cartelera como cuando accedimos por
 El apartado de *Menu* cuenta con los alimentos que están disponibles actualmente en el cinema
 al pasar el mouse se verían las opciones de ver y comprar.
 
-cuenta 2
-contraseña 2
+Usuario: Yasser
+contraseña: admin
 
-Al igual que la cuenta anterior,esta puede hacer lo mismo, pero fue pensada para un 
-gerente o administrador del local que al entrar tendría acceso a cambiar peliculas,
+Al igual que la cuenta anterior,esta puede hacer lo mismo, pero fue pensada para el 
+administrador del local que al entrar tendría acceso a cambiar peliculas,
 gestion de empleados y poder quitar o ver el historial de facturas.
 
+En el administrador de PELICULAS y EMPLEADOS, son 2 CRUD, con la característica de
+que las imágenes pueden ser leidos ya sea desde la web o desde el sistema, y se guardarán automaticamente al programa.
 
 
 
