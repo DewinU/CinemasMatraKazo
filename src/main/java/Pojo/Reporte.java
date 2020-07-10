@@ -36,6 +36,18 @@ public class Reporte {
         } catch (JRException ex) {
             Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+    
+    public void generarReportes(List<Factura> data){
+        try {
+            JasperReport reporte = JasperCompileManager.compileReport(getClass().getResourceAsStream("/Report/FacturasTabla.jrxml"));
+            
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(data));
+            JasperViewer view = new JasperViewer(jasperPrint, false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

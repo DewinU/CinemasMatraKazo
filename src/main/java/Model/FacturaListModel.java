@@ -63,7 +63,24 @@ public class FacturaListModel {
             dataFacturas.add(f);
             fw = new FileWriter("./src/main/resources/Data/Facturas.json");
             fw.write(gson.toJson(dataFacturas));
-            System.out.println("BOOOM 1");
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FacturaListModel.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FacturaListModel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+  
+    }
+    public void writeJsonFacturas(){
+        FileWriter fw = null;
+        try {
+            Gson gson = new Gson();
+            fw = new FileWriter("./src/main/resources/Data/Facturas.json");
+            fw.write(gson.toJson(dataFacturas));
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(FacturaListModel.class.getName()).log(Level.SEVERE, null, ex);
