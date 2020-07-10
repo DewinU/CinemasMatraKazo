@@ -29,7 +29,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class loginDialogController implements Initializable {
+public class peliculaDialogController implements Initializable {
 
     private Pelicula pelicula;
     private boolean editState;
@@ -314,9 +314,7 @@ public class loginDialogController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(),
                     ButtonType.OK);
             alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                return;
-            }
+
         }
     }
 
@@ -324,9 +322,9 @@ public class loginDialogController implements Initializable {
     @FXML
     void uploadImageClick(MouseEvent event) throws IllegalArgumentException, IOException {
         FileChooser fc = new FileChooser();
-        FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)", "*.jpg","*.jpeg","*.jpe","*.jfif","*.png");
-        fc.getExtensionFilters().add(extFilter);
+        fc.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter
+                        ("Image files (*.jpg, *.jpeg,  *.png)", "*.png", "*.jpg", "*.jpeg"));
         File selectedImage = fc.showOpenDialog(null);
         if (selectedImage == null)
             return;

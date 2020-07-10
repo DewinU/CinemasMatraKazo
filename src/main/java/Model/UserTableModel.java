@@ -1,26 +1,46 @@
 package Model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class UserTableModel {
     int id;
-    String cod, username, firstname, lastname, cedula, telefono,email,cargo,turno;
-    Date hiredate;
+    String cod, username,password, firstname, lastname,cedula, telefono,email, direccion,hiredate, cargo,turno,fotoUrl;
 
-    public UserTableModel(int id, String cod, String username,
-                          String firstname, String lastname, String cedula, String telefono,
-                          String email, String cargo, String turno, Date hiredate) {
+    public UserTableModel(int id, String cod, String username, String password, String firstname, String lastname, String cedula, String telefono, String email, String direccion, String hiredate,String cargo, String turno, String fotoUrl) {
         this.id = id;
         this.cod = cod;
         this.username = username;
+        this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.cedula = cedula;
         this.telefono = telefono;
         this.email = email;
+        this.direccion = direccion;
+        this.hiredate = hiredate;
         this.cargo = cargo;
         this.turno = turno;
+        this.fotoUrl = fotoUrl;
+    }
+
+    public UserTableModel(String cod, String username, String password, String firstname, String lastname, String cedula, String telefono, String email, String direccion,String hiredate, String cargo, String turno, String fotoUrl) {
+        this.cod = cod;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.email = email;
+        this.direccion = direccion;
+        this.cargo = cargo;
+        this.turno = turno;
+        this.fotoUrl = fotoUrl;
         this.hiredate = hiredate;
+    }
+
+    public UserTableModel() {
     }
 
     public int getId() {
@@ -45,6 +65,14 @@ public class UserTableModel {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstname() {
@@ -87,6 +115,14 @@ public class UserTableModel {
         this.email = email;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     public String getCargo() {
         return cargo;
     }
@@ -103,13 +139,19 @@ public class UserTableModel {
         this.turno = turno;
     }
 
-    public Date getHiredate() {
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
+    public String getHiredate() {
         return hiredate;
     }
 
-    public void setHiredate(Date hiredate) {
+    public void setHiredate(String hiredate) {
         this.hiredate = hiredate;
     }
-
-
 }

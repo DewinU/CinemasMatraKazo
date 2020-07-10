@@ -15,12 +15,9 @@ import static Main.App.loadFXML;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class mainStageController implements Initializable {
-    private String cargo;
     private double x;
     private double y;
     private Stage stage;
@@ -51,8 +48,9 @@ public class mainStageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cargo = loginStageController.usuario[1];
-        if(cargo == null || !cargo.toLowerCase().equals("admin")){
+        String nombre = loginStageController.usuario[1];
+        String cargo = loginStageController.usuario[2];
+        if(!cargo.equals("Administrador")){
             historyButton.setDisable(true);
             empleadosButton.setDisable(true);
             peliculasButton.setDisable(true);
@@ -62,7 +60,7 @@ public class mainStageController implements Initializable {
             child = loadFXML("dashboardStage");
         } catch (IOException e) {
         }
-        welcomeText.setText("Bienvenido ");
+        welcomeText.setText("Bienvenido " + nombre + "!");
         contentPane.getChildren().clear();
         contentPane.getChildren().add(child);
         
@@ -176,15 +174,4 @@ public class mainStageController implements Initializable {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
-
-    public void setWelcomeText(String welcomeText) {
-        this.welcomeText.setText("Bienvenido " + welcomeText + "!");
-    }
-
-    public void setCargo(String cargo){
-        this.cargo = cargo;
-    }
-
-
-
 }

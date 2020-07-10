@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.File;
@@ -29,14 +30,11 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
-import static Main.App.loadFXML;
-
 public class peliculasStageController implements Initializable {
     private MovieListModel moviesListModel;
     public static ObservableList<Pelicula> movieList;
 
     Alert alerta;
-    File imageFile;
     @FXML
     private ImageView movieImageView;
 
@@ -122,18 +120,19 @@ public class peliculasStageController implements Initializable {
         if(pelicula == null){
             alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Vaya!");
-            alerta.setContentText("Debes elegir una película a eliminar! ");
+            alerta.setContentText("Debes elegir una película a editar! ");
             alerta.show();
         }
         else{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/loginDialog.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/peliculaDialog.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
-            fxmlLoader.setLocation(getClass().getResource("/Views/loginDialog.fxml"));
-            loginDialogController loginDlg = fxmlLoader.getController();
+            fxmlLoader.setLocation(getClass().getResource("/Views/peliculaDialog.fxml"));
+            peliculaDialogController loginDlg = fxmlLoader.getController();
             loginDlg.isEdit(moviesView.getSelectionModel().getSelectedItem(),true,moviesView.getSelectionModel().getSelectedIndex());
             moviesListModel.updateJson(movieList);
             moviesView.refresh();
@@ -143,13 +142,14 @@ public class peliculasStageController implements Initializable {
 
     @FXML
     void buttonNew(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/loginDialog.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/peliculaDialog.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-        fxmlLoader.setLocation(getClass().getResource("/Views/loginDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/Views/peliculaDialog.fxml"));
     }
 
     @FXML
